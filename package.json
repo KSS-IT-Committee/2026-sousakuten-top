@@ -3,10 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "changelog": "node scripts/build-changelog.mjs",
+    "posts": "node scripts/build-posts.mjs",
+    "knowledge": "dotenv -e .env.local -- node scripts/build-knowledge.mjs",
+    "predev": "npm run changelog && npm run posts",
     "dev": "next dev",
+    "prebuild": "npm run changelog && npm run posts",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "fix": "npm run lint:fix && npm run format"
   },
   "dependencies": {
     "drizzle-orm": "^0.45.2",
@@ -22,6 +31,7 @@
     "drizzle-kit": "^0.31.10",
     "eslint": "^9",
     "eslint-config-next": "16.2.12",
-    "typescript": "^5"
+    "typescript": "^5",
+    "prettier": "^3.9.5"
   }
 }
