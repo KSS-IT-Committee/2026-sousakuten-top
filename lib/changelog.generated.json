@@ -1,0 +1,12 @@
+[
+  {
+    "slug": "0001-changelog",
+    "title": "ページの初期化",
+    "description": "2026年度創作展のホームページが作成されました。",
+    "credits": [
+      "@rotarymars"
+    ],
+    "addedAt": "2026-07-27T19:27:53+09:00",
+    "commit": "fe94bff8e16dcdb5b448c4ba867e9d8d82cfc466"
+  }
+]
