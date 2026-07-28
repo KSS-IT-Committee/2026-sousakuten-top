@@ -4,9 +4,7 @@
   "private": true,
   "scripts": {
     "changelog": "node scripts/build-changelog.mjs",
-    "posts": "node scripts/build-posts.mjs",
-    "knowledge": "dotenv -e .env.local -- node scripts/build-knowledge.mjs",
-    "predev": "npm run changelog && npm run posts",
+    "predev": "npm run changelog",
     "dev": "next dev",
     "prebuild": "npm run changelog",
     "build": "next build",
