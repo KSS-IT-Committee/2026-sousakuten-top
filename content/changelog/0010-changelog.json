@@ -1,5 +1,5 @@
 {
-  "title": "adding healthcheck route",
-  "description": "TODO",
+  "title": "healthcheckの追加",
+  "description": "ヘルスチェックを追加しました。これによるページの変更はありません。",
   "credits": ["@rotarymars"]
 }
