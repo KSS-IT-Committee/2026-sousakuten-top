@@ -14,12 +14,15 @@ export const metadata: Metadata = {
 };
 
 const MAINTAINERS = [
-  "kinoto0103",
-  "utsukushiioto0816-tech",
-  "rotarymars",
+  "hatuna-827",
   "K10-K10",
+  "karencaya",
+  "kinoto0103",
+  "mochi-k18",
+  "rotarymars",
   "SakaYq4875",
   "Shirym-min",
+  "utsukushiioto0816-tech",
 ];
 
 function MaintainerItem({ username }: { username: string }) {
