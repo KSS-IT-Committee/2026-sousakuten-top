@@ -1,0 +1,37 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: sousakuten_top
+      POSTGRES_PASSWORD: sousakuten_top
+      POSTGRES_DB: sousakuten_top
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sousakuten_top -d sousakuten_top"]
+      interval: 2s
+      timeout: 2s
+      retries: 30
+
+  # Apply the canonical appdata schema to the fresh, empty preview DB before the
+  # app boots, using 2026-db's migrator image (the sole migrator in production).
+  # Its entrypoint runs `drizzle-kit migrate`. Without this the preview DB has no
+  # schema and any DB-backed page would 500 with "relation ... does not exist".
+  migrate:
+    image: ghcr.io/kss-it-committee/2026-db/migrator:latest
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgres://sousakuten_top:sousakuten_top@db:5432/sousakuten_top
+    restart: "no"
+
+  app:
+    image: ghcr.io/${IMAGE_SLUG:?IMAGE_SLUG must be set}/preview:${TAG:-latest}
+    depends_on:
+      db:
+        condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
+    environment:
+      DATABASE_URL: postgres://sousakuten_top:sousakuten_top@db:5432/sousakuten_top
+    ports:
+      - "127.0.0.1:3000:3000"

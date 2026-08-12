@@ -1,0 +1,191 @@
+.wrapper {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 50;
+}
+
+.menu,
+.hamburger {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transition:
+    opacity 220ms ease,
+    transform 220ms ease;
+  will-change: opacity, transform;
+}
+
+.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.hidden {
+  opacity: 0;
+  transform: translateY(-4px) scale(0.96);
+  pointer-events: none;
+}
+
+.atBottom {
+  opacity: 0.6;
+}
+
+/* Translucent so page content near the bottom edge stays readable behind
+   the menu; the backdrop blur keeps the labels legible over it. */
+.menu,
+.hamburger {
+  background: rgba(255, 255, 255, 0.82);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transform-origin: bottom right;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  width: max-content;
+  max-width: min(320px, calc(100vw - 2rem));
+  max-height: min(70vh, 480px);
+  overflow-y: auto;
+  border-radius: 12px;
+}
+
+/* Colors are self-contained (hardcoded light/dark) so this file can be
+   copied byte-identical across the app repos regardless of each app's
+   CSS variable vocabulary — same convention as AccountNav.module.css. */
+.link {
+  color: #333;
+  text-decoration: none;
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  white-space: pre-line;
+  overflow-wrap: break-word;
+  transition: background 0.15s;
+}
+
+.link:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.hamburger {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  /* The wrapper is a zero-size anchor, so an absolutely-positioned button
+     would otherwise shrink to zero width and wrap the label vertically. */
+  width: max-content;
+  min-height: 48px;
+  padding: 0.6rem 1.1rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #333;
+  border-radius: 9999px;
+  cursor: pointer;
+}
+
+.hamburger:hover {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+}
+
+.bars {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+}
+
+.bars span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: currentcolor;
+  border-radius: 2px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .menu,
+  .hamburger {
+    background: rgba(17, 17, 17, 0.8);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .link,
+  .hamburger {
+    color: #ddd;
+  }
+
+  .link:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .hamburger:hover {
+    background: rgba(34, 34, 34, 0.95);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu,
+  .hamburger {
+    transition: none;
+  }
+}
+
+/*
+ * Forced Colors Mode (Edge "Page colours" / Windows High Contrast).
+ * The browser drops box-shadow and rewrites background to the system Canvas
+ * color, so the menu and button would blend into the page. Add explicit
+ * system-color borders/fills so their boundaries stay visible with guaranteed
+ * contrast. The bars use currentColor and follow the forced text color on
+ * their own.
+ */
+@media (forced-colors: active) {
+  .menu {
+    /* Force a solid system background so blurred page content can't bleed
+       through and drop contrast; add a border for a visible boundary. */
+    background: Canvas;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    border: 1px solid CanvasText;
+  }
+
+  .link {
+    /* Pin the link text to a system color; the author foreground would
+       otherwise stay dark and vanish on a dark forced-colors Canvas. */
+    color: LinkText;
+  }
+
+  .link:hover,
+  .link:focus-visible {
+    /* SelectedItem/SelectedItemText are an opaque, guaranteed-contrast system
+       pair. forced-color-adjust:none opts this state out of the Canvas text
+       backplate the browser paints behind glyphs, which would otherwise wash
+       the label out (e.g. white-on-white in a light high-contrast theme). */
+    background: SelectedItem;
+    color: SelectedItemText;
+    forced-color-adjust: none;
+  }
+
+  .hamburger {
+    color: ButtonText;
+    background: ButtonFace;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    border: 1px solid ButtonText;
+  }
+}
+
+@media (max-width: 640px) {
+  .wrapper {
+    right: 0.5rem;
+    bottom: 0.5rem;
+  }
+}
