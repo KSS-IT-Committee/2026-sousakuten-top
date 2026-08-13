@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { CountDown } from "./components/CountDown";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -25,6 +26,7 @@ export default function Toppage() {
           ページ改善の提案
         </Link>
       </nav>
+      <CountDown />
     </div>
   );
 }
