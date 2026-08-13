@@ -19,6 +19,15 @@ html {
   --muted: #5c5245;
   --accent: #1e2a78;
   --accent-alt: #7a1520;
+  --gothic:
+    var(--font-geist-sans), "Hiragino Sans", "Hiragino Kaku Gothic ProN",
+    "Yu Gothic Medium", "Yu Gothic", Meiryo, "Noto Sans CJK JP", "Noto Sans JP",
+    sans-serif;
+  --mincho:
+    "Hiragino Mincho ProN", "Yu Mincho", YuMincho, "Noto Serif CJK JP",
+    "Noto Serif JP", "MS PMincho", serif;
+  --mono:
+    var(--font-geist-mono), "Noto Sans Mono CJK JP", ui-monospace, monospace;
 }
 
 @theme inline {
@@ -29,8 +38,9 @@ html {
   --color-muted: var(--muted);
   --color-accent: var(--accent);
   --color-accent-alt: var(--accent-alt);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--gothic);
+  --font-mono: var(--mono);
+  --font-mincho: var(--mincho);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -57,7 +67,7 @@ body {
   flex-direction: column;
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--gothic);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

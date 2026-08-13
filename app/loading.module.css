@@ -44,7 +44,7 @@
 }
 
 .label {
-  font-family: "Yu Mincho", serif;
+  font-family: var(--mincho);
   font-size: clamp(1rem, 2.2vw, 1.15rem);
   letter-spacing: 0.3em;
   text-indent: 0.3em;
