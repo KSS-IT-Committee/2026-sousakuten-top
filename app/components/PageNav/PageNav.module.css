@@ -67,11 +67,45 @@
   rotate: 0.7deg;
 }
 
-.scrap:hover,
-.scrap:focus-visible {
+/* :not(.pending) rather than resetting the effects afterwards — a later
+ * override could not restore each card's own nth-child rotation. */
+.scrap:not(.pending):hover,
+.scrap:not(.pending):focus-visible {
   rotate: 0deg;
   translate: 0 -0.5rem;
   box-shadow: 0 1.6rem 3rem rgba(0, 0, 0, 0.4);
+}
+
+/* Not built yet: mixed toward the wall instead of sitting on it, flat, with a
+ * dashed edge. It keeps its scatter so the row still reads as paper, but it no
+ * longer looks raised or clickable — because it isn't a link. */
+.pending {
+  background: color-mix(in srgb, var(--surface) 70%, var(--wall));
+  border: 1px dashed color-mix(in srgb, var(--muted) 55%, transparent);
+  box-shadow: none;
+  color: var(--muted);
+}
+
+.pending .romaji,
+.pending .label {
+  color: inherit;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.badge {
+  flex: none;
+  padding: 0.1rem 0.5rem;
+  border: 1px solid currentColor;
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  white-space: nowrap;
 }
 
 .romaji {
