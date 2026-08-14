@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { CountDown } from "./components/CountDown";
 import { Hero } from "./components/Hero";
+import { PageNav } from "./components/PageNav";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -30,6 +31,7 @@ export default function Toppage() {
         </nav>
         <CountDown />
       </div>
+      <PageNav />
     </>
   );
 }
