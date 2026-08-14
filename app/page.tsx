@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
 import { CountDown } from "./components/CountDown";
 import { Hero } from "./components/Hero";
@@ -31,6 +30,9 @@ export default function Toppage() {
         </nav>
         <CountDown />
       </div> */}
+      <div className={styles.container}>
+        <CountDown />
+      </div>
       <PageNav />
     </>
   );
