@@ -15,7 +15,7 @@ export default function Toppage() {
   return (
     <>
       <Hero />
-      <div className={styles.container}>
+      {/* <div className={styles.container}>
         <header className={styles.header}>
           <p className={styles.lead}>
             このページは準備中です。公開までしばらくお待ちください。
@@ -30,7 +30,7 @@ export default function Toppage() {
           </Link>
         </nav>
         <CountDown />
-      </div>
+      </div> */}
       <PageNav />
     </>
   );
