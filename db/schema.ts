@@ -3,13 +3,9 @@ import {
   boolean,
   check,
   index,
-  integer,
   pgEnum,
   pgTable,
-  serial,
-  text,
   timestamp,
-  unique,
   varchar,
 } from "drizzle-orm/pg-core";
 
@@ -17,8 +13,6 @@ import {
 // only thing that migrates the shared `appdata` database) is 2026-db —
 // mirror any change there and keep it additive.
 
-// Login credentials, loaded out-of-band from 2026-account-generator's
-// users.sql.
 export const ROLENAMES = [
   // Committee roles — granted by hand (SQL UPDATE) to individual accounts.
   "IT",
@@ -41,6 +35,7 @@ export const ROLENAMES = [
   "ClassD",
   "Students",
   "Teachers",
+  "SousakutenMain",
 ] as const;
 export const roleEnum = pgEnum("role", ROLENAMES);
 
