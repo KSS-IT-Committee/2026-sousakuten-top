@@ -23,6 +23,7 @@ export type Destination = {
   readonly romaji: string;
   readonly href: string;
   readonly blurb: string;
+  readonly isReady: boolean;
 };
 
 export const DESTINATIONS: readonly Destination[] = [
@@ -31,35 +32,49 @@ export const DESTINATIONS: readonly Destination[] = [
     romaji: "About",
     href: "/about",
     blurb: "創作展の歴史や、今年のテーマに込めた意味",
+    isReady: false,
   },
   {
     label: "展示紹介",
     romaji: "Exhibits",
     href: "/exhibits",
     blurb: "各クラス・部活・委員会の展示を一覧",
+    isReady: false,
   },
   {
     label: "タイムテーブル",
     romaji: "Schedule",
     href: "/schedule",
     blurb: "公演・発表の時間割",
+    isReady: false,
   },
   {
     label: "抽選状況",
     romaji: "Lottery",
     href: "/lottery",
     blurb: "劇観覧のための抽選状況について",
+    isReady: false,
   },
   {
     label: "来場案内",
     romaji: "Access",
     href: "/access",
     blurb: "行き方、持ち物、校内でのお願い",
+    isReady: false,
   },
   {
     label: "投票",
     romaji: "Vote",
     href: "/vote",
     blurb: "投票",
+    isReady: false,
   },
 ];
+
+export function destinationFor(href: string): Destination {
+  const destination = DESTINATIONS.find((entry) => entry.href === href);
+  if (!destination) {
+    throw new Error(`No destination registered for "${href}" in DESTINATIONS.`);
+  }
+  return destination;
+}
