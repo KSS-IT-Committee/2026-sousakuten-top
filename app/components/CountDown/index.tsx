@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-import { FESTIVAL_START } from "@/lib/festival";
+import { FESTIVAL_END, FESTIVAL_START } from "@/lib/festival";
 
 import styles from "./countdown.module.css";
 
@@ -15,12 +15,13 @@ type CountDownState =
       minutes: number;
       seconds: number;
     }
-  | { status: "finished" };
+  | { status: "ongoing" }
+  | { status: "ended" };
 
-function Measure(target: Date, now: number): CountDownState {
-  const diff = target.getTime() - now;
+function Measure(start: Date, end: Date, now: number): CountDownState {
+  const diff = start.getTime() - now;
   if (diff <= 0) {
-    return { status: "finished" };
+    return now < end.getTime() ? { status: "ongoing" } : { status: "ended" };
   }
   const days = Math.floor(diff / (1000 * 60 * 60 * 24));
   const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
@@ -34,7 +35,7 @@ export function CountDown() {
 
   useEffect(() => {
     function update() {
-      setState(Measure(FESTIVAL_START, Date.now()));
+      setState(Measure(FESTIVAL_START, FESTIVAL_END, Date.now()));
     }
 
     update();
@@ -42,10 +43,18 @@ export function CountDown() {
     return () => clearInterval(intervalId);
   }, []);
 
-  if (state.status === "finished") {
+  if (state.status === "ongoing") {
     return (
       <div>
         <span className={styles.clock}>開催中</span>
+      </div>
+    );
+  }
+
+  if (state.status === "ended") {
+    return (
+      <div>
+        <span className={styles.clock}>閉幕しました</span>
       </div>
     );
   }
