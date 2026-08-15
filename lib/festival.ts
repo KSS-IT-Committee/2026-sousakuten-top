@@ -4,6 +4,12 @@ export const FESTIVAL_THEME = "正解なんて創ればいい";
 
 export const FESTIVAL_START = new Date("2026-09-12T08:25:00+09:00");
 
+/* The close of the second day. Derived from the same unconfirmed schedule as
+ * FESTIVAL_HOURS below, so update both together. Anything that needs to know
+ * whether the festival is over reads this rather than assuming FESTIVAL_START
+ * having passed means it is still running. */
+export const FESTIVAL_END = new Date("2026-09-13T15:20:00+09:00");
+
 export const FESTIVAL_DATE_LABEL = "2026年9月12日（土）・13日（日）";
 export const FESTIVAL_DATE_LABEL_EN = "2026.09.12 SAT — 09.13 SUN";
 
