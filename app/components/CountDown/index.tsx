@@ -34,13 +34,29 @@ export function CountDown() {
   const [state, setState] = useState<CountDownState>({ status: "pending" });
 
   useEffect(() => {
-    function update() {
-      setState(Measure(FESTIVAL_START, FESTIVAL_END, Date.now()));
+    let intervalId: ReturnType<typeof setInterval> | undefined;
+
+    function update(): CountDownState {
+      const next = Measure(FESTIVAL_START, FESTIVAL_END, Date.now());
+      setState(next);
+      return next;
     }
 
-    update();
-    const intervalId = setInterval(update, 1000);
-    return () => clearInterval(intervalId);
+    const isEnded = update().status === "ended";
+    if (!isEnded) {
+      intervalId = setInterval(() => {
+        if (update().status === "ended" && intervalId !== undefined) {
+          clearInterval(intervalId);
+          intervalId = undefined;
+        }
+      }, 1000);
+    }
+
+    return () => {
+      if (intervalId !== undefined) {
+        clearInterval(intervalId);
+      }
+    };
   }, []);
 
   if (state.status === "ongoing") {
