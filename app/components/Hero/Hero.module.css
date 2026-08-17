@@ -1,0 +1,147 @@
+/* <Image fill> positions itself absolutely, so the section must be a
+ * containing block. --wall-dark shows through until the photo decodes. */
+.hero {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: 6rem 1.5rem 9rem;
+  background: var(--wall-dark);
+}
+
+.photo {
+  z-index: 0;
+  object-fit: cover;
+  /* Biased left of centre: the books cluster on that side of the frame, and
+   * this keeps them in shot as the viewport narrows. */
+  object-position: 38% 50%;
+}
+
+/* Lifts the type off the photograph. The wall tint keeps the hero and the
+ * flat-colour sections below it reading as one surface. */
+.wash {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(
+      120% 90% at 50% 52%,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.3) 100%
+    ),
+    color-mix(in srgb, var(--wall) 46%, transparent);
+}
+
+.copy {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1rem, 2.6vw, 1.9rem);
+  text-align: center;
+}
+
+.kai {
+  padding-left: 0.42em; /* balances the trailing letter-spacing */
+  font-size: clamp(0.75rem, 1.5vw, 0.9375rem);
+  font-weight: 700;
+  letter-spacing: 0.42em;
+  color: var(--on-wall);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+}
+
+/* Only Regular and Bold of the JP system faces are reliably installed, so the
+ * stroke stands in for the Black weight the teaser's title uses. Remove it if
+ * a heavy webfont is ever added. */
+.theme {
+  font-size: clamp(2.35rem, 8.4vw, 6.5rem);
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: 0.02em;
+  text-wrap: balance;
+  color: var(--accent);
+  -webkit-text-stroke: 0.022em currentColor;
+  text-shadow: 0 0.35rem 1.1rem rgba(0, 0, 0, 0.3);
+}
+
+.dates {
+  font-family: var(--mono);
+  font-size: clamp(0.8125rem, 1.7vw, 1.0625rem);
+  letter-spacing: 0.16em;
+  font-variant-numeric: tabular-nums;
+  color: var(--on-wall);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.venue {
+  font-size: clamp(0.8125rem, 1.6vw, 0.9375rem);
+  color: var(--on-wall-muted);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Sits high enough to clear the countdown strip that overlaps the hero foot. */
+.cue {
+  position: absolute;
+  z-index: 2;
+  bottom: clamp(2.5rem, 6vw, 4rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--on-wall-muted);
+}
+
+.cue span {
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.24em;
+}
+
+.cue i {
+  display: block;
+  width: 1px;
+  height: 3rem;
+  transform-origin: top;
+  background: linear-gradient(var(--on-wall-muted), transparent);
+  animation: cue 2.4s ease-in-out infinite;
+}
+
+@keyframes cue {
+  0%,
+  100% {
+    scale: 1 0.4;
+    opacity: 0.4;
+  }
+  50% {
+    scale: 1 1;
+    opacity: 1;
+  }
+}
+
+/* The still is a fixed daylight exposure, so dark mode dims the photograph
+ * itself rather than swapping in a second asset. */
+@media (prefers-color-scheme: dark) {
+  .photo {
+    filter: brightness(0.45) saturate(0.85);
+  }
+
+  .wash {
+    background:
+      radial-gradient(
+        120% 90% at 50% 52%,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.35) 100%
+      ),
+      color-mix(in srgb, var(--wall) 55%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cue i {
+    animation: none;
+  }
+}

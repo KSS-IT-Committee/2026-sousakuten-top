@@ -1,0 +1,136 @@
+/* Full-bleed band: mount it as a sibling of the page container, not inside it.
+ * `width: 100%` and the explicit `text-align` keep it correct even if it ends
+ * up inside a centring flex parent, which otherwise shrinks it to its content
+ * and centres every card. */
+.section {
+  width: 100%;
+  padding-block: clamp(4rem, 10vw, 7.5rem);
+  text-align: left;
+  background: var(--wall);
+  color: var(--on-wall);
+}
+
+.inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding-inline: clamp(1.25rem, 5vw, 4rem);
+}
+
+.heading {
+  margin-bottom: clamp(2rem, 5vw, 3.25rem);
+  padding-bottom: 1rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--on-wall) 30%, transparent);
+  font-family: var(--mincho);
+  font-size: clamp(1.4rem, 3.4vw, 2.1rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: clamp(1.25rem, 3vw, 2rem);
+  list-style: none;
+}
+
+.scrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  height: 100%;
+  padding: clamp(1.25rem, 3vw, 1.85rem);
+  background: var(--surface);
+  color: var(--foreground);
+  box-shadow: 0 0.9rem 2rem rgba(0, 0, 0, 0.3);
+  transition:
+    rotate 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
+    translate 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.28s ease;
+}
+
+.grid li:nth-child(6n + 1) .scrap {
+  rotate: -1.6deg;
+}
+.grid li:nth-child(6n + 2) .scrap {
+  rotate: 1.1deg;
+}
+.grid li:nth-child(6n + 3) .scrap {
+  rotate: -0.6deg;
+}
+.grid li:nth-child(6n + 4) .scrap {
+  rotate: 1.8deg;
+}
+.grid li:nth-child(6n + 5) .scrap {
+  rotate: -1.2deg;
+}
+.grid li:nth-child(6n + 6) .scrap {
+  rotate: 0.7deg;
+}
+
+/* :not(.pending) rather than resetting the effects afterwards — a later
+ * override could not restore each card's own nth-child rotation. */
+.scrap:not(.pending):hover,
+.scrap:not(.pending):focus-visible {
+  rotate: 0deg;
+  translate: 0 -0.5rem;
+  box-shadow: 0 1.6rem 3rem rgba(0, 0, 0, 0.4);
+}
+
+/* Not built yet: mixed toward the wall instead of sitting on it, flat, with a
+ * dashed edge. It keeps its scatter so the row still reads as paper, but it no
+ * longer looks raised or clickable — because it isn't a link. */
+.pending {
+  background: color-mix(in srgb, var(--surface) 70%, var(--wall));
+  border: 1px dashed color-mix(in srgb, var(--muted) 55%, transparent);
+  box-shadow: none;
+  color: var(--muted);
+}
+
+.pending .romaji,
+.pending .label {
+  color: inherit;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.badge {
+  flex: none;
+  padding: 0.1rem 0.5rem;
+  border: 1px solid currentColor;
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  white-space: nowrap;
+}
+
+.romaji {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.label {
+  font-family: var(--mincho);
+  font-size: clamp(1.1rem, 2.6vw, 1.4rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.blurb {
+  font-size: 0.875rem;
+  line-height: 1.75;
+  color: var(--muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scrap {
+    transition: none;
+  }
+}

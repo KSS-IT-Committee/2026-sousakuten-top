@@ -12,21 +12,76 @@ html {
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f3ece2;
+  --foreground: #241d16;
+  --surface: #e8ded1;
+  --border: #d5c9c0;
+  --muted: #5c5245;
+  --accent: #1e2a78;
+  --accent-alt: #7a1520;
+  --gothic:
+    var(--font-geist-sans), "Hiragino Sans", "Hiragino Kaku Gothic ProN",
+    "Yu Gothic Medium", "Yu Gothic", Meiryo, "Noto Sans CJK JP", "Noto Sans JP",
+    sans-serif;
+  --mincho:
+    "Hiragino Mincho ProN", "Yu Mincho", YuMincho, "Noto Serif CJK JP",
+    "Noto Serif JP", "MS PMincho", serif;
+  --mono:
+    var(--font-geist-mono), "Noto Sans Mono CJK JP", ui-monospace, monospace;
+
+  /*
+   * The hero and page-list sections sit on the wall from the teaser video,
+   * which is a second ground distinct from --background. Text over it must
+   * come from --on-wall, never --foreground: the wall stays mid-to-dark in
+   * both themes, so --foreground would vanish into it in light mode.
+   */
+  --wall: #7c6851;
+  --wall-lit: #8a7660;
+  --wall-dark: #5e4f3e;
+  --on-wall: #f4eee5;
+  --on-wall-muted: #ded2c1;
+
+  /* Loose paper drifting over the wall. Dims in dark mode so it reads as
+   * lit paper in a dark room rather than a glaring white rectangle. */
+  --page-face: #fbf7f0;
+  --page-line: rgba(36, 29, 22, 0.72);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-alt: var(--accent-alt);
+  --color-wall: var(--wall);
+  --color-wall-lit: var(--wall-lit);
+  --color-wall-dark: var(--wall-dark);
+  --color-on-wall: var(--on-wall);
+  --color-on-wall-muted: var(--on-wall-muted);
+  --color-page-face: var(--page-face);
+  --font-sans: var(--gothic);
+  --font-mono: var(--mono);
+  --font-mincho: var(--mincho);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #1b1712;
+    --foreground: #ede5da;
+    --surface: #262019;
+    --border: #3a3228;
+    --muted: #a79684;
+    --accent: #9daaf2;
+    --accent-alt: #e39aa0;
+    --wall: #241d16;
+    --wall-lit: #2e251c;
+    --wall-dark: #14100c;
+    --on-wall: #ede5da;
+    --on-wall-muted: #a79684;
+    --page-face: #938474;
+    --page-line: rgba(20, 16, 12, 0.66);
   }
 }
 
@@ -42,7 +97,7 @@ body {
   flex-direction: column;
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--gothic);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
