@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 
 import { destinationFor } from "@/lib/festival";
+import Image from "next/image";
 import Link from "next/link";
 import styles from "./page.module.css";
+
 const DESTINATION = destinationFor("/access");
 export const metadata: Metadata = {
   title: `${DESTINATION.label} | 創作展2026`,
@@ -31,22 +33,6 @@ export default function AccessPage() {
     <div className={styles.page}>
       <h1 className={styles.pageTitle}>{DESTINATION.label}</h1>
       <p className={styles.pageDescription}>{DESTINATION.blurb}</p>
-      <PageBlock title="アクセス方法">
-        <p>ご来場の際は、公共交通機関をご利用ください。</p>
-        <span className={styles.eyebrow}>最寄り駅</span>
-        <div className={styles.accessLead}>
-          <strong>都営三田線「千石」駅</strong>
-          <span>徒歩3分</span>
-        </div>
-        <div className={styles.accessLead}>
-          <strong>山手線/都営三田線「巣鴨」駅</strong>
-          <span>徒歩10分</span>
-        </div>
-        <div className={styles.accessLead}>
-          <strong>山手線/東京メトロ南北線「駒込」駅</strong>
-          <span>徒歩13分</span>
-        </div>
-      </PageBlock>
       <PageBlock title="校内フロアマップ">
         <p>フロアマップは受付で配布する冊子に掲載しています。</p>
         {/* <p>
@@ -122,7 +108,7 @@ export default function AccessPage() {
           </li>
         </ul>
       </PageBlock>
-      <PageBlock title="基本情報">
+      <PageBlock title="基礎情報">
         <h4>東京都立小石川中等教育学校</h4>
         <div className={styles.addressInfo}>
           <p>
@@ -141,6 +127,23 @@ export default function AccessPage() {
             このサイトに関するお問い合わせは<Link href="/request">こちら</Link>
           </p>
         </div>
+      </PageBlock>
+      <PageBlock title="アクセス方法">
+        <p>ご来場の際は、公共交通機関をご利用ください。</p>
+        <span className={styles.eyebrow}>最寄り駅</span>
+        <div className={styles.accessLead}>
+          <strong>都営三田線「千石」駅</strong>
+          <span>徒歩3分</span>
+        </div>
+        <div className={styles.accessLead}>
+          <strong>山手線/都営三田線「巣鴨」駅</strong>
+          <span>徒歩10分</span>
+        </div>
+        <div className={styles.accessLead}>
+          <strong>山手線/東京メトロ南北線「駒込」駅</strong>
+          <span>徒歩13分</span>
+        </div>
+        <Image src="/map.png" alt="アクセス地図" width={717} height={975} />
       </PageBlock>
     </div>
   );
