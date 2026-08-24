@@ -66,7 +66,7 @@ export const DESTINATIONS: readonly Destination[] = [
     romaji: "Access",
     href: "/access",
     blurb: "アクセス方法、校内フロアマップ、持ち物・注意事項",
-    isReady: false,
+    isReady: true,
   },
   {
     label: "投票",
