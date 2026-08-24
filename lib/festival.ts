@@ -65,7 +65,7 @@ export const DESTINATIONS: readonly Destination[] = [
     label: "来場案内",
     romaji: "Access",
     href: "/access",
-    blurb: "行き方、持ち物、校内でのお願い",
+    blurb: "アクセス方法、校内フロアマップ、持ち物・注意事項",
     isReady: false,
   },
   {
