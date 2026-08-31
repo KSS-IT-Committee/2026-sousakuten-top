@@ -1,5 +1,5 @@
 {
-  "title": "added lottery external announce",
-  "description": "TODO",
+  "title": "抽選状況ページの公開",
+  "description": "校外の方向けに、公演ごとの当選番号一覧と抽選番号の検索ができる抽選状況ページを公開しました。",
   "credits": ["@rotarymars"]
 }
