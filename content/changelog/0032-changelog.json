@@ -1,0 +1,5 @@
+{
+  "title": "Bump @types/react-dom from 19.2.4 to 19.2.5",
+  "description": "パッケージのバージョンを上げました。これによるページの変更はありません。",
+  "credits": ["@dependabot[bot]"]
+}
