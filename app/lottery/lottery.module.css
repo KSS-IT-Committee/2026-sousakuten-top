@@ -1,0 +1,230 @@
+.main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 64px 24px 96px;
+  flex: 1;
+}
+
+.header {
+  margin-bottom: 40px;
+}
+
+.romaji {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.title {
+  font-family: var(--mincho);
+  font-size: clamp(2rem, 6vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: 16px;
+}
+
+.lead {
+  line-height: 1.8;
+  max-width: 44em;
+  color: var(--muted);
+}
+
+.callout {
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  background: var(--surface);
+  border-radius: 4px;
+  padding: 20px 24px;
+  margin-bottom: 40px;
+  line-height: 1.8;
+}
+
+.calloutTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.example {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.example code {
+  font-family: var(--mono);
+  background: color-mix(in oklch, var(--foreground) 8%, transparent);
+  border-radius: 3px;
+  padding: 1px 6px;
+}
+
+.stats {
+  margin: 48px 0;
+}
+
+.statList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.stat {
+  background: var(--surface);
+  padding: 16px 20px;
+}
+
+.stat dt {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.stat dd {
+  font-family: var(--mono);
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+
+.sectionTitle {
+  font-family: var(--mincho);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 12px;
+}
+
+.sectionNote {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.8;
+  margin-bottom: 32px;
+}
+
+.day {
+  margin-bottom: 48px;
+}
+
+.dayTitle {
+  font-family: var(--mincho);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+
+.stage {
+  margin-bottom: 32px;
+}
+
+.stageTitle {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.stageTime {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.classGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  align-items: start;
+  gap: 16px;
+}
+
+.classCard {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--surface);
+  padding: 14px 16px;
+}
+
+.className {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+  border-bottom: 1px dashed var(--border);
+}
+
+.classCount {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.numbers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none;
+}
+
+.number {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  padding: 2px 7px;
+  border-radius: 3px;
+  background: color-mix(in oklch, var(--foreground) 7%, transparent);
+}
+
+.empty {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.notes {
+  margin-top: 64px;
+}
+
+.noteList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.noteList li {
+  position: relative;
+  padding-left: 1.1em;
+  line-height: 1.8;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.noteList li::before {
+  content: "―";
+  position: absolute;
+  left: 0;
+}
+
+.link {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}

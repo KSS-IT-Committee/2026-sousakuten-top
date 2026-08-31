@@ -59,7 +59,7 @@ export const DESTINATIONS: readonly Destination[] = [
     romaji: "Lottery",
     href: "/lottery",
     blurb: "劇観覧のための抽選状況について",
-    isReady: false,
+    isReady: true,
   },
   {
     label: "来場案内",
