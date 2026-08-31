@@ -15,7 +15,7 @@
 
 .title {
   font-size: 40px;
-  font-family: "Yu Mincho", serif;
+  font-family: var(--mincho);
   letter-spacing: 0.08em;
 }
 

@@ -10,7 +10,7 @@
 
 .footerTheme {
   font-size: 32px;
-  font-family: "Yu Mincho", serif;
+  font-family: var(--mincho);
 }
 
 .footer span {
