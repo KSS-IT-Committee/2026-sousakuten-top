@@ -1,5 +1,5 @@
 {
-  "title": "fixed the race condition",
-  "description": "TODO",
+  "title": "ヘルスチェックのタイムアウトの追加",
+  "description": "ヘルスチェック（/api/health）のデータベース確認に2秒の制限時間を設けました。これにより、データベースが応答しなくなった場合でもリクエストが待ち続けることなく503を返すようになり、サーバーの状態を正しく検知できるようになりました。",
   "credits": ["@rotarymars"]
 }
