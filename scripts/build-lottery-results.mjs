@@ -178,10 +178,23 @@ const entries = records.map((record) => {
   if (isWinner && wins.length === 0) {
     throw new Error(`${number} is marked 当選 but won no performance`);
   }
+  // The page prints every entry's wins under the performance they belong to,
+  // so a 対象外 row carrying one would publish that number as a winner while
+  // telling the visitor they were never in the draw.
+  if (!isWinner && wins.length > 0) {
+    throw new Error(
+      `${number} is marked 対象外 but won ${wins.length} performance(s)`,
+    );
+  }
 
   // "2名" → 2. Blank for the 対象外 rows, which were withdrawn or invalid
-  // before the draw and so never had a party size to honour.
-  const partySizeMatch = /^(\d+)名$/.exec(record["観覧人数"].trim());
+  // before the draw and so never had a party size to honour — a winner
+  // without one would silently drop out of the seat count instead.
+  const partySizeCell = record["観覧人数"].trim();
+  const partySizeMatch = /^(\d+)名$/.exec(partySizeCell);
+  if (isWinner && !partySizeMatch) {
+    throw new Error(`unexpected 観覧人数 for ${number}: "${partySizeCell}"`);
+  }
 
   return {
     number,
