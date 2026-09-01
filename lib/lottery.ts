@@ -73,7 +73,7 @@ export function normalizeLotteryNumber(input: string): string | null {
   if (digits.length === 0) return null;
 
   const trimmed =
-    digits.length >= RECEIPT_DIGITS - 2 ? digits.slice(0, -2) : digits;
+    digits.length >= RECEIPT_DIGITS ? digits.slice(0, -2) : digits;
 
   return trimmed.slice(-LOTTERY_DIGITS).padStart(LOTTERY_DIGITS, "0");
 }
