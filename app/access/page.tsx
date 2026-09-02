@@ -108,7 +108,7 @@ export default function AccessPage() {
           </li>
         </ul>
       </PageBlock>
-      <PageBlock title="基礎情報">
+      <PageBlock title="お問い合わせ">
         <h4>東京都立小石川中等教育学校</h4>
         <div className={styles.addressInfo}>
           <p>
@@ -124,7 +124,10 @@ export default function AccessPage() {
             ※電話受付時間は、平日の午前8時30分から午後5時までです。
           </p>
           <p>
-            このサイトに関するお問い合わせは<Link href="/request">こちら</Link>
+            このサイトに関するお問い合わせは
+            <Link style={{ textDecoration: "underline" }} href="/request">
+              こちら
+            </Link>
           </p>
         </div>
       </PageBlock>
