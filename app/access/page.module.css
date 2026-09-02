@@ -93,6 +93,12 @@
   background: var(--background);
 }
 
+.accessMap {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
 .list {
   display: grid;
   gap: 0.5rem;

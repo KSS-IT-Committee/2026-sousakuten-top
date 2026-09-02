@@ -60,21 +60,19 @@ export default function AccessPage() {
       </PageBlock>
       <PageBlock title="持ち物">
         <p>当日は以下のものをご持参ください。</p>
-        <ul>
-          <div className={styles.list}>
-            <li>
-              上履き
-              <div className={styles.alert}>※スリッパの貸出はありません。</div>
-            </li>
-            <li>土足を入れる袋</li>
-            <li>飲みもの</li>
-            <li>
-              スマートフォン
-              <div className={styles.alert}>
-                ※投票用のアカウント情報を当日受付で配布します。このページ右上部よりログインをお願いいたします。
-              </div>
-            </li>
-          </div>
+        <ul className={styles.list}>
+          <li>
+            上履き
+            <span className={styles.alert}>※スリッパの貸出はありません。</span>
+          </li>
+          <li>土足を入れる袋</li>
+          <li>飲みもの</li>
+          <li>
+            スマートフォン
+            <div className={styles.alert}>
+              ※投票用のアカウント情報を当日受付で配布します。このページ右上部よりログインをお願いいたします。
+            </div>
+          </li>
         </ul>
       </PageBlock>
       <PageBlock title="注意事項" tone="warning">
@@ -114,7 +112,7 @@ export default function AccessPage() {
           11:30〜12:10は昼休憩のため、入場できません。
         </p>
       </PageBlock>
-      <PageBlock title="落とし物、迷子について">
+      <PageBlock title="落とし物・迷子について">
         <ul>
           <li>落とし物は、一階多目的ホールで保管しています。</li>
           <li>
@@ -123,7 +121,7 @@ export default function AccessPage() {
         </ul>
       </PageBlock>
       <PageBlock title="お問い合わせ">
-        <h4>東京都立小石川中等教育学校</h4>
+        <h3>東京都立小石川中等教育学校</h3>
         <div className={styles.addressInfo}>
           <p>
             <strong>住所:</strong>〒113-0021 東京都文京区本駒込2-29-29
@@ -159,7 +157,13 @@ export default function AccessPage() {
           <strong>山手線/東京メトロ南北線「駒込」駅</strong>
           <span>徒歩13分</span>
         </div>
-        <Image src="/map.png" alt="アクセス地図" width={717} height={975} />
+        <Image
+          src="/map.png"
+          alt="アクセス地図"
+          width={717}
+          height={975}
+          className={styles.accessMap}
+        />
       </PageBlock>
     </div>
   );
