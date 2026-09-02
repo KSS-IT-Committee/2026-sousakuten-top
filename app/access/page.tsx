@@ -35,7 +35,7 @@ export default function AccessPage() {
       <h1 className={styles.pageTitle}>{DESTINATION.label}</h1>
       <p className={styles.pageDescription}>{DESTINATION.blurb}</p>
       <PageBlock title="校内フロアマップ">
-        <p>フロアマップは受付で配布する冊子に掲載しています。</p>
+        <p>受付で配布する冊子および校舎内に掲載しています。</p>
         {/* <p>
           会場内の移動にご利用ください。受付で配布する冊子にも掲載しています。
         </p> */}
@@ -60,52 +60,65 @@ export default function AccessPage() {
       </PageBlock>
       <PageBlock title="持ち物">
         <p>当日は以下のものをご持参ください。</p>
-        <ul className={styles.list}>
-          <li>上履き</li>
-          <li>土足を入れる袋</li>
-          <li>飲みもの</li>
-          <li>スマートフォン</li>
+        <ul>
+          <div className={styles.list}>
+            <li>
+              上履き
+              <div className={styles.alert}>※スリッパの貸出はありません。</div>
+            </li>
+            <li>土足を入れる袋</li>
+            <li>飲みもの</li>
+            <li>
+              スマートフォン
+              <div className={styles.alert}>
+                ※投票用のアカウント情報を当日受付で配布します。このページ右上部よりログインをお願いいたします。
+              </div>
+            </li>
+          </div>
         </ul>
-        <p className={styles.alert}>
-          ※学校所有のスリッパをお貸しすることはできません。
-        </p>
-        <p>
-          投票用のアカウント情報を、当日受付で紙にて配布します。受け取った後、このページ右上部よりログインしてください。
-        </p>
       </PageBlock>
       <PageBlock title="注意事項" tone="warning">
         <div className={styles.subBlock}>
           <h3>入場について</h3>
           <ul>
             <li>
-              体調不良の場合は入場をお断りする場合があります。発熱がある場合等は入場をお控えください。
+              発熱等体調不良の場合
+              <span className={styles.alert}>入場をお断り</span>します。
             </li>
             <li>
-              小学生のみでの入場はできません。必ず18歳以上の方と同伴の上でご入場ください。
+              小学生のみの入場はできません。必ず
+              <span className={styles.alert}>18歳以上の方と同伴</span>ください。
             </li>
           </ul>
         </div>
         <div className={styles.subBlock}>
           <h3>校内でのお願い</h3>
-          <p>校内は熱中症予防のための水分補給を除き、原則飲食禁止です。</p>
-          <p>
-            ただし、当日は気温が高いことが予想されるため、十分な水分補給にご注意ください。
-          </p>
-          <p>校内に設置されている自動販売機は本校関係者限定です。</p>
-          <p>無断で校内を撮影することはおやめください。</p>
+          <ul>
+            <li>
+              熱中症予防の水分補給を除き、原則
+              <span className={styles.alert}>飲食禁止</span>です
+            </li>
+            <li>
+              校内の自動販売機は関係者以外
+              <span className={styles.alert}>使用禁止</span>です
+            </li>
+            <li>
+              校内は原則<span className={styles.alert}>撮影禁止</span>です
+            </li>
+          </ul>
         </div>
         <p className={styles.notice}>
-          校内でなにかありましたら、「行事運営」と書かれた黒いポロシャツを着た生徒にご相談ください。
+          校内でのご相談は「行事運営」と書かれた黒いポロシャツを着た生徒にご相談ください。
         </p>
         <p className={styles.notice}>
-          11:30〜12:10は昼休憩のため、校内へ入場できません。
+          11:30〜12:10は昼休憩のため、入場できません。
         </p>
       </PageBlock>
       <PageBlock title="落とし物、迷子について">
         <ul>
           <li>落とし物は、一階多目的ホールで保管しています。</li>
           <li>
-            お子様とはぐれた際にはお近くの委員や教員にお伝えください。当日に着用している衣服等や特徴等をお伺いした上で、委員会で共有させていただきます。その後は、一階多目的ホールにて待機となります。お子様側も同様の対応となりますので、予めお伝えください。
+            お子様とはぐれた際にはお近くの「行事運営」と書かれた生徒や教員にお伝えください。当日に着用している衣服等や特徴等をお伺いした上で、一階多目的ホールにて待機となります。お子様側も同様の対応となりますので、予めお伝えください。
           </li>
         </ul>
       </PageBlock>
@@ -132,9 +145,8 @@ export default function AccessPage() {
           </p>
         </div>
       </PageBlock>
-      <PageBlock title="アクセス方法">
+      <PageBlock title="アクセス">
         <p>ご来場の際は、公共交通機関をご利用ください。</p>
-        <span className={styles.eyebrow}>最寄り駅</span>
         <div className={styles.accessLead}>
           <strong>都営三田線「千石」駅</strong>
           <span>徒歩3分</span>
