@@ -1,0 +1,151 @@
+.search {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 24px;
+  background: color-mix(in oklch, var(--surface) 55%, transparent);
+}
+
+.label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.input {
+  width: 100%;
+  font-family: var(--mono);
+  font-size: 1.5rem;
+  letter-spacing: 0.16em;
+  padding: 12px 16px;
+  color: var(--foreground);
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+.input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.input::placeholder {
+  color: color-mix(in oklch, var(--muted) 60%, transparent);
+}
+
+.hint {
+  margin-top: 8px;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.result {
+  display: block;
+  margin-top: 20px;
+}
+
+.placeholder {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.notFound {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  border-left: 3px solid var(--accent-alt);
+  padding-left: 14px;
+}
+
+.notFound strong {
+  font-family: var(--mono);
+}
+
+.card {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--background);
+  padding: 18px 20px;
+}
+
+.cardNumber {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.cardNumber strong {
+  font-family: var(--mono);
+  font-size: 1.2rem;
+  letter-spacing: 0.1em;
+  color: var(--foreground);
+}
+
+.verdict {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.badgeWon,
+.badgeExcluded {
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 3px 12px;
+  border-radius: 3px;
+}
+
+.badgeWon {
+  color: var(--background);
+  background: var(--accent);
+}
+
+.badgeExcluded {
+  color: var(--accent-alt);
+  border: 1px solid var(--accent-alt);
+}
+
+.party {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.verdictNote {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+.wins {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.win {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+  border-left: 2px solid var(--accent);
+  padding: 6px 0 6px 12px;
+  line-height: 1.6;
+}
+
+.winDate {
+  font-weight: 700;
+}
+
+.winStage {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.winClass {
+  font-weight: 700;
+  color: var(--accent);
+}
