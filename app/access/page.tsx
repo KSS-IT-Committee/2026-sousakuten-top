@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-
-import { destinationFor } from "@/lib/festival";
 import Image from "next/image";
 import Link from "next/link";
+
+import { destinationFor } from "@/lib/festival";
+
 import styles from "./page.module.css";
 
 const DESTINATION = destinationFor("/access");
