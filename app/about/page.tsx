@@ -21,7 +21,7 @@ export default function AboutPage() {
           みんなで創り、みんなで楽しむ。創作展は、参加する一人ひとりの想いが集まって生まれる場所です。
         </p>
       </header>
-  
+
       <section className={styles.section}>
         <p>
           創作展の目的は、創作展に参加する全ての団体が団結して一つのものを作り上げることを通じて、来場者の方を楽しませることです。
