@@ -35,7 +35,7 @@ export default function AccessPage() {
       <h1 className={styles.pageTitle}>{DESTINATION.label}</h1>
       <p className={styles.pageDescription}>{DESTINATION.blurb}</p>
       <PageBlock title="校内フロアマップ">
-        <p>受付で配布する冊子および校舎内に掲載しています。</p>
+        <p>受付で配付する冊子および校舎内に掲示しています。</p>
         {/* <p>
           会場内の移動にご利用ください。受付で配布する冊子にも掲載しています。
         </p> */}
@@ -84,8 +84,9 @@ export default function AccessPage() {
               <span className={styles.alert}>入場をお断り</span>します。
             </li>
             <li>
-              小学生のみの入場はできません。必ず
-              <span className={styles.alert}>18歳以上の方と同伴</span>ください。
+              小学生以下のお子様のみでの入場はできません。必ず
+              <span className={styles.alert}>18歳以上の方とご同伴</span>
+              ください。
             </li>
           </ul>
         </div>
@@ -94,19 +95,19 @@ export default function AccessPage() {
           <ul>
             <li>
               熱中症予防の水分補給を除き、原則
-              <span className={styles.alert}>飲食禁止</span>です
+              <span className={styles.alert}>飲食禁止</span>です。
             </li>
             <li>
               校内の自動販売機は関係者以外
-              <span className={styles.alert}>使用禁止</span>です
+              <span className={styles.alert}>使用禁止</span>です。
             </li>
             <li>
-              校内は原則<span className={styles.alert}>撮影禁止</span>です
+              校内は原則<span className={styles.alert}>撮影禁止</span>です。
             </li>
           </ul>
         </div>
         <p className={styles.notice}>
-          校内でのご相談は「行事運営」と書かれた黒いポロシャツを着た生徒にご相談ください。
+          校内でのご相談は「行事運営」と書かれたポロシャツを着た生徒にご相談ください。
         </p>
         <p className={styles.notice}>
           11:30〜12:10は昼休憩のため、入場できません。
@@ -137,7 +138,7 @@ export default function AccessPage() {
           </p>
           <p>
             このサイトに関するお問い合わせは
-            <Link style={{ textDecoration: "underline" }} href="/request">
+            <Link style={{ textDecoration: "underline" }} href="/requests">
               こちら
             </Link>
           </p>
