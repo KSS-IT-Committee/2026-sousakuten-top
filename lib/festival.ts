@@ -38,7 +38,7 @@ export const DESTINATIONS: readonly Destination[] = [
     romaji: "About",
     href: "/about",
     blurb: "創作展の歴史や、今年のテーマに込めた意味",
-    isReady: false,
+    isReady: true,
   },
   {
     label: "展示紹介",
