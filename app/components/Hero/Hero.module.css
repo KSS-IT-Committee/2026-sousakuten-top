@@ -45,11 +45,10 @@
   text-align: center;
   width: clamp(300px, 80vw, 1280px);
   background-color: var(--top);
-  border:dashed 3px var(--wall);
+  border: dashed 3px var(--wall);
   padding-bottom: 30px;
   padding-top: 30px;
 }
-
 
 .kai {
   padding-left: 0.42em; /* balances the trailing letter-spacing */

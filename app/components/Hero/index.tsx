@@ -3,7 +3,7 @@ import Image from "next/image";
 import {
   FESTIVAL_DATE_LABEL_EN,
   FESTIVAL_NUMBER,
-  VENUE_NAME
+  VENUE_NAME,
 } from "@/lib/festival";
 
 import styles from "./Hero.module.css";
