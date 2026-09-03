@@ -72,14 +72,21 @@ function PerformanceCard({
             return (
               <article className={styles.performance} key={performance.name}>
                 <h3>
-                  {performance.name} :{" "}
+                  <span className={styles.performanceName}>
+                    {performance.name}
+                  </span>{" "}
+                  :{" "}
                   <RubyTextContent
                     text={performance.title}
                     rubyText={rubyText}
                   />
                 </h3>
+                <p className={styles.location}>{performance.location}</p>
+                {performance.date && (
+                  <p className={styles.date}>{performance.date}</p>
+                )}
                 {performance.description && (
-                  <p style={{ whiteSpace: "pre-wrap" }}>
+                  <p className={styles.description}>
                     {performance.description}
                   </p>
                 )}
