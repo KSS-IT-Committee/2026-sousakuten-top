@@ -107,7 +107,7 @@ export default function AccessPage() {
           </ul>
         </div>
         <p className={styles.notice}>
-          校内でのご相談は「行事運営」と書かれたポロシャツを着た生徒にご相談ください。
+          校内でのご相談は「行事運営」と書かれたポロシャツを着た生徒にお声がけください。
         </p>
         <p className={styles.notice}>
           11:30〜12:10は昼休憩のため、入場できません。
