@@ -3,14 +3,20 @@ import type { Metadata } from "next";
 import { FloatingMenu } from "@/app/components/FloatingMenu";
 import {
   CLUB,
+  CLUB_PERFORMANCE,
   COMMITTEE,
-  KAITAKU,
-  OTHER,
-  RISSI,
-  SOUSAKU,
+  COMMITTEE_PERFORMANCE,
   type Department,
+  KAITAKU,
+  KAITAKU_PERFORMANCE,
+  OTHER,
+  OTHERS_PERFORMANCE,
   type Performance,
+  RISSI,
+  RISSI_PERFORMANCE,
   type RubyText,
+  SOUSAKU,
+  SOUSAKU_PERFORMANCE,
 } from "@/lib/exhibits";
 import { destinationFor } from "@/lib/festival";
 
@@ -96,14 +102,23 @@ export default function ExhibitsPage() {
         </header>
       </div>
 
-      <PerformanceCard department={RISSI} performances={[]} />
-      <PerformanceCard department={KAITAKU} performances={[]} />
-      <PerformanceCard department={SOUSAKU} performances={[]} />
-      <PerformanceCard department={CLUB} performances={[]} />
+      <PerformanceCard department={RISSI} performances={RISSI_PERFORMANCE} />
+      <PerformanceCard
+        department={KAITAKU}
+        performances={KAITAKU_PERFORMANCE}
+      />
+      <PerformanceCard
+        department={SOUSAKU}
+        performances={SOUSAKU_PERFORMANCE}
+      />
+      <PerformanceCard department={CLUB} performances={CLUB_PERFORMANCE} />
 
-      <PerformanceCard department={COMMITTEE} performances={[]} />
+      <PerformanceCard
+        department={COMMITTEE}
+        performances={COMMITTEE_PERFORMANCE}
+      />
 
-      <PerformanceCard department={OTHER} performances={[]} />
+      <PerformanceCard department={OTHER} performances={OTHERS_PERFORMANCE} />
 
       <FloatingMenu
         items={[
