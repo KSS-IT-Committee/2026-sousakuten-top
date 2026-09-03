@@ -269,6 +269,7 @@ export const CLUB_PERFORMANCE: Performance[] = [
     name: "競技かるた部",
     title: "競技かるた部～静寂の閃光～",
     location: "1F 柔道場",
+    date: "09/12(土)",
     RubyText: { text: "閃光", ruby: "フラッシュ" },
     description:
       "こんにちは、競技かるた部です！午前は白熱の模擬試合、午後はちらし取りや足が\
@@ -279,6 +280,7 @@ export const CLUB_PERFORMANCE: Performance[] = [
     name: "茶道部",
     title: "長月茶会",
     location: "1F 和室",
+    date: "09/12(土)・09/13(日)",
     description:
       "こんにちは、茶道部です！今年も長月茶会を開催します。教室を回る合間の 20 分\
 間、和室で日本文化に触れてみませんか？初めての方も大歓迎です！菓子と抹茶を用\
@@ -287,8 +289,8 @@ export const CLUB_PERFORMANCE: Performance[] = [
   {
     name: "小石川フィルハーモニーオーケストラ部",
     title: "小石川フィルハーモニーオーケストラ部 弾き倒れ演奏会 2026",
-    date: "",
     location: "1F 剣道場",
+    date: "09/13(日)",
     description:
       "私たちフィルは、毎年恒例の弾き倒れ演奏会を実施します!\
       誰もが知る名曲のオーケストラ演奏や、部員が自由に組んだグループでのアンサンブルを披露します。\
@@ -298,6 +300,7 @@ export const CLUB_PERFORMANCE: Performance[] = [
     name: "吹奏楽部",
     title: "ねえ、今から吹くよ",
     location: "1F 剣道場",
+    date: "09/12(土)",
     description:
       "「あの夏の日、このステージの上で僕たちは、世界の形を少しだけ変えてしまったんだ。」\
     これは、僕たちだけが知っている、吹奏楽の秘密についての物語。1000年に一度の晴れ舞台、お見逃しなく。",
@@ -306,6 +309,7 @@ export const CLUB_PERFORMANCE: Performance[] = [
     name: "将棋・チェス・クイズ部",
     title: "クイズ体験会",
     location: "2F 視聴覚室",
+    date: "09/12(土)・09/13(日)",
     description:
       "こんにちは！クイズ研究会です。3 年前に始まり毎年好評を頂いているクイズ体験会\
 を今年も開催します！QuizKnock などでおなじみの早押し機、実際に触れてみません\
@@ -323,6 +327,7 @@ export const CLUB_PERFORMANCE: Performance[] = [
     name: "華道部",
     title: "華道部",
     location: "3F 302・303 講義室",
+    date: "09/12(土)・09/13(日)",
     description:
       "初めましてみなさん、華道部です！私たちは 302、303 講義室で部員の個人作品と\
 合作を展示しています。他にも華道ならではのテーマの作品や、華道部の実績なども\
@@ -360,6 +365,7 @@ export const CLUB_PERFORMANCE: Performance[] = [
     name: "料理研究会",
     title: "おやつにしませんか？",
     location: "3F 調理室・被服室",
+    date: "09/12(土)・09/13(日)",
     description:
       "今年も料研部員達が試作を重ねたこだわりのお菓子を販売します。味や食感、見た目\
 にも工夫を凝らし、ひとつひとつに心を込めています。創作展巡りのお供に料研自慢\
@@ -381,6 +387,7 @@ export const CLUB_PERFORMANCE: Performance[] = [
     name: "音楽研究会 ",
     title: "合唱",
     location: "4F 音楽室",
+    date: "09/12(土)",
     RubyText: { text: "合唱", ruby: "コーラス" },
     description:
       "こんにちは!音楽研究会という名前ですが、いわゆる合唱部です。\
@@ -391,6 +398,7 @@ export const CLUB_PERFORMANCE: Performance[] = [
     name: "軽音楽研究会 ",
     title: "ジャズライブ",
     location: "4F 音楽室",
+    date: "09/13(日)",
     description:
       "ジャズを聴いていると、思わず体が揺れてしまうって？それが「ノる」ってことだよ。\
       軽音研が創作展でお届けするのは、ビッグバンドジャズの楽しさそのもの。足でリズムを刻みたくなるビートと、心躍るメロディーを、ぜひ音楽室で。",
@@ -408,6 +416,7 @@ export const CLUB_PERFORMANCE: Performance[] = [
     name: "演劇部",
     title: "宝島―20XX 年",
     location: "4F 401 講義室",
+    date: "09/12(土)・09/13(日)",
     description:
       "ー前回より、暑い航海になりそうだー\n気候変動の影響で沈みゆく温泉島に、海\
 賊ジョン・シルバーが甦る！島民に愛される「港の湯」の一人息子は\
@@ -444,6 +453,7 @@ export const CLUB_PERFORMANCE: Performance[] = [
     name: "化学研究会 ",
     title: "マジカルケミカル",
     location: "4F 化学室",
+    date: "09/12(土)・09/13(日)",
     description:
       "化研こと化学研究会です。ところで、最近の夏（秋？）は本当に暑いですね。そ\
 んなあなたに、化研では－196℃の液体窒素をプレゼント！定番の信号反応や\
