@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 import { FloatingMenu } from "@/app/components/FloatingMenu";
 import {
@@ -9,6 +10,7 @@ import {
   type Department,
   KAITAKU,
   KAITAKU_PERFORMANCE,
+  ORG_TYPE,
   OTHER,
   OTHERS_PERFORMANCE,
   type Performance,
@@ -65,6 +67,34 @@ function PerformanceCard({
           <p className={styles.sectionKicker}>{department.romaji}</p>
           <h2>{department.name}</h2>
         </div>
+        {department.type === ORG_TYPE.club && (
+          <div className={styles.sectionNotes}>
+            <p className={styles.sectionNote}>
+              各部活のタイムテーブルは
+              <Link href="/timetable/#club">タイムテーブルを見る</Link>
+            </p>
+          </div>
+        )}
+        {department.name === "開拓部門" && (
+          <div className={styles.sectionNotes}>
+            <p className={styles.sectionNote}>
+              開拓部門の公演時刻は
+              <Link href="/timetable/#kaitaku">タイムテーブルを見る</Link>
+            </p>
+          </div>
+        )}
+        {department.name === "創作部門" && (
+          <div className={styles.sectionNotes}>
+            <p className={styles.sectionNote}>
+              <span>事前申込の当選確認</span>
+              <Link href="/lottery">当選結果を確認する</Link>
+            </p>
+            <p className={styles.sectionNote}>
+              <span>創作部門の公演時刻</span>
+              <Link href="/timetable/#sousaku">タイムテーブルを見る</Link>
+            </p>
+          </div>
+        )}
         <div className={styles.performanceList}>
           {performances.map((performance) => {
             const rubyText = performance.RubyText;
@@ -119,12 +149,10 @@ export default function ExhibitsPage() {
         performances={SOUSAKU_PERFORMANCE}
       />
       <PerformanceCard department={CLUB} performances={CLUB_PERFORMANCE} />
-
       <PerformanceCard
         department={COMMITTEE}
         performances={COMMITTEE_PERFORMANCE}
       />
-
       <PerformanceCard department={OTHER} performances={OTHERS_PERFORMANCE} />
 
       <FloatingMenu

@@ -77,6 +77,52 @@
   letter-spacing: 0.04em;
 }
 
+.sectionNotes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  margin: -4px 0 28px;
+  padding: 14px 16px;
+  border-left: 3px solid var(--accent-alt);
+  background: color-mix(in oklch, var(--accent-alt) 7%, var(--surface));
+}
+
+.sectionNote {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  color: var(--foreground);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.sectionNote span {
+  color: var(--muted);
+}
+
+.sectionNote a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 5px 11px;
+  border: 1px solid var(--accent);
+  border-radius: 3px;
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease;
+}
+
+.sectionNote a:hover,
+.sectionNote a:focus-visible {
+  background: var(--accent);
+  color: var(--background);
+}
+
 .location,
 .date {
   display: inline-block;
@@ -90,6 +136,9 @@
   font-size: 0.72rem;
   letter-spacing: 0.04em;
   line-height: 1.3;
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease;
 }
 
 .location {
@@ -136,9 +185,33 @@
     padding-top: 48px;
   }
 
+  .section {
+    padding: 40px 0 48px;
+  }
+
+  .performanceList {
+    grid-template-columns: 1fr;
+  }
+
+  .performance {
+    min-height: 0;
+    padding: 18px;
+  }
+
   .sectionHeading {
     align-items: flex-start;
     flex-direction: column;
     gap: 6px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .performance,
+  .sectionNote a {
+    transition: none;
+  }
+
+  .performance:hover {
+    transform: none;
   }
 }
