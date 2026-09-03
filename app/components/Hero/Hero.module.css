@@ -43,21 +43,28 @@
   align-items: center;
   gap: clamp(1rem, 2.6vw, 1.9rem);
   text-align: center;
+  width: clamp(300px, 80vw, 1280px);
+  background-color: var(--top);
+  border:dashed 3px var(--wall);
+  padding-bottom: 30px;
+  padding-top: 30px;
 }
+
 
 .kai {
   padding-left: 0.42em; /* balances the trailing letter-spacing */
-  font-size: clamp(0.75rem, 1.5vw, 0.9375rem);
+  font-size: clamp(0.75rem, 1.5vw, 1.2rem);
   font-weight: 700;
   letter-spacing: 0.42em;
-  color: var(--on-wall);
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+  color: var(--accent);
 }
 
 /* Only Regular and Bold of the JP system faces are reliably installed, so the
  * stroke stands in for the Black weight the teaser's title uses. Remove it if
  * a heavy webfont is ever added. */
 .theme {
+  display: flex;
+  font-family: YuMincho;
   font-size: clamp(2.35rem, 8.4vw, 6.5rem);
   font-weight: 700;
   line-height: 1.06;
@@ -66,21 +73,26 @@
   color: var(--accent);
   -webkit-text-stroke: 0.022em currentColor;
   text-shadow: 0 0.35rem 1.1rem rgba(0, 0, 0, 0.3);
+  align-items: baseline;
+}
+.theme_1 {
+  font-size: clamp(2.35rem, 8.4vw, 6.5rem);
+}
+.theme_2 {
+  font-size: clamp(1.5rem, 4vw, 5rem);
 }
 
 .dates {
   font-family: var(--mono);
-  font-size: clamp(0.8125rem, 1.7vw, 1.0625rem);
+  font-size: clamp(0.8125rem, 1.7vw, 1.2rem);
   letter-spacing: 0.16em;
   font-variant-numeric: tabular-nums;
-  color: var(--on-wall);
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  color: var(--accent);
 }
 
 .venue {
   font-size: clamp(0.8125rem, 1.6vw, 0.9375rem);
-  color: var(--on-wall-muted);
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  color: var(--accent);
 }
 
 /* Sits high enough to clear the countdown strip that overlaps the hero foot. */
