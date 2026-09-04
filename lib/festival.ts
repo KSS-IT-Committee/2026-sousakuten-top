@@ -1,6 +1,18 @@
 /* Information about the event */
 export const FESTIVAL_NUMBER = 94;
-export const FESTIVAL_THEME = "正解なんて創ればいい";
+/* The theme as the hero sets it: emphasised fragments render large, the rest
+ * small. FESTIVAL_THEME is derived from these, so the two cannot drift — edit
+ * the segments, never the joined string. */
+export const FESTIVAL_THEME_SEGMENTS = [
+  { text: "正解", isEmphasised: true },
+  { text: "なんて", isEmphasised: false },
+  { text: "創", isEmphasised: true },
+  { text: "ればいい", isEmphasised: false },
+] as const;
+
+export const FESTIVAL_THEME = FESTIVAL_THEME_SEGMENTS.map(
+  (segment) => segment.text,
+).join("");
 
 export const FESTIVAL_START = new Date("2026-09-12T08:25:00+09:00");
 
