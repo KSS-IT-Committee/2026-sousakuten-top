@@ -3,6 +3,7 @@ import Image from "next/image";
 import {
   FESTIVAL_DATE_LABEL_EN,
   FESTIVAL_NUMBER,
+  FESTIVAL_THEME_SEGMENTS,
   VENUE_NAME,
 } from "@/lib/festival";
 
@@ -32,12 +33,18 @@ export function Hero() {
 
       <div className={styles.copy}>
         <p className={styles.kai}>第{FESTIVAL_NUMBER}回 創作展</p>
-        <section className={styles.theme}>
-          <h1 className={styles.theme_1}>正解</h1>
-          <h2 className={styles.theme_2}>なんて</h2>
-          <h1 className={styles.theme_1}>創</h1>
-          <h2 className={styles.theme_2}>ればいい</h2>
-        </section>
+        <h1 className={styles.theme}>
+          {FESTIVAL_THEME_SEGMENTS.map((segment, index) => (
+            <span
+              key={index}
+              className={
+                segment.isEmphasised ? styles.themeStrong : styles.themeSoft
+              }
+            >
+              {segment.text}
+            </span>
+          ))}
+        </h1>
         <p className={styles.dates}>{FESTIVAL_DATE_LABEL_EN}</p>
         <p className={styles.venue}>{VENUE_NAME}</p>
       </div>

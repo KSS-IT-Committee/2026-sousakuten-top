@@ -63,7 +63,7 @@
  * a heavy webfont is ever added. */
 .theme {
   display: flex;
-  font-family: YuMincho;
+  font-family: var(--mincho);
   font-size: clamp(2.35rem, 8.4vw, 6.5rem);
   font-weight: 700;
   line-height: 1.06;
@@ -74,10 +74,10 @@
   text-shadow: 0 0.35rem 1.1rem rgba(0, 0, 0, 0.3);
   align-items: baseline;
 }
-.theme_1 {
+.themeStrong {
   font-size: clamp(2.35rem, 8.4vw, 6.5rem);
 }
-.theme_2 {
+.themeSoft {
   font-size: clamp(1.5rem, 4vw, 5rem);
 }
 
