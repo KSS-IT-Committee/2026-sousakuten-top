@@ -52,7 +52,7 @@ export const DESTINATIONS: readonly Destination[] = [
     romaji: "Schedule",
     href: "/schedule",
     blurb: "公演・発表の時間割",
-    isReady: false,
+    isReady: true,
   },
   {
     label: "抽選状況",
