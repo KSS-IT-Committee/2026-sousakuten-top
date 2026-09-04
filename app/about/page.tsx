@@ -33,7 +33,7 @@ export default function AboutPage() {
         <p className={styles.eyebrow}>THEME 2026</p>
         <h2 className={styles.sectionTitle}>第94回創作展テーマ</h2>
         <blockquote className={styles.theme}>
-          <span>正解なんて、創ればいい</span>
+          <span>正解なんて創ればいい</span>
         </blockquote>
         <div className={styles.copy}>
           <p>突然ですが、みなさんにとっての正解とはなんでしょうか。</p>
