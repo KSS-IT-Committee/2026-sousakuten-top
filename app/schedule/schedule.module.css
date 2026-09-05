@@ -94,7 +94,7 @@
 }
 
 .timetableIntro,
-.programGrid {
+.timeline {
   max-width: 1100px;
   margin-inline: auto;
 }
@@ -105,13 +105,10 @@
   line-height: 1.8;
 }
 
-.programGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
+.timeline {
   margin-top: 3rem;
-  background: var(--border);
-  border: 1px solid var(--border);
+  overflow-x: auto;
+  border-block: 1px solid var(--border);
 }
 
 .timetable > h3 {
@@ -122,10 +119,161 @@
   letter-spacing: 0.08em;
 }
 
-.clubGrid {
-  composes: programGrid;
-  grid-template-columns: repeat(2, 1fr);
-  margin-top: 1.5rem;
+.timelineHeader,
+.timelineRow,
+.timelineBreak {
+  display: grid;
+  grid-template-columns: 10rem minmax(48rem, 1fr);
+}
+
+.timelineHeader {
+  min-width: 58rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.timelineBreak {
+  min-width: 58rem;
+  border-bottom: 1px solid var(--border);
+  background: color-mix(in srgb, var(--accent-alt) 5%, transparent);
+}
+
+.timelineBreak .timelineProgram {
+  color: var(--accent-alt);
+  font-size: 0.8rem;
+}
+
+.timelineLabel {
+  padding: 0.85rem 1rem;
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.timeScale {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.85rem 0.5rem;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+}
+
+.timelineBody {
+  min-width: 58rem;
+}
+
+.timelineRow {
+  min-height: 4.9rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.timelineRow:last-child {
+  border-bottom: 0;
+}
+
+.timelineProgram {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.2rem;
+  padding: 0.7rem 1rem;
+  border-inline-end: 1px solid var(--border);
+}
+
+.timelineProgram strong {
+  font-family: var(--mincho);
+  font-size: 0.95rem;
+}
+
+.timelineProgram span {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  line-height: 1.35;
+}
+
+.timelineTrack {
+  position: relative;
+  background-image: linear-gradient(
+    to right,
+    transparent calc(15.29% - 0.5px),
+    var(--border) 15.29%,
+    transparent calc(15.29% + 0.5px),
+    transparent calc(29.41% - 0.5px),
+    var(--border) 29.41%,
+    transparent calc(29.41% + 0.5px),
+    transparent calc(43.53% - 0.5px),
+    var(--border) 43.53%,
+    transparent calc(43.53% + 0.5px),
+    transparent calc(57.65% - 0.5px),
+    var(--border) 57.65%,
+    transparent calc(57.65% + 0.5px),
+    transparent calc(71.76% - 0.5px),
+    var(--border) 71.76%,
+    transparent calc(71.76% + 0.5px),
+    transparent calc(85.88% - 0.5px),
+    var(--border) 85.88%,
+    transparent calc(85.88% + 0.5px)
+  );
+}
+
+.timelineBar {
+  position: absolute;
+  top: 0.75rem;
+  bottom: 0.75rem;
+  display: flex;
+  min-width: 3.5rem;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0.25rem 0.45rem;
+  border-inline: 2px solid var(--accent);
+  background: color-mix(in srgb, var(--accent) 18%, var(--background));
+  color: var(--accent-alt);
+  font-size: 0.65rem;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+
+.timelineBar span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.timelineBar time {
+  overflow: hidden;
+  color: var(--accent-alt);
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.timelineBarCompact span {
+  display: none;
+}
+
+.timelineBarCompact time {
+  display: block;
+  font-size: 0.7rem;
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+.breakBand {
+  position: absolute;
+  top: 0.55rem;
+  bottom: 0.55rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed var(--accent-alt);
+  background: color-mix(in srgb, var(--accent-alt) 14%, var(--background));
+  color: var(--accent-alt);
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  white-space: nowrap;
 }
 
 .section {
@@ -199,11 +347,7 @@
     border-top: 1px solid var(--border);
   }
 
-  .programGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .clubGrid {
-    grid-template-columns: 1fr;
+  .timeline {
+    margin-inline: -1.25rem;
   }
 }

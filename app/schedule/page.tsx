@@ -29,7 +29,19 @@ type SectionTitle = {
 type Performance = {
   readonly number: string;
   readonly time: string;
+  readonly showNumber?: boolean;
 };
+
+type TimetableProgram = {
+  title: SectionTitle;
+  performances: readonly Performance[];
+  dates?: string;
+  venue?: string;
+};
+
+const GRAPH_START = 8 * 60 + 25;
+const GRAPH_END = 15 * 60 + 30;
+const GRAPH_WIDTH = GRAPH_END - GRAPH_START;
 
 const PROGRAMS = [
   {
@@ -53,13 +65,13 @@ const PROGRAMS = [
       time,
     })),
   },
-] as const;
+] satisfies readonly TimetableProgram[];
 
 const CLUB_PROGRAMS = [
   {
     title: { name: "吹奏楽部", romaji: "Brass Band" },
     performances: Object.entries(clubPerformanceTime.BRASS_BAND[0]).map(
-      ([number, time]) => ({ number: `第${number}公演`, time }),
+      ([number, time]) => ({ number, time, showNumber: !/^\d+$/.test(number) }),
     ),
     dates: clubPerformanceTime.BRASS_BAND[1],
     venue: clubPerformanceTime.BRASS_BAND[2],
@@ -67,7 +79,7 @@ const CLUB_PROGRAMS = [
   {
     title: { name: "茶道部", romaji: "Sadou" },
     performances: Object.entries(clubPerformanceTime.SADOU[0]).map(
-      ([number, time]) => ({ number, time }),
+      ([number, time]) => ({ number, time, showNumber: !/^\d+$/.test(number) }),
     ),
     dates: clubPerformanceTime.SADOU[1],
     venue: clubPerformanceTime.SADOU[2],
@@ -75,7 +87,7 @@ const CLUB_PROGRAMS = [
   {
     title: { name: "交響楽団", romaji: "Philharmonic" },
     performances: Object.entries(clubPerformanceTime.PHILHARMONIC[0]).map(
-      ([number, time]) => ({ number, time }),
+      ([number, time]) => ({ number, time, showNumber: !/^\d+$/.test(number) }),
     ),
     dates: clubPerformanceTime.PHILHARMONIC[1],
     venue: clubPerformanceTime.PHILHARMONIC[2],
@@ -83,7 +95,7 @@ const CLUB_PROGRAMS = [
   {
     title: { name: "かるた部", romaji: "Karuta" },
     performances: Object.entries(clubPerformanceTime.KARUTA[0]).map(
-      ([number, time]) => ({ number, time }),
+      ([number, time]) => ({ number, time, showNumber: !/^\d+$/.test(number) }),
     ),
     dates: clubPerformanceTime.KARUTA[1],
     venue: clubPerformanceTime.KARUTA[2],
@@ -91,7 +103,7 @@ const CLUB_PROGRAMS = [
   {
     title: { name: "クイズ研究会", romaji: "Quiz" },
     performances: Object.entries(clubPerformanceTime.QUIZ[0]).map(
-      ([number, time]) => ({ number, time }),
+      ([number, time]) => ({ number, time, showNumber: !/^\d+$/.test(number) }),
     ),
     dates: clubPerformanceTime.QUIZ[1],
     venue: clubPerformanceTime.QUIZ[2],
@@ -99,7 +111,7 @@ const CLUB_PROGRAMS = [
   {
     title: { name: "料理部", romaji: "Cooking" },
     performances: Object.entries(clubPerformanceTime.COOKING[0]).map(
-      ([number, time]) => ({ number, time }),
+      ([number, time]) => ({ number, time, showNumber: !/^\d+$/.test(number) }),
     ),
     dates: clubPerformanceTime.COOKING[1],
     venue: clubPerformanceTime.COOKING[2],
@@ -107,7 +119,7 @@ const CLUB_PROGRAMS = [
   {
     title: { name: "合唱部", romaji: "Chorus" },
     performances: Object.entries(clubPerformanceTime.CHORUS[0]).map(
-      ([number, time]) => ({ number, time }),
+      ([number, time]) => ({ number, time, showNumber: !/^\d+$/.test(number) }),
     ),
     dates: clubPerformanceTime.CHORUS[1],
     venue: clubPerformanceTime.CHORUS[2],
@@ -115,7 +127,7 @@ const CLUB_PROGRAMS = [
   {
     title: { name: "演劇部", romaji: "Theater" },
     performances: Object.entries(clubPerformanceTime.THEATER[0]).map(
-      ([number, time]) => ({ number, time }),
+      ([number, time]) => ({ number, time, showNumber: !/^\d+$/.test(number) }),
     ),
     dates: clubPerformanceTime.THEATER[1],
     venue: clubPerformanceTime.THEATER[2],
@@ -123,7 +135,7 @@ const CLUB_PROGRAMS = [
   {
     title: { name: "ジャズ研究会", romaji: "Jazz" },
     performances: Object.entries(clubPerformanceTime.JAZZ[0]).map(
-      ([number, time]) => ({ number, time }),
+      ([number, time]) => ({ number, time, showNumber: !/^\d+$/.test(number) }),
     ),
     dates: clubPerformanceTime.JAZZ[1],
     venue: clubPerformanceTime.JAZZ[2],
@@ -131,46 +143,98 @@ const CLUB_PROGRAMS = [
   {
     title: { name: "化学部", romaji: "Chemistry" },
     performances: Object.entries(clubPerformanceTime.CHEMISTRY[0]).map(
-      ([number, time]) => ({ number, time }),
+      ([number, time]) => ({ number, time, showNumber: !/^\d+$/.test(number) }),
     ),
     dates: clubPerformanceTime.CHEMISTRY[1],
     venue: clubPerformanceTime.CHEMISTRY[2],
   },
-] as const;
+] satisfies readonly TimetableProgram[];
 
-function TTSection({
-  title,
-  performances,
-  dates,
-  venue,
-}: {
-  title: SectionTitle;
-  performances: readonly Performance[];
-  dates?: string;
-  venue?: string;
-}) {
+function timeToMinutes(time: string) {
+  const [hours, minutes] = time.split(":").map(Number);
+  return hours * 60 + minutes;
+}
+
+function timeRangeToPosition(timeRange: string) {
+  const [start, end] = timeRange
+    .split("-")
+    .map((time) => timeToMinutes(time.trim()));
+  const left = ((start - GRAPH_START) / GRAPH_WIDTH) * 100;
+  const width = ((end - start) / GRAPH_WIDTH) * 100;
+
+  return { left: `${left}%`, width: `${width}%` };
+}
+
+function isCompactTimeRange(timeRange: string) {
+  const [start, end] = timeRange
+    .split("-")
+    .map((time) => timeToMinutes(time.trim()));
+
+  return end - start < 45;
+}
+
+function TimeGrid({ programs }: { programs: readonly TimetableProgram[] }) {
   return (
-    <section className={styles.section}>
-      <div className={styles.sectionHeading}>
-        <h3 className={styles.sectionTitle}>{title.name}</h3>
-        <p className={styles.sectionRomaji}>{title.romaji}</p>
-        {dates && venue && (
-          <p className={styles.sectionMeta}>
-            {dates} / {venue}
-          </p>
-        )}
+    <div className={styles.timeline}>
+      <div className={styles.timelineHeader}>
+        <span className={styles.timelineLabel}>団体</span>
+        <div className={styles.timeScale}>
+          {[
+            "08:25",
+            "09:30",
+            "10:30",
+            "11:30",
+            "12:30",
+            "13:30",
+            "14:30",
+            "15:30",
+          ].map((time) => (
+            <time key={time}>{time}</time>
+          ))}
+        </div>
       </div>
-      <ol className={styles.performanceList}>
-        {performances.map((performance) => (
-          <li className={styles.performance} key={performance.number}>
-            <span className={styles.performanceNumber}>
-              {performance.number}
-            </span>
-            <time className={styles.performanceTime}>{performance.time}</time>
-          </li>
+      <div className={styles.timelineBreak}>
+        <span className={styles.timelineProgram}>昼休憩</span>
+        <div className={styles.timelineTrack}>
+          <div
+            className={styles.breakBand}
+            style={timeRangeToPosition("11:30 - 12:10")}
+          >
+            <span>11:30 - 12:10</span>
+          </div>
+        </div>
+      </div>
+      <div className={styles.timelineBody}>
+        {programs.map((program) => (
+          <div className={styles.timelineRow} key={program.title.romaji}>
+            <div className={styles.timelineProgram}>
+              <strong>{program.title.name}</strong>
+              <span>{program.dates ?? program.title.romaji}</span>
+              {program.venue && <span>{program.venue}</span>}
+            </div>
+            <div className={styles.timelineTrack}>
+              {program.performances.map((performance) => (
+                <div
+                  className={`${styles.timelineBar} ${
+                    isCompactTimeRange(performance.time)
+                      ? styles.timelineBarCompact
+                      : ""
+                  }`}
+                  key={performance.number}
+                  style={timeRangeToPosition(performance.time)}
+                  title={`${performance.showNumber === false ? "" : `${performance.number} `}${performance.time}`}
+                >
+                  {performance.showNumber !== false && (
+                    <span>{performance.number}</span>
+                  )}
+                  <time>{performance.time}</time>
+                </div>
+              ))}
+            </div>
+          </div>
         ))}
-      </ol>
-    </section>
+      </div>
+    </div>
   );
 }
 
@@ -219,17 +283,9 @@ export default function SchedulePage() {
             <p>各公演の開始・終了時間をご確認ください。</p>
           </div>
           <h3>クラスの公演時間</h3>
-          <div className={styles.programGrid}>
-            {PROGRAMS.map((program) => (
-              <TTSection key={program.title.romaji} {...program} />
-            ))}
-          </div>
+          <TimeGrid programs={PROGRAMS} />
           <h3 id="club">部活動の公演時間</h3>
-          <div className={styles.clubGrid}>
-            {CLUB_PROGRAMS.map((program) => (
-              <TTSection key={program.title.romaji} {...program} />
-            ))}
-          </div>
+          <TimeGrid programs={CLUB_PROGRAMS} />
         </section>
       </main>
     </>
