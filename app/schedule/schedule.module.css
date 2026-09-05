@@ -1,0 +1,353 @@
+.header {
+  padding: clamp(4rem, 10vw, 8rem) clamp(1.25rem, 6vw, 5rem)
+    clamp(2.5rem, 7vw, 5rem);
+  background: var(--wall);
+  color: var(--on-wall);
+}
+
+.romaji,
+.eyebrow,
+.sectionRomaji {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.romaji,
+.eyebrow {
+  color: var(--on-wall-muted);
+}
+
+.title {
+  margin-top: 0.75rem;
+  font-family: var(--mincho);
+  font-size: clamp(2.5rem, 8vw, 6.5rem);
+  letter-spacing: 0.08em;
+}
+
+.content {
+  background: var(--background);
+}
+
+.overview,
+.timetable {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: clamp(3.5rem, 8vw, 6.5rem) clamp(1.25rem, 5vw, 4rem);
+}
+
+.overview h2,
+.timetableIntro h2 {
+  margin-top: 0.65rem;
+  font-family: var(--mincho);
+  font-size: clamp(1.7rem, 4vw, 2.8rem);
+  letter-spacing: 0.08em;
+}
+
+.festivalDate {
+  margin-top: 1.5rem;
+  color: var(--accent-alt);
+  font-family: var(--mono);
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  letter-spacing: 0.08em;
+}
+
+.hours {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 2.5rem;
+  border-block: 1px solid var(--border);
+}
+
+.hours div {
+  padding: 1.25rem 1rem;
+  border-inline-start: 1px solid var(--border);
+}
+
+.hours div:first-child {
+  border-inline-start: 0;
+}
+
+.hours dt {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.hours dd {
+  margin-top: 0.5rem;
+  font-family: var(--mono);
+  font-size: 1rem;
+}
+
+.note {
+  max-width: 42rem;
+  margin-top: 1.5rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.9;
+}
+
+.timetable {
+  max-width: none;
+  background: var(--surface);
+}
+
+.timetableIntro,
+.timeline {
+  max-width: 1100px;
+  margin-inline: auto;
+}
+
+.timetableIntro > p:last-child {
+  margin-top: 1rem;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.timeline {
+  margin-top: 3rem;
+  overflow-x: auto;
+  border-block: 1px solid var(--border);
+}
+
+.timetable > h3 {
+  max-width: 1100px;
+  margin: 3rem auto 0;
+  font-family: var(--mincho);
+  font-size: 1.35rem;
+  letter-spacing: 0.08em;
+}
+
+.timelineHeader,
+.timelineRow,
+.timelineBreak {
+  display: grid;
+  grid-template-columns: 10rem minmax(48rem, 1fr);
+}
+
+.timelineHeader {
+  min-width: 58rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.timelineBreak {
+  min-width: 58rem;
+  border-bottom: 1px solid var(--border);
+  background: color-mix(in srgb, var(--accent-alt) 5%, transparent);
+}
+
+.timelineBreak .timelineProgram {
+  color: var(--accent-alt);
+  font-size: 0.8rem;
+}
+
+.timelineLabel {
+  padding: 0.85rem 1rem;
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.timeScale {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.85rem 0.5rem;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+}
+
+.timelineBody {
+  min-width: 58rem;
+}
+
+.timelineRow {
+  min-height: 4.9rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.timelineRow:last-child {
+  border-bottom: 0;
+}
+
+.timelineProgram {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.2rem;
+  padding: 0.7rem 1rem;
+  border-inline-end: 1px solid var(--border);
+}
+
+.timelineProgram strong {
+  font-family: var(--mincho);
+  font-size: 0.95rem;
+}
+
+.timelineProgram span {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  line-height: 1.35;
+}
+
+.timelineTrack {
+  position: relative;
+  background-image: linear-gradient(
+    to right,
+    transparent calc(15.29% - 0.5px),
+    var(--border) 15.29%,
+    transparent calc(15.29% + 0.5px),
+    transparent calc(29.41% - 0.5px),
+    var(--border) 29.41%,
+    transparent calc(29.41% + 0.5px),
+    transparent calc(43.53% - 0.5px),
+    var(--border) 43.53%,
+    transparent calc(43.53% + 0.5px),
+    transparent calc(57.65% - 0.5px),
+    var(--border) 57.65%,
+    transparent calc(57.65% + 0.5px),
+    transparent calc(71.76% - 0.5px),
+    var(--border) 71.76%,
+    transparent calc(71.76% + 0.5px),
+    transparent calc(85.88% - 0.5px),
+    var(--border) 85.88%,
+    transparent calc(85.88% + 0.5px)
+  );
+}
+
+.timelineBar {
+  position: absolute;
+  top: 0.75rem;
+  bottom: 0.75rem;
+  display: flex;
+  min-width: 3.5rem;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0.25rem 0.45rem;
+  border-inline: 2px solid var(--accent);
+  background: color-mix(in srgb, var(--accent) 18%, var(--background));
+  color: var(--accent-alt);
+  font-size: 0.65rem;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+
+.timelineBar span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.timelineBar time {
+  overflow: hidden;
+  color: var(--accent-alt);
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.timelineBarCompact span {
+  display: none;
+}
+
+.timelineBarCompact time {
+  display: block;
+  font-size: 0.7rem;
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+.breakBand {
+  position: absolute;
+  top: 0.55rem;
+  bottom: 0.55rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed var(--accent-alt);
+  background: color-mix(in srgb, var(--accent-alt) 14%, var(--background));
+  color: var(--accent-alt);
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  white-space: nowrap;
+}
+
+.section {
+  background: var(--background);
+}
+
+.sectionHeading {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.sectionTitle {
+  font-family: var(--mincho);
+  font-size: 1.7rem;
+  letter-spacing: 0.1em;
+}
+
+.sectionRomaji {
+  margin-top: 0.35rem;
+  color: var(--accent);
+}
+
+.sectionMeta {
+  margin-top: 0.75rem;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  line-height: 1.6;
+}
+
+.performanceList {
+  list-style: none;
+}
+
+.performance {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.performance:last-child {
+  border-bottom: 0;
+}
+
+.performanceNumber {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.performanceTime {
+  color: var(--accent-alt);
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 760px) {
+  .hours {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hours div:nth-child(3) {
+    border-inline-start: 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .hours div:nth-child(4) {
+    border-top: 1px solid var(--border);
+  }
+
+  .timeline {
+    margin-inline: -1.25rem;
+  }
+}
