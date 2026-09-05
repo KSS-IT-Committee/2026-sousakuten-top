@@ -57,7 +57,7 @@ export const DESTINATIONS: readonly Destination[] = [
     romaji: "Exhibits",
     href: "/exhibits",
     blurb: "各クラス・部活・委員会の展示を一覧",
-    isReady: false,
+    isReady: true,
   },
   {
     label: "タイムテーブル",
