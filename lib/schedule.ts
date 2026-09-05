@@ -106,4 +106,4 @@ export const clubPerformanceTime = {
   THEATER: [THEATER_PERFORMANCE, "09/12(土) 09/13(日)", "401教室"],
   JAZZ: [JAZZ_PERFORMANCE, "09/13(日)", "音楽室"],
   CHEMISTRY: [CHEMISTRY_PERFORMANCE, "09/12(土) 09/13(日)", "化学室"],
-};
+} as const;
