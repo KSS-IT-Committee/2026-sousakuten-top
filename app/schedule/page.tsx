@@ -198,9 +198,9 @@ function TimeGrid({ programs }: { programs: readonly TimetableProgram[] }) {
         <div className={styles.timelineTrack}>
           <div
             className={styles.breakBand}
-            style={timeRangeToPosition("11:30 - 12:10")}
+            style={timeRangeToPosition("11:35 - 12:30")}
           >
-            <span>11:30 - 12:10</span>
+            <span>11:35 - 12:30</span>
           </div>
         </div>
       </div>

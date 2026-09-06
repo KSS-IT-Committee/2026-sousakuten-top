@@ -1,7 +1,7 @@
 export const FESTIVAL_DATE = "2026/09/12 - 2026/09/13";
 export const START_ENTER_TIME = "08:25";
 export const FESTIVAL_HOURS = {
-  AM: "08:25 - 11:30",
+  AM: "08:45 - 11:35",
   PM: "12:10 - 15:20",
 };
 export const END_TIME = "15:20";
