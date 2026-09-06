@@ -1,8 +1,8 @@
+import { FloatingMenu } from "@/app/components/FloatingMenu";
+import { destinationFor } from "@/lib/festival";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-
-import { destinationFor } from "@/lib/festival";
 
 import styles from "./page.module.css";
 
@@ -31,39 +31,44 @@ function PageBlock({
 
 export default function AccessPage() {
   return (
-    <div className={styles.page}>
+    <><div className={styles.page}>
+      <p className={styles.pageEyebrow}>
+        ACCESS
+      </p>
       <h1 className={styles.pageTitle}>{DESTINATION.label}</h1>
       <p className={styles.pageDescription}>{DESTINATION.blurb}</p>
       <PageBlock title="校内フロアマップ">
         <p>受付で配付する冊子および校舎内に掲示しています。</p>
         {/* <p>
-          会場内の移動にご利用ください。受付で配布する冊子にも掲載しています。
-        </p> */}
+      会場内の移動にご利用ください。受付で配布する冊子にも掲載しています。
+    </p> */}
         {/* <div className={styles.mapGrid}>
-          {[
-            ["1階", "first_floor.png"],
-            ["2階", "second_floor.png"],
-            ["3階", "third_floor.png"],
-            ["4階", "forth_floor.png"],
-          ].map(([label, fileName]) => (
-            <figure className={styles.mapCard} key={fileName}>
-              <figcaption>{label}</figcaption>
-              <Image
-                src={`/floor_map/${fileName}`}
-                alt={`${label}の校内フロアマップ`}
-                width={717}
-                height={975}
-              />
-            </figure>
-          ))}
-        </div> */}
+      {[
+        ["1階", "first_floor.png"],
+        ["2階", "second_floor.png"],
+        ["3階", "third_floor.png"],
+        ["4階", "forth_floor.png"],
+      ].map(([label, fileName]) => (
+        <figure className={styles.mapCard} key={fileName}>
+          <figcaption>{label}</figcaption>
+          <Image
+            src={`/floor_map/${fileName}`}
+            alt={`${label}の校内フロアマップ`}
+            width={717}
+            height={975}
+          />
+        </figure>
+      ))}
+    </div> */}
       </PageBlock>
       <PageBlock title="持ち物">
         <p>当日は以下のものをご持参ください。</p>
         <ul className={styles.list}>
           <li>
             上履き
-            <span className={styles.alert}>※スリッパの貸出はありません。</span>
+            <div className={styles.alert}>
+              ※スリッパの貸出はありません。
+            </div>
           </li>
           <li>土足を入れる袋</li>
           <li>飲みもの</li>
@@ -163,9 +168,9 @@ export default function AccessPage() {
           alt="アクセス地図"
           width={717}
           height={975}
-          className={styles.accessMap}
-        />
+          className={styles.accessMap} />
       </PageBlock>
-    </div>
+    </div><FloatingMenu items={[{ label: "Top", href: "/" }]} /></>
   );
 }
+

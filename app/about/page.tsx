@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { destinationFor } from "@/lib/festival";
 
+import { FloatingMenu } from "../components/FloatingMenu";
 import styles from "./about.module.css";
 
 const DESTINATION = destinationFor("/about");
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <article className={styles.main}>
+    <><article className={styles.main}>
       <header className={styles.header}>
         <p className={styles.eyebrow}>ABOUT SOUSAKUTEN</p>
         <h1 className={styles.title}>創作展とは</h1>
@@ -50,6 +51,8 @@ export default function AboutPage() {
         </div>
         <p className={styles.signature}>創作展委員会</p>
       </section>
-    </article>
+    </article><div>
+        <FloatingMenu items={[{ label: "Top", href: "/" }]} />
+      </div></>
   );
 }
