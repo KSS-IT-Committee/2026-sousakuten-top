@@ -476,7 +476,7 @@ export const COMMITTEE_PERFORMANCE: Performance[] = [
 export const OTHERS_PERFORMANCE: Performance[] = [
   {
     name: "推し哲プロジェクト制作委員会 ",
-    title: "「推し哲が見つかる⁈哲学者大図鑑」販売会‼",
+    title: "「推し哲が見つかる!?哲学者大図鑑」販売会‼",
     location: "3F 場所： 3 階資料コーナー",
     description:
       "16 期推し哲委員会です！私たちで 0 から作りあげた「推し哲が見つかる⁈哲学者大図\
