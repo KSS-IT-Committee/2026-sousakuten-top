@@ -251,6 +251,9 @@
 
 .timelineBarCompact span {
   display: none;
+}
+
+.timelineBarCompact {
   min-width: 0;
 }
 
