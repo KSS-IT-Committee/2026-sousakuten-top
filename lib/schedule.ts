@@ -98,7 +98,7 @@ const CHEMISTRY_PERFORMANCE = {
 export const clubPerformanceTime = {
   BRASS_BAND: [BRASS_BAND_PERFORMANCE, "09/12(土)", "剣道場"],
   SADOU: [SADOU_PERFORMANCE, "09/12(土) 09/13(日)", "茶室"],
-  PHILHARMONIC: [PHILHARMONIC_PERFORMANCE, "09/13(土)", "剣道場"],
+  PHILHARMONIC: [PHILHARMONIC_PERFORMANCE, "09/13(日)", "剣道場"],
   KARUTA: [KARUTA_PERFORMANCE, "09/12(土) ", "柔道場"],
   QUIZ: [QUIZ_PERFORMANCE, "09/12(土) 09/13(日)", "視聴覚室"],
   COOKING: [COOKING_PERFORMANCE, "09/12(土) 09/13(日)", "調理室・被覆室"],
