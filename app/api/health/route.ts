@@ -1,4 +1,4 @@
-import { sql } from "drizzle-orm";
+import type { Sql } from "postgres";
 
 import { db } from "@/lib/db";
 
@@ -16,17 +16,30 @@ const PROBE_TIMEOUT_MS = 2000;
 // the client: the timeout stays scoped to this request (unrelated queries keep
 // their current behavior), and it also covers a connection that never answers
 // at all, which a server-side statement timeout cannot.
+//
+// The probe goes through the raw postgres-js client rather than `db.execute`
+// because only the driver's `PendingQuery` exposes `cancel()`. Losing the race
+// has to actually abort the query — otherwise the timer would just stop us
+// waiting while the stalled query kept its pool slot for as long as the
+// database took to answer, which is the exhaustion this deadline exists to
+// prevent.
 async function probeDatabase(): Promise<void> {
+  // `$client` is attached by `drizzle()` but absent from the `PostgresJsDatabase`
+  // type that `lib/db.ts` exports, hence the cast.
+  const client = (db as unknown as { $client: Sql }).$client;
+
+  const query = client`select 1`.execute();
+
   let timeoutId: ReturnType<typeof setTimeout> | undefined;
   const deadline = new Promise<never>((_resolve, reject) => {
-    timeoutId = setTimeout(
-      () => reject(new Error("health probe timed out")),
-      PROBE_TIMEOUT_MS,
-    );
+    timeoutId = setTimeout(() => {
+      query.cancel();
+      reject(new Error("health probe timed out"));
+    }, PROBE_TIMEOUT_MS);
   });
 
   try {
-    await Promise.race([db.execute(sql`select 1`), deadline]);
+    await Promise.race([query, deadline]);
   } finally {
     clearTimeout(timeoutId);
   }
