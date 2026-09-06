@@ -102,7 +102,7 @@ export const clubPerformanceTime = {
   KARUTA: [KARUTA_PERFORMANCE, "09/12(土) ", "柔道場"],
   QUIZ: [QUIZ_PERFORMANCE, "09/12(土) 09/13(日)", "視聴覚室"],
   COOKING: [COOKING_PERFORMANCE, "09/12(土) 09/13(日)", "調理室・被覆室"],
-  CHORUS: [CHORUS_PERFORMANCE, "09/12(土))", "音楽室"],
+  CHORUS: [CHORUS_PERFORMANCE, "09/12(土)", "音楽室"],
   THEATER: [THEATER_PERFORMANCE, "09/12(土) 09/13(日)", "401教室"],
   JAZZ: [JAZZ_PERFORMANCE, "09/13(日)", "音楽室"],
   CHEMISTRY: [CHEMISTRY_PERFORMANCE, "09/12(土) 09/13(日)", "化学室"],
