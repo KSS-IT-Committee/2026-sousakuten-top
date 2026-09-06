@@ -2,7 +2,7 @@ export const FESTIVAL_DATE = "2026/09/12 - 2026/09/13";
 export const START_ENTER_TIME = "08:25";
 export const FESTIVAL_HOURS = {
   AM: "08:45 - 11:35",
-  PM: "12:10 - 15:20",
+  PM: "12:30 - 15:20",
 };
 export const END_TIME = "15:20";
 
@@ -27,8 +27,8 @@ export const KAITAKU_PERFORMANCE = {
 };
 
 export const RISSI_PERFORMANCE = {
-  AM: "09:00 - 11:25",
-  PM: "12:25 - 15:30",
+  AM: "08:45 - 11:35",
+  PM: "12:30 - 15:20",
 };
 
 const BRASS_BAND_PERFORMANCE = {
