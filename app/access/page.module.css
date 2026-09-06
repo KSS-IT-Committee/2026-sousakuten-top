@@ -1,10 +1,10 @@
 .page {
- width: min(100% - 48px, 960px);
+  width: min(100% - 48px, 960px);
   margin: 0 auto;
   padding: 72px 0 112px;
 }
 
-.pageEyebrow{
+.pageEyebrow {
   color: var(--accent-alt);
   font-family: var(--mono);
   font-size: 1rem;
@@ -24,7 +24,7 @@
 
 .pageDescription {
   margin-top: 1.15rem;
-  font-size: 1.05rem;;
+  font-size: 1.05rem;
   line-height: 1.9;
   color: var(--muted);
 }
