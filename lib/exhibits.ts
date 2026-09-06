@@ -151,7 +151,7 @@ export const KAITAKU_PERFORMANCE: Performance[] = [
     title: "泥棒役者",
     location: "3F 場所： 3D",
     description:
-      "「なんでそうなる！？」\nを30分間集めたら劇になりました\n超クセ強キャラクター達が全力で送る",
+      "「なんでそうなる！？」\nを30分間集めたら劇になりました\n超クセ強キャラクター達が全力で送る\n３年D組『泥棒役者』。\nここに開幕します\nぜひご覧ください",
   },
   {
     name: "4年A組",
