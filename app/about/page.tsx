@@ -57,6 +57,14 @@ export default function AboutPage() {
           クラス発表では、教室とは思えない本格的な舞台が完成し、各クラスによる劇が披露されます。特に6年生は、来校者や生徒による投票で決まる「創作展大賞」を目指し、1年前から準備を進めます。
           過去の創作展の様子は学校HPからご覧になることができます。
         </p>
+        <div className={styles.linkRow}>
+          <Link
+            className={styles.linkButton}
+            href="https://www.metro.ed.jp/koishikawa-s/school_life/student_council.html"
+          >
+            過去の創作展の様子
+          </Link>
+        </div>
       </Section>
       <Section title="行事週間について">
         「行事週間」という名は小石川独自のものです。
