@@ -180,7 +180,7 @@ function TimeGrid({ programs }: { programs: readonly TimetableProgram[] }) {
   return (
     <div className={styles.timeline}>
       <div className={styles.timelineHeader}>
-        <span className={styles.timelineLabel}>団体</span>
+        <span className={styles.timelineLabel}>部門</span>
         <div className={styles.timeScale}>
           {[
             "08:25",
