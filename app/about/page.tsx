@@ -116,9 +116,11 @@ export default function AboutPage() {
         <div className={styles.linkGroup}>
           また、創作部門の観覧は事前抽選制です。
           <p>抽選結果は以下のリンクからご確認ください。</p>
-          <Link className={styles.inlineLinkButton} href="/lottery">
-            抽選結果確認
-          </Link>
+          <div className={styles.linkRow}>
+            <Link className={styles.linkButton} href="/lottery">
+              抽選結果確認
+            </Link>
+          </div>
         </div>
       </Section>
       <Section title="投票・大賞について">

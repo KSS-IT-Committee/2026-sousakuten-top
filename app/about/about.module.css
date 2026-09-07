@@ -124,14 +124,6 @@
     opacity 0.18s ease;
 }
 
-.inlineLinkButton {
-  margin-left: 0.25rem;
-  padding: 0.42rem 0.8rem;
-  min-height: 2.1rem;
-  font-size: 0.88rem;
-  letter-spacing: 0.02em;
-}
-
 .linkButton:hover,
 .inlineLinkButton:hover {
   opacity: 0.96;
