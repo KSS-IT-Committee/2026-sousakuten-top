@@ -104,14 +104,16 @@ function PerformanceCard({
                 <h3>
                   <span className={styles.performanceName}>
                     {performance.name}
-                  </span>{" "}
-                  :{" "}
+                  </span>
+                  {" : "}
                   <RubyTextContent
                     text={performance.title}
                     rubyText={rubyText}
                   />
                 </h3>
-                <p className={styles.location}>{performance.location}</p>
+                <p className={styles.location}>
+                  {performance.floor}階 {performance.location}
+                </p>
                 {performance.date && (
                   <p className={styles.date}>{performance.date}</p>
                 )}

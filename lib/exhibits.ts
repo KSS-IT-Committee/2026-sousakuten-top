@@ -20,6 +20,7 @@ export interface RubyText {
 export interface Performance {
   name: string;
   title: string;
+  floor: number;
   location: string;
   date?: string;
   description?: string;
@@ -66,48 +67,55 @@ export const RISSI_PERFORMANCE: Performance[] = [
   {
     name: "1年A組",
     title: "ラウンド1A",
-    location: "1F 場所： 1A",
+    floor: 1,
+    location: "1A教室",
     description:
       "クレーンゲーム、コインプッシュ、スロットが楽しめるミニゲームセンター！！運とテクで景品ゲットをねらうワクワク空間。平行感覚と色反転で体の常識をくつがえせ!!家族や友達、おひとり様もぜひあそびに来てください!!",
   },
   {
     name: "1年B組",
     title: "これであなたも世界一",
-    location: "1F 場所： 1B",
+    floor: 1,
+    location: "1B教室",
     description:
       "こんなことで世界一!?と思わず驚く、世界の「しょうもない」ギネス世界記録®を大紹介!展示や実際に挑戦できる体験コーナーも盛りだくさん。友達や家族と競うもよし、本気で挑むもよし。さあ、あなたも世界一を目指しませんか?",
   },
   {
     name: "1年C組",
     title: "そのAIは嘘をつく",
-    location: "1F 場所： 1C",
+    floor: 1,
+    location: "1C教室",
     description:
       "～パラレルワールドに行った私たち。なんと案内役のAIが故障！？AIが出す敵性検査を解いてパラレルワールドから脱出しよう～一年生初の創作展！皆様に楽しんでもらうために仲間の意見を詰め込んだ作品です！一階1Cで君を待つ！",
   },
   {
     name: "1年D組",
     title: "それ、１ｰDに検証させてください",
-    location: "1F 場所： 1D",
+    floor: 1,
+    location: "1D教室",
     description:
       "１年D組では、アニメ・ゲームキャラが実際にいたら・あったらどうなるのかを検証します。ボールの火がでる速度や、あるトリックの実験などを検証・展示しています。少しでも興味がある方は1年D組へ、ぜひおこしください！！",
   },
   {
     name: "2年A組",
     title: "ちびっこぐらし",
-    location: "1F 場所： 2A",
+    floor: 1,
+    location: "2A教室",
     description:
       "自分が小さくなった夢の世界線をみなさんも体験してみませんか？そんな夢の世界へといざなう秘密の扉をぜひノックしてみてください。2Aでちびっこぐらしの住人がまってます！",
   },
   {
     name: "2年B組",
     title: "ALL IN",
-    location: "1F 場所： 2B",
+    floor: 1,
+    location: "2B教室",
     description: "2Bで非日常体験を。カジノでお待ちしています。",
   },
   {
     name: "2年C組",
     title: "そこにAIはあるんか",
-    location: "1F 場所： 2C",
+    floor: 1,
+    location: "2C教室",
     description:
       "「AI」ときいて、皆さんはどのようなことを思いうかべますか？今の時代、AIは様々な点で重要視されています。そこで私達はAIについての創作展示を行います！AIを使った質問コーナーもあります！ぜひ来て下さい！！！",
     RubyText: {
@@ -118,7 +126,8 @@ export const RISSI_PERFORMANCE: Performance[] = [
   {
     name: "2年D組",
     title: "選択ミスもアリエール",
-    location: "2F 場所： 2D",
+    floor: 2,
+    location: "2D教室",
     description:
       "ごきげんよう、私はシンデレラ。皆が知っているシンデレラ。もしかしたら、シンデレラに別の世界線があったかも。私が舞踏会に行かなかったら...王子と踊らなかったら...私の運命は変わっていたはず。ぜひ、2Dで私に別の世界を見せて！",
   },
@@ -128,42 +137,48 @@ export const KAITAKU_PERFORMANCE: Performance[] = [
   {
     name: "3年A組",
     title: "幼馴染",
-    location: "3F 場所： 3A",
+    floor: 3,
+    location: "3A教室",
     description:
       "「付き合ってくださいから始まる５年より、FAXで繋がってる２０年の方が愛じゃない？」同棲を始めた二人。しかし彼女が幼馴染とずっとFAXしていたことが発覚し…。爆笑必至の日常系コメディー。3Aでどうぞお楽しみください。",
   },
   {
     name: "3年B組",
     title: "竹盗物語",
-    location: "3F 場所： 3B",
+    floor: 3,
+    location: "3B教室",
     description:
       "「今はnow、竹盗のおっさんありけり。隣家に入りて物色するに、激レア竹発見したり。」ーー金のため、愛のため、自由のために奔走する者たちの、嘘と盗みが絡み合う現代版竹取物語を、3Bだけのオリジナル脚本でお届けします。",
   },
   {
     name: "3年C組",
     title: "うちの幽霊が帰らない",
-    location: "3F 場所： 3C",
+    floor: 3,
+    location: "3C教室",
     description:
       "「私、幽霊だと思うんです！」突如として春日家に現れた幽霊。正体は行方不明の姉か父親の元カノか？はたまた他の誰かなのか。しっかり者の高校生と思い込みの激しい父、楽観主義者の母とのんきな幽霊が繰り広げるコメディ劇！？",
   },
   {
     name: "3年D組",
     title: "泥棒役者",
-    location: "3F 場所： 3D",
+    floor: 3,
+    location: "3D教室",
     description:
       "「なんでそうなる！？」\nを30分間集めたら劇になりました\n超クセ強キャラクター達が全力で送る\n３年D組『泥棒役者』。\nここに開幕します!!\nぜひ足をお運びください。",
   },
   {
     name: "4年A組",
     title: "バツイチ・パニック",
-    location: "4F 場所： 4A",
+    floor: 4,
+    location: "4A教室",
     description:
       "結婚式を控えたあすかとすばる。式場を訪れた二人の前にあすかの元夫けんごが現れる！さらに彼の恋人まりなは、どことなくあすか似で！？隠し事、勘違い、再会が重なり、結婚前夜は大混乱！その行方を4Aの劇場でお確かめください！",
   },
   {
     name: "4年B組",
     title: "月に結ばれたなら",
-    location: "4F 場所： 4B",
+    floor: 4,
+    location: "4B教室",
     description:
       "昼しか存在しない世界で、ただ 1 人月を信じる少女。妖精との出会いをきっかけ\
 に、村に隠された秘密と運命が動き始める。友情やそれぞれの願いが交差する中\
@@ -172,7 +187,8 @@ export const KAITAKU_PERFORMANCE: Performance[] = [
   {
     name: "4年C組",
     title: "冷蔵庫の中",
-    location: "4F 場所： 4C",
+    floor: 4,
+    location: "4C教室",
     description:
       "突然ですが、今、あなたの家の冷蔵庫に入っている食材の消費期限は大丈夫です\
 か？たとえば卵や牛乳、レタスなどなど……。そんな消費期限ギリギリの食材た\
@@ -181,7 +197,8 @@ export const KAITAKU_PERFORMANCE: Performance[] = [
   {
     name: "4年D組",
     title: "ハンバーガーショップの野望",
-    location: "4F 場所： 4D",
+    floor: 4,
+    location: "4D教室",
     description:
       "いらっしゃいませ！…え？アルバイト志望？懐かしいなぁ。僕が初めて来た日は\
 変な人ばっかで強盗まで来てさ。あ、ごめん面接だよね。ここはマックスバーガ\
@@ -193,7 +210,8 @@ export const SOUSAKU_PERFORMANCE: Performance[] = [
   {
     name: "5年A組",
     title: "Mondays/このタイムループ、上司に気づかせないと終わらない",
-    location: "3F 場所： 5A",
+    floor: 3,
+    location: "5A教室",
     description:
       "「僕たち、同じ一週間を繰り返しています！」月火水木金土日。休みなく終わらぬ\
 仕事。社員全員が同じ一週間を繰り返していた。絶望の月曜日を迎える彼らはループ\
@@ -202,7 +220,8 @@ export const SOUSAKU_PERFORMANCE: Performance[] = [
   {
     name: "5年B組",
     title: "不幸自慢",
-    location: "3F 場所： 5B",
+    floor: 3,
+    location: "5B教室",
     description:
       "「いいね」が欲しい。\nもっと羨ましがられたい。\n\
 そんな承認欲求を抱えたマウンター達が集う「キラキラテーブル」で、今日も\
@@ -211,7 +230,8 @@ export const SOUSAKU_PERFORMANCE: Performance[] = [
   {
     name: "5年C組",
     title: "七人の語らい",
-    location: "4F 場所： 5C",
+    floor: 4,
+    location: "5C教室",
     description:
       "「2 人とも僕の奥さんなんだ…！」ロンドンで秘密裏に二重生活を送る男、デイ\
     ヴィッド。完璧だったはずの計画は、2人の妻の出会いで崩壊寸前！？さらに「\
@@ -220,7 +240,8 @@ export const SOUSAKU_PERFORMANCE: Performance[] = [
   {
     name: "5年D組",
     title: "サマータイムマシン・ブルース",
-    location: "4F 場所： 5D",
+    floor: 4,
+    location: "5D教室",
     description:
       "夏休み、SF 研究会はクーラーのリモコンを壊してしまう。翌日現れたタイムマ\
 シンで昨日に戻り回収を試みるが、部員たちの暴走で過去は大混乱。改変によっ\
@@ -229,7 +250,8 @@ export const SOUSAKU_PERFORMANCE: Performance[] = [
   {
     name: "6年A組",
     title: "みんなの捨てる家。",
-    location: "2F 場所： 6A",
+    floor: 2,
+    location: "6A教室",
     description:
       '僕らに残された家。昔はみんな一つ屋根の下で過ごした。捨てられない思い出と向き合いながら、迫る決断はひとつ。\n\
 "この家、どうする。"\n\
@@ -238,7 +260,8 @@ export const SOUSAKU_PERFORMANCE: Performance[] = [
   {
     name: "6年B組",
     title: "ゆらり",
-    location: "2F 場所： 6B",
+    floor: 2,
+    location: "6B教室",
     description:
       "もしも、あの時、ああしていたら。ここはある民宿。父娘の起こした誘拐事\
 件、神様からの手紙が届くポスト、時を巻き戻せるリモコン。不思議な出来事を\
@@ -247,7 +270,8 @@ export const SOUSAKU_PERFORMANCE: Performance[] = [
   {
     name: "6年C組",
     title: "わらいのまち",
-    location: "2F 場所： 6C",
+    floor: 2,
+    location: "6C教室",
     description:
       "寂れた旅館、崖っぷちの町、すれ違う家族。町おこしに懸けた最後の希望の夜、帰ってき\
 た長男が静かな町をかき乱す。国会議員の視察を前に、小さな勘違いはやがて旅館中を巻\
@@ -256,7 +280,8 @@ export const SOUSAKU_PERFORMANCE: Performance[] = [
   {
     name: "6年D組",
     title: "『夕』",
-    location: "2F 場所： 6D",
+    floor: 2,
+    location: "6D教室",
     description:
       "――言葉にできんかった思い、今伝えてもよかですか？―― 舞台は 1980 年代、\
 夏の長崎。初恋と友情の間で、伝えたいけど伝えられない、それぞれの想いが交錯す\
@@ -268,8 +293,9 @@ export const CLUB_PERFORMANCE: Performance[] = [
   {
     name: "競技かるた部",
     title: "競技かるた部～静寂の閃光～",
-    location: "1F 場所：柔道場",
-    date: "09/12(土)",
+    floor: 1,
+    location: "柔道場",
+    date: "9/12(土)",
     RubyText: { text: "閃光", ruby: "フラッシュ" },
     description:
       "こんにちは、競技かるた部です！午前は白熱の模擬試合、午後はちらし取りや足が\
@@ -279,8 +305,9 @@ export const CLUB_PERFORMANCE: Performance[] = [
   {
     name: "茶道部",
     title: "長月茶会",
-    location: "1F 場所：和室",
-    date: "09/12(土)・09/13(日)",
+    floor: 1,
+    location: "和室",
+    date: "9/12(土)・9/13(日)",
     description:
       "こんにちは、茶道部です！今年も長月茶会を開催します。教室を回る合間の 20 分\
 間、和室で日本文化に触れてみませんか？初めての方も大歓迎です！菓子と抹茶を用\
@@ -289,8 +316,9 @@ export const CLUB_PERFORMANCE: Performance[] = [
   {
     name: "小石川フィルハーモニーオーケストラ部",
     title: "小石川フィルハーモニーオーケストラ部 弾き倒れ演奏会 2026",
-    location: "1F 場所：柔道場",
-    date: "09/13(日)",
+    floor: 1,
+    location: "柔道場",
+    date: "9/13(日)",
     description:
       "私たちフィルは、毎年恒例の弾き倒れ演奏会を実施します!\
 誰もが知る名曲のオーケストラ演奏や、部員が自由に組んだグループでのアンサンブルを披露します。\
@@ -299,26 +327,29 @@ export const CLUB_PERFORMANCE: Performance[] = [
   {
     name: "吹奏楽部",
     title: "ねえ、今から吹くよ",
-    location: "1F 場所：剣道場",
-    date: "09/12(土)",
+    floor: 1,
+    location: "剣道場",
+    date: "9/12(土)",
     description:
       "「あの夏の日、このステージの上で僕たちは、世界の形を少しだけ変えてしまったんだ。」\
 これは、僕たちだけが知っている、吹奏楽の秘密についての物語。1000年に一度の晴れ舞台、お見逃しなく。",
   },
   {
-    name: "将棋・チェス・クイズ部",
+    name: "クイズ研究会",
     title: "クイズ体験会",
-    location: "2F 場所：視聴覚室",
-    date: "09/12(土)・09/13(日)",
+    floor: 2,
+    location: "視聴覚室",
+    date: "9/12(土)・9/13(日)",
     description:
       "こんにちは！クイズ研究会です。3 年前に始まり毎年好評を頂いているクイズ体験会\
 を今年も開催します！QuizKnock などでおなじみの早押し機、実際に触れてみません\
 か？部員一同、問題を全力で用意してお待ちしています！",
   },
   {
-    name: "将棋・チェス・クイズ部",
+    name: "将棋・チェス部",
     title: "詰将棋の森",
-    location: "3F 場所： 37 番教室",
+    floor: 3,
+    location: "37番教室",
     description:
       "今年は部員が作った詰将棋を展示します。簡単なものから難しいもの、芸術的なもの\
 までどのようなレベル帯であっても楽しめる詰将棋を用意します。出入り自由、撮影自由なので気軽に来てみてください。",
@@ -326,8 +357,9 @@ export const CLUB_PERFORMANCE: Performance[] = [
   {
     name: "華道部",
     title: "華道部",
-    location: "3F 場所： 302・303 講義室",
-    date: "09/12(土)・09/13(日)",
+    floor: 3,
+    location: "302講義室・303講義室",
+    date: "9/12(土)・9/13(日)",
     description:
       "初めましてみなさん、華道部です！私たちは 302、303 講義室で部員の個人作品と\
 合作を展示しています。他にも華道ならではのテーマの作品や、華道部の実績なども\
@@ -336,7 +368,8 @@ export const CLUB_PERFORMANCE: Performance[] = [
   {
     name: "数学研究会",
     title: "Math えもんの館",
-    location: "3F 場所： 301 講義室・38 番教室",
+    floor: 3,
+    location: "301講義室・38番教室",
     description:
       "これを読んでいるそこのあなた！何か悩み事はありませんか？それ、Math えもんが\
 解決します！例えば、「円周率を求めたい！」ビュフォンの針で一発です！数学に\
@@ -345,7 +378,8 @@ export const CLUB_PERFORMANCE: Performance[] = [
   {
     name: "英語研究会",
     title: "Let's Enjoy English",
-    location: "3F 場所： 301 講義室",
+    floor: 3,
+    location: "301講義室",
     description:
       "こんにちは！私たちは英語研究会です！私たちは英語のゲーム等で日々英語力を培っ\
 ています。また、今年度から英語研究会内で活動を行っている歴史探究班では、歴史\
@@ -354,18 +388,20 @@ export const CLUB_PERFORMANCE: Performance[] = [
   {
     name: "物理研究会",
     title: "ようこそ、物理研究会へ",
-    location: "3F 場所：物理室・理科室",
+    floor: 3,
+    location: "物理室・理科室",
     description:
       "こんにちは！物理研究会です。物理研究会は、写真、鉄道、物理、ロケット、ロボッ\
 トの 5 つの班に分かれて、各々が「好きなことを、好きなだけ」追究して取り組んで\
 います。物理室・理科室にて、各班の集大成をぜひご覧ください。",
   },
-  { name: "生物研究会", title: "生物研究会", location: "3F 場所：生物室" },
+  { name: "生物研究会", title: "生物研究会", floor: 3, location: "生物室" },
   {
     name: "料理研究会",
     title: "おやつにしませんか？",
-    location: "3F 場所：調理室・被服室",
-    date: "09/12(土)・09/13(日)",
+    floor: 3,
+    location: "調理室・被服室",
+    date: "9/12(土)・9/13(日)",
     description:
       "今年も料研部員達が試作を重ねたこだわりのお菓子を販売します。味や食感、見た目\
 にも工夫を凝らし、ひとつひとつに心を込めています。創作展巡りのお供に料研自慢\
@@ -374,20 +410,23 @@ export const CLUB_PERFORMANCE: Performance[] = [
   {
     name: "漫画研究会 ",
     title: "部誌を売るよォ‼ ",
-    location: "4F 場所：4 階資料コーナー",
+    floor: 4,
+    location: "資料コーナー",
     description:
       "創作展で部誌を販売します！今年は部員が増えたため、なんと2種類を発行！どちらも力作です。ぜひ片方だけでも手にとってください！落書きスペースも用意すのでフラットお立ち寄りください!",
   },
   {
     name: "パソコン研究会 ",
     title: '"Hello World"展 ',
-    location: "4F 場所：第２CALL 室",
+    floor: 4,
+    location: "第2CALL室",
   },
   {
     name: "音楽研究会 ",
     title: "合唱",
-    location: "4F 場所：音楽室",
-    date: "09/12(土)",
+    floor: 4,
+    location: "音楽室",
+    date: "9/12(土)",
     RubyText: { text: "合唱", ruby: "コーラス" },
     description:
       "こんにちは!音楽研究会という名前ですが、いわゆる合唱部です。\
@@ -397,8 +436,9 @@ export const CLUB_PERFORMANCE: Performance[] = [
   {
     name: "軽音楽研究会 ",
     title: "ジャズライブ",
-    location: "4F 場所：音楽室",
-    date: "09/13(日)",
+    floor: 4,
+    location: "音楽室",
+    date: "9/13(日)",
     description:
       "ジャズを聴いていると、思わず体が揺れてしまうって？それが「ノる」ってことだよ。\
 軽音研が創作展でお届けするのは、ビッグバンドジャズの楽しさそのもの。足でリズムを刻みたくなるビートと、心躍るメロディーを、ぜひ音楽室で。",
@@ -406,7 +446,8 @@ export const CLUB_PERFORMANCE: Performance[] = [
   {
     name: "天文研究会",
     title: "天文研究会",
-    location: "4F 場所：地学室",
+    floor: 4,
+    location: "地学室",
     description:
       "天文研究会ではプラネタリウムや金天星座図を使用して満点の星を楽しむことができます！\
 また化石の展示も行っており地球や生命の歴史に触れることができま\
@@ -415,8 +456,9 @@ export const CLUB_PERFORMANCE: Performance[] = [
   {
     name: "演劇部",
     title: "宝島―20XX 年",
-    location: "4F 場所： 401 講義室",
-    date: "09/12(土)・09/13(日)",
+    floor: 4,
+    location: "401講義室",
+    date: "9/12(土)・9/13(日)",
     description:
       "ー前回より、暑い航海になりそうだー\n気候変動の影響で沈みゆく温泉島に、海\
 賊ジョン・シルバーが甦る！島民に愛される「港の湯」の一人息子は\
@@ -425,7 +467,8 @@ export const CLUB_PERFORMANCE: Performance[] = [
   {
     name: "美術部 ",
     title: "小石川美術館",
-    location: "4F 場所：美術室",
+    floor: 4,
+    location: "美術室",
     description:
       "こんにちはっ美術部です!!今年も小石川美術館を開館します。4 階美術室にて部\
 員の作品を展示中です。お気に入りの作品に出会えるチャンスかも⁉ぜひぜひお\
@@ -434,7 +477,8 @@ export const CLUB_PERFORMANCE: Performance[] = [
   {
     name: "文芸部文芸班",
     title: "文芸部",
-    location: "4F 場所：第１CALL 室・制服ショーケース前",
+    floor: 4,
+    location: "第1CALL室・1階 制服ショーケース前",
     description:
       "こんにちは！文芸部文芸班です！私たちは今年も夏部誌、春部誌の配布、過去の\
 部誌の展示などを行います！今年の夏部誌のテーマは「首、頸」「猛暑日」です、イカれていますね！今年も部員が丹精込めて作った短編を乞うご期待ください！",
@@ -442,7 +486,8 @@ export const CLUB_PERFORMANCE: Performance[] = [
   {
     name: "文芸部書道班",
     title: "夏輝記",
-    location: "4F 場所：第１CALL 室",
+    floor: 4,
+    location: "第1CALL室",
     description:
       "こんにちは、書道班です。今年は部員の作品の掲示、芸能祭幕間で流したパフォ\
 ーマンス作品の掲示に加え、昨年度末に行った光庭でのパフォーマンス映像を放\
@@ -452,8 +497,9 @@ export const CLUB_PERFORMANCE: Performance[] = [
   {
     name: "化学研究会 ",
     title: "マジカルケミカル",
-    location: "4F 場所：化学室",
-    date: "09/12(土)・09/13(日)",
+    floor: 4,
+    location: "化学室",
+    date: "9/12(土)・9/13(日)",
     description:
       "化研こと化学研究会です。ところで、最近の夏（秋？）は本当に暑いですね。そ\
 んなあなたに、化研では－196℃の液体窒素をプレゼント！定番の信号反応や\
@@ -465,7 +511,8 @@ export const COMMITTEE_PERFORMANCE: Performance[] = [
   {
     name: "図書委員会",
     title: "古本市",
-    location: "2F 場所： 22 番教室",
+    floor: 2,
+    location: "22番教室",
     description:
       "古本市とは？22 番教室で開かれるイベント。古本を買えるイベント。小石川生の 10\
 人中 9 人が「行ったことないよ」と答えるイベント。ベストセラーを法外な価格で買\
@@ -477,7 +524,8 @@ export const OTHERS_PERFORMANCE: Performance[] = [
   {
     name: "推し哲プロジェクト制作委員会 ",
     title: "「推し哲が見つかる!?哲学者大図鑑」販売会‼",
-    location: "3F 場所： 3 階資料コーナー",
+    floor: 3,
+    location: "資料コーナー",
     description:
       "16 期推し哲委員会です！私たちで 0 から作りあげた「推し哲が見つかる⁉哲学者大図\
 鑑」の書籍販売会を開きます！「哲学むずそう」と思っている人でも楽しめる哲学入\
