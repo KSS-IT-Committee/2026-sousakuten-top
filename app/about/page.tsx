@@ -90,7 +90,7 @@ export default function AboutPage() {
         <br />
         以下のリンクから出展団体を紹介しています。ぜひご覧ください。
         <div className={styles.linkRow}>
-          <Link className={styles.linkButton} href="/exhibitors">
+          <Link className={styles.linkButton} href="/exhibits">
             出展団体一覧
           </Link>
         </div>
@@ -98,7 +98,7 @@ export default function AboutPage() {
           また、創作部門の観覧は事前抽選制です。
           <br />
           抽選結果は
-          <Link className={styles.inlineLinkButton} href="/lottery-results">
+          <Link className={styles.inlineLinkButton} href="/lottery">
             こちら
           </Link>
           からご確認ください。
