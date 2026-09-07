@@ -85,7 +85,10 @@ const CLUB_PROGRAMS = [
     venue: clubPerformanceTime.SADOU[2],
   },
   {
-    title: { name: "小石川フィルハーモニーオーケストラ部", romaji: "Philharmonic" },
+    title: {
+      name: "小石川フィルハーモニーオーケストラ部",
+      romaji: "Philharmonic",
+    },
     performances: Object.entries(clubPerformanceTime.PHILHARMONIC[0]).map(
       ([number, time]) => ({ number, time, showNumber: !/^\d+$/.test(number) }),
     ),
