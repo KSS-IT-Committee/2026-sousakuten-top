@@ -1,15 +1,13 @@
 import type { Metadata } from "next";
 
 import { destinationFor } from "@/lib/festival";
+import { destinationMetadata } from "@/lib/site";
 
 import styles from "./about.module.css";
 
 const DESTINATION = destinationFor("/about");
 
-export const metadata: Metadata = {
-  title: `${DESTINATION.label} | 創作展2026`,
-  description: DESTINATION.blurb,
-};
+export const metadata: Metadata = destinationMetadata(DESTINATION);
 
 export default function AboutPage() {
   return (
