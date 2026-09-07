@@ -45,21 +45,21 @@ const GRAPH_WIDTH = GRAPH_END - GRAPH_START;
 
 const PROGRAMS = [
   {
-    title: { name: "立志", romaji: "Rissi" },
+    title: { name: "立志部門", romaji: "Rissi" },
     performances: Object.entries(RISSI_PERFORMANCE).map(([number, time]) => ({
       number: number === "AM" ? "午前" : "午後",
       time,
     })),
   },
   {
-    title: { name: "開拓", romaji: "Kaitaku" },
+    title: { name: "開拓部門", romaji: "Kaitaku" },
     performances: Object.entries(KAITAKU_PERFORMANCE).map(([number, time]) => ({
       number: `第${number}公演`,
       time,
     })),
   },
   {
-    title: { name: "創作", romaji: "Sousaku" },
+    title: { name: "創作部門", romaji: "Sousaku" },
     performances: Object.entries(SOUSAKU_PERFORMANCE).map(([number, time]) => ({
       number: `第${number}公演`,
       time,
@@ -85,7 +85,7 @@ const CLUB_PROGRAMS = [
     venue: clubPerformanceTime.SADOU[2],
   },
   {
-    title: { name: "交響楽団", romaji: "Philharmonic" },
+    title: { name: "小石川フィルハーモニーオーケストラ部", romaji: "Philharmonic" },
     performances: Object.entries(clubPerformanceTime.PHILHARMONIC[0]).map(
       ([number, time]) => ({ number, time, showNumber: !/^\d+$/.test(number) }),
     ),
@@ -93,7 +93,7 @@ const CLUB_PROGRAMS = [
     venue: clubPerformanceTime.PHILHARMONIC[2],
   },
   {
-    title: { name: "かるた部", romaji: "Karuta" },
+    title: { name: "競技かるた部", romaji: "Karuta" },
     performances: Object.entries(clubPerformanceTime.KARUTA[0]).map(
       ([number, time]) => ({ number, time, showNumber: !/^\d+$/.test(number) }),
     ),
@@ -109,7 +109,7 @@ const CLUB_PROGRAMS = [
     venue: clubPerformanceTime.QUIZ[2],
   },
   {
-    title: { name: "料理部", romaji: "Cooking" },
+    title: { name: "料理研究会", romaji: "Cooking" },
     performances: Object.entries(clubPerformanceTime.COOKING[0]).map(
       ([number, time]) => ({ number, time, showNumber: !/^\d+$/.test(number) }),
     ),
@@ -117,7 +117,7 @@ const CLUB_PROGRAMS = [
     venue: clubPerformanceTime.COOKING[2],
   },
   {
-    title: { name: "合唱部", romaji: "Chorus" },
+    title: { name: "音楽研究会", romaji: "Chorus" },
     performances: Object.entries(clubPerformanceTime.CHORUS[0]).map(
       ([number, time]) => ({ number, time, showNumber: !/^\d+$/.test(number) }),
     ),
@@ -133,7 +133,7 @@ const CLUB_PROGRAMS = [
     venue: clubPerformanceTime.THEATER[2],
   },
   {
-    title: { name: "ジャズ研究会", romaji: "Jazz" },
+    title: { name: "軽音楽研究会", romaji: "Jazz" },
     performances: Object.entries(clubPerformanceTime.JAZZ[0]).map(
       ([number, time]) => ({ number, time, showNumber: !/^\d+$/.test(number) }),
     ),
@@ -141,7 +141,7 @@ const CLUB_PROGRAMS = [
     venue: clubPerformanceTime.JAZZ[2],
   },
   {
-    title: { name: "化学部", romaji: "Chemistry" },
+    title: { name: "化学研究会", romaji: "Chemistry" },
     performances: Object.entries(clubPerformanceTime.CHEMISTRY[0]).map(
       ([number, time]) => ({ number, time, showNumber: !/^\d+$/.test(number) }),
     ),
