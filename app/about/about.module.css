@@ -154,11 +154,12 @@
 }
 
 .theme {
-  display: inline-block;
+  display: block;
+  width: fit-content;
+  max-width: 100%;
   margin: 0 0 1.5em;
   padding: 0.9em 1.25rem 0.9em 1.25rem;
   border-left: 3px solid var(--accent-alt);
-  background: rgba(122, 21, 32, 0.05);
   border-radius: 0 12px 12px 0;
   color: var(--accent);
   font-family: var(--mincho);
@@ -166,6 +167,7 @@
   font-weight: 600;
   letter-spacing: 0.08em;
   line-height: 1.45;
+  white-space: nowrap;
 }
 
 .copy {
@@ -213,7 +215,7 @@
   .theme {
     margin: 0 0 1.2em;
     padding-left: 16px;
-    font-size: clamp(1.55rem, 8vw, 2.2rem);
+    font-size: clamp(1rem, calc((100vw - 91px) / 10.72), 2.2rem);
   }
 
   .section li {
