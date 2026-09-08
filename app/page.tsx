@@ -1,14 +1,19 @@
 import type { Metadata } from "next";
 
+import { VENUE_NAME } from "@/lib/festival";
+import { pageMetadata, SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
+
 import { CountDown } from "./components/CountDown";
 import { Hero } from "./components/Hero";
 import { PageNav } from "./components/PageNav";
 import styles from "./page.module.css";
 
-export const metadata: Metadata = {
-  title: "創作展2026",
-  description: "東京都立小石川中等教育学校 創作展2026 トップページ",
-};
+export const metadata: Metadata = pageMetadata({
+  title: `${SITE_NAME} | ${VENUE_NAME}`,
+  isTitleAbsolute: true,
+  description: SITE_DESCRIPTION,
+  path: "/",
+});
 
 export default function Toppage() {
   return (

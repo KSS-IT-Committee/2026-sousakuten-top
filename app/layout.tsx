@@ -7,6 +7,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { AccountBar } from "@/app/components/AccountNav/AccountBar";
 import { Footer } from "@/app/components/Footer";
 import { NoScriptAlert } from "@/app/components/NoScriptAlert";
+import { VENUE_NAME } from "@/lib/festival";
+import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,9 +22,18 @@ const geistMono = Geist_Mono({
 
 const GA_MEASUREMENT_ID = "G-79YNZY1F30";
 
+// Site-wide defaults only. Per-page title/description/canonical/social tags
+// are built by pageMetadata() in lib/site.ts — deliberately NOT inherited from
+// here, since Next replaces nested metadata objects wholesale rather than
+// merging them. title.default covers the routes that cannot export metadata at
+// all (app/unauthorized.tsx is a client component).
 export const metadata: Metadata = {
-  title: "創作展2026",
-  description: "東京都立小石川中等教育学校 創作展2026 トップページ",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: `${SITE_NAME} | ${VENUE_NAME}`,
+    template: `%s | ${SITE_NAME}`,
+  },
+  description: SITE_DESCRIPTION,
 };
 
 export default function RootLayout({
