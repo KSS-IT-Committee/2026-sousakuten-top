@@ -85,7 +85,7 @@
   background: var(--accent-alt);
 }
 
-.section a {
+.section a:not(.linkButton) {
   color: var(--accent);
   text-decoration: underline;
   text-decoration-color: rgba(35, 49, 139, 0.52);
@@ -93,7 +93,7 @@
   transition: opacity 0.2s ease;
 }
 
-.section a:hover {
+.section a:not(.linkButton):hover {
   opacity: 0.8;
 }
 
@@ -136,11 +136,6 @@
   max-width: 38em;
   margin-top: 48px;
   padding: 48px clamp(24px, 6vw, 64px) 56px;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.18),
-    rgba(255, 255, 255, 0.02)
-  );
   border: 1px solid var(--border);
   border-top: 4px solid var(--accent);
   border-radius: 18px;
@@ -171,7 +166,6 @@
   font-weight: 600;
   letter-spacing: 0.08em;
   line-height: 1.45;
-  white-space: nowrap;
 }
 
 .copy {

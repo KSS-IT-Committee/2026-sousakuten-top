@@ -15,12 +15,14 @@ export const metadata: Metadata = {
 function Section({
   title,
   children,
+  className,
 }: {
   title: string;
   children: React.ReactNode;
+  className?: string;
 }) {
   return (
-    <section className={styles.section}>
+    <section className={`${styles.section} ${className ?? ""}`}>
       <h2 className={styles.sectionTitle}>{title}</h2>
       {children}
     </section>
@@ -71,7 +73,7 @@ export default function AboutPage() {
         1週間で三大行事（芸能祭・体育祭・創作展）を連続して行うことから、小石川高校の生徒によって名付けられました。
         生徒自治の一環として、企画・運営はすべて生徒によって行われており、試行錯誤をしながらも主体的に活動することで得られる達成感と経験は、学校生活を支える基盤となっています。
       </Section>
-      <Section title="第94回創作展テーマ">
+      <Section className={styles.themeSection} title="第94回創作展テーマ">
         <blockquote className={styles.theme}>
           <span>正解なんて創ればいい</span>
         </blockquote>
