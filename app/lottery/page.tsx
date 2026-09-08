@@ -9,6 +9,7 @@ import {
   PERFORMANCES,
   WINNER_COUNT,
 } from "@/lib/lottery";
+import { pageMetadata } from "@/lib/site";
 
 import styles from "./lottery.module.css";
 import { LotterySearch } from "./LotterySearch";
@@ -17,11 +18,12 @@ const DESTINATION = destinationFor("/lottery");
 
 const CONTACT_ADDRESS = "koishikawa.itcommittee@gmail.com";
 
-export const metadata: Metadata = {
-  title: `${DESTINATION.label} | 創作展2026`,
+export const metadata: Metadata = pageMetadata({
+  title: DESTINATION.label,
   description:
     "校外の方を対象とした劇観覧抽選の結果。公演ごとの当選番号一覧と、抽選番号の検索。",
-};
+  path: DESTINATION.href,
+});
 
 const DAYS = buildDayListings();
 

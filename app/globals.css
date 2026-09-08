@@ -17,7 +17,7 @@ html {
   --surface: #e8ded1;
   --border: #d5c9c0;
   --muted: #5c5245;
-  --accent: #1e2a78;
+  --accent: #23318b;
   --accent-alt: #7a1520;
   --gothic:
     var(--font-geist-sans), "Hiragino Sans", "Hiragino Kaku Gothic ProN",
@@ -35,11 +35,12 @@ html {
    * come from --on-wall, never --foreground: the wall stays mid-to-dark in
    * both themes, so --foreground would vanish into it in light mode.
    */
-  --wall: #7c6851;
+  --wall: #a88d70;
   --wall-lit: #8a7660;
   --wall-dark: #5e4f3e;
   --on-wall: #f4eee5;
   --on-wall-muted: #ded2c1;
+  --top: #f4eee5;
 
   /* Loose paper drifting over the wall. Dims in dark mode so it reads as
    * lit paper in a dark room rather than a glaring white rectangle. */
@@ -73,15 +74,16 @@ html {
     --surface: #262019;
     --border: #3a3228;
     --muted: #a79684;
-    --accent: #9daaf2;
+    --accent: #7584d5;
     --accent-alt: #e39aa0;
-    --wall: #241d16;
+    --wall: #473b30;
     --wall-lit: #2e251c;
     --wall-dark: #14100c;
-    --on-wall: #ede5da;
+    --on-wall: #dec7b2;
     --on-wall-muted: #a79684;
     --page-face: #938474;
     --page-line: rgba(20, 16, 12, 0.66);
+    --top: #292622;
   }
 }
 

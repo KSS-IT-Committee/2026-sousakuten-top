@@ -1,0 +1,119 @@
+.main {
+  width: min(100% - 48px, 760px);
+  margin: 0 auto;
+  padding: 72px 0 112px;
+}
+
+.header {
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--border);
+}
+
+.eyebrow {
+  color: var(--accent-alt);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1.4;
+}
+
+.title {
+  margin-top: 14px;
+  font-family: var(--mincho);
+  font-size: clamp(2.4rem, 7vw, 4.5rem);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+}
+
+.lead {
+  max-width: 36em;
+  margin-top: 24px;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 2;
+}
+
+.section {
+  max-width: 38em;
+  padding: 48px 0 56px;
+  font-size: 1rem;
+  line-height: 2.15;
+}
+
+.themeSection {
+  position: relative;
+  padding: 48px clamp(24px, 6vw, 64px) 56px;
+  background: var(--surface);
+  border-top: 3px solid var(--accent);
+}
+
+.sectionTitle {
+  margin-top: 10px;
+  font-family: var(--mincho);
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+}
+
+.theme {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 38px 0 40px;
+  padding-left: 20px;
+  border-left: 2px solid var(--accent-alt);
+  color: var(--accent);
+  font-family: var(--mincho);
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.45;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2em;
+  line-height: 2;
+}
+
+.signature {
+  margin-top: 32px;
+  color: var(--muted);
+  font-family: var(--mincho);
+  text-align: right;
+}
+
+@media screen and (max-width: 600px) {
+  .main {
+    width: min(100% - 32px, 760px);
+    padding: 48px 0 80px;
+  }
+
+  .header {
+    padding-bottom: 36px;
+  }
+
+  .lead {
+    font-size: 0.95rem;
+    line-height: 1.9;
+  }
+
+  .section {
+    padding: 36px 0 44px;
+    line-height: 2;
+  }
+
+  .themeSection {
+    padding: 36px 20px 40px;
+  }
+
+  .theme {
+    margin: 30px 0 32px;
+    padding-left: 16px;
+    font-size: clamp(1.55rem, 8vw, 2.2rem);
+  }
+}

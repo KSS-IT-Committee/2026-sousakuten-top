@@ -21,6 +21,7 @@ import {
   SOUSAKU_PERFORMANCE,
 } from "@/lib/exhibits";
 import { destinationFor } from "@/lib/festival";
+import { destinationMetadata } from "@/lib/site";
 
 import styles from "./exhibits.module.css";
 
