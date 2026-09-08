@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 
 import { destinationFor } from "@/lib/festival";
-
 import {
   clubPerformanceTime,
   END_TIME,
