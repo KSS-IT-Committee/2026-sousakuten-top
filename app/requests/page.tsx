@@ -5,13 +5,15 @@ import Link from "next/link";
 import { FloatingMenu } from "@/app/components/FloatingMenu";
 import { Internal } from "@/app/components/Internal";
 import { INTERNAL_ROLES } from "@/lib/access";
+import { pageMetadata } from "@/lib/site";
 
 import styles from "./requests.module.css";
 
-export const metadata: Metadata = {
-  title: "機能のリクエスト | 創作展2026",
-  description: "新機能や修正のリクエスト方法",
-};
+export const metadata: Metadata = pageMetadata({
+  title: "機能のリクエスト",
+  description: "創作展2026 公式サイトへの新機能・修正のリクエスト方法。",
+  path: "/requests",
+});
 
 const MAINTAINERS = [
   "hatuna-827",

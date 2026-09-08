@@ -3,14 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { destinationFor } from "@/lib/festival";
+import { destinationMetadata } from "@/lib/site";
 
 import styles from "./page.module.css";
 
 const DESTINATION = destinationFor("/access");
-export const metadata: Metadata = {
-  title: `${DESTINATION.label} | 創作展2026`,
-  description: DESTINATION.blurb,
-};
+export const metadata: Metadata = destinationMetadata(DESTINATION);
 
 function PageBlock({
   title,
