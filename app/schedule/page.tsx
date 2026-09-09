@@ -163,7 +163,7 @@ function isAM(timeRange: string) {
     .split("-")
     .map((time) => timeToMinutes(time.trim()));
 
-  return start < timeToMinutes("11:45"); 
+  return start < timeToMinutes("11:45");
 }
 
 function timeRangeToPosition(timeRange: string) {
@@ -172,24 +172,25 @@ function timeRangeToPosition(timeRange: string) {
     .map((time) => timeToMinutes(time.trim()));
 
   const isAm = isAM(timeRange);
-  const breakDuration = timeToMinutes("0:35") 
+  const breakDuration = timeToMinutes("0:35");
   const GRAPH_START_AM = timeToMinutes("08:30");
   const GRAPH_START_PM = timeToMinutes("11:40"); // Adjusted to align with the graph's start for PM sessions
   const width = ((end - start) / GRAPH_WIDTH) * 106;
 
   if (start > GRAPH_START_PM) {
-    const left = ((start - GRAPH_START_AM) / GRAPH_WIDTH) * 106 - ( breakDuration / GRAPH_WIDTH) * 106;
+    const left =
+      ((start - GRAPH_START_AM) / GRAPH_WIDTH) * 106 -
+      (breakDuration / GRAPH_WIDTH) * 106;
     return { left: `${left}%`, width: `${width}%`, isAm };
   }
-  if (start < GRAPH_START_PM&& end > GRAPH_START_PM) {
+  if (start < GRAPH_START_PM && end > GRAPH_START_PM) {
     const left = ((start - GRAPH_START_AM) / GRAPH_WIDTH) * 106;
     const adjustedWidth = (20 / GRAPH_WIDTH) * 106;
     return { left: `${left}%`, width: `${adjustedWidth}%`, isAm };
-  }
-  else{
-    const left = ((start - GRAPH_START_AM) / GRAPH_WIDTH) * 106 ;
+  } else {
+    const left = ((start - GRAPH_START_AM) / GRAPH_WIDTH) * 106;
     return { left: `${left}%`, width: `${width}%`, isAm };
-  } 
+  }
 }
 
 function isMoreCompactTimeRange(timeRange: string) {
@@ -210,15 +211,16 @@ function isCompactTimeRange(timeRange: string) {
 
 function timeToScalePosition(time: string) {
   const minutes = timeToMinutes(time);
-  const breakDuration = timeToMinutes("0:35") // Adjusted to align with the graph's start for PM sessions
+  const breakDuration = timeToMinutes("0:35"); // Adjusted to align with the graph's start for PM sessions
   const GRAPH_START_AM = timeToMinutes("08:30");
   const GRAPH_START_PM = timeToMinutes("11:40");
   if (minutes > GRAPH_START_PM) {
-    const left = ((minutes - GRAPH_START_AM) / GRAPH_WIDTH) * 106 - ( breakDuration / GRAPH_WIDTH) * 106;
+    const left =
+      ((minutes - GRAPH_START_AM) / GRAPH_WIDTH) * 106 -
+      (breakDuration / GRAPH_WIDTH) * 106;
     return `${left}%`;
-  }
-  else{
-    const left = ((minutes - GRAPH_START_AM) / GRAPH_WIDTH) * 106 ;
+  } else {
+    const left = ((minutes - GRAPH_START_AM) / GRAPH_WIDTH) * 106;
     return `${left}%`;
   }
 }
@@ -228,26 +230,23 @@ function TimeGrid({ programs }: { programs: readonly TimetableProgram[] }) {
     <div className={styles.timeline}>
       <div className={styles.timelineHeader}>
         <span className={styles.timelineLabel}>部門</span>
-      <div className={styles.timeScale}>
-       {[
-         "08:30",
-         "09:30",
-         "10:30",
-         "11:35",
-         "12:30",
-         "13:30",
-         "14:30",
-         "15:30"
-       ].map((time) => (
-       <time
-        key={time}
-        style={ { left:timeToScalePosition(time) } }
-        >
-       {time}
-       </time>
-       ))}
+        <div className={styles.timeScale}>
+          {[
+            "08:30",
+            "09:30",
+            "10:30",
+            "11:35",
+            "12:30",
+            "13:30",
+            "14:30",
+            "15:30",
+          ].map((time) => (
+            <time key={time} style={{ left: timeToScalePosition(time) }}>
+              {time}
+            </time>
+          ))}
+        </div>
       </div>
-    </div>
       <div className={styles.timelineBreak}>
         <span className={styles.timelineProgram}>昼休憩</span>
         <div className={styles.timelineTrack}>
@@ -274,9 +273,10 @@ function TimeGrid({ programs }: { programs: readonly TimetableProgram[] }) {
                     isCompactTimeRange(performance.time)
                       ? styles.timelineBarCompact
                       : ""
-                  } ${isMoreCompactTimeRange(performance.time)
-                    ? styles.timelineBarMoreCompact
-                    : ""
+                  } ${
+                    isMoreCompactTimeRange(performance.time)
+                      ? styles.timelineBarMoreCompact
+                      : ""
                   }`}
                   key={performance.number}
                   style={timeRangeToPosition(performance.time)}
