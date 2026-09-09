@@ -123,16 +123,16 @@
 .timelineRow,
 .timelineBreak {
   display: grid;
-  grid-template-columns: 10rem minmax(60rem, 1fr);
+  grid-template-columns: 10rem minmax(58rem, 1fr);
 }
 
 .timelineHeader {
-  min-width: 60rem;
+  min-width: 58rem;
   border-bottom: 1px solid var(--border);
 }
 
 .timelineBreak {
-  min-width: 60rem;
+  min-width: 58rem;
   border-bottom: 1px solid var(--border);
   background: color-mix(in srgb, var(--accent-alt) 5%, transparent);
 }
