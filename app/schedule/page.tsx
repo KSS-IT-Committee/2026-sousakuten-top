@@ -39,7 +39,7 @@ type TimetableProgram = {
   venue?: string;
 };
 
-const GRAPH_START = 8 * 60 + 25;
+const GRAPH_START = 8 * 60 + 30;
 const GRAPH_END = 15 * 60 + 30;
 const GRAPH_WIDTH = GRAPH_END - GRAPH_START;
 
@@ -158,14 +158,46 @@ function timeToMinutes(time: string) {
   return hours * 60 + minutes;
 }
 
+function isAM(timeRange: string) {
+  const [start] = timeRange
+    .split("-")
+    .map((time) => timeToMinutes(time.trim()));
+
+  return start < timeToMinutes("11:45"); 
+}
+
 function timeRangeToPosition(timeRange: string) {
   const [start, end] = timeRange
     .split("-")
     .map((time) => timeToMinutes(time.trim()));
-  const left = ((start - GRAPH_START) / GRAPH_WIDTH) * 100;
-  const width = ((end - start) / GRAPH_WIDTH) * 100;
 
-  return { left: `${left}%`, width: `${width}%` };
+  const isAm = isAM(timeRange);
+  const breakDuration = timeToMinutes("0:35") 
+  const GRAPH_START_AM = timeToMinutes("08:30");
+  const GRAPH_START_PM = timeToMinutes("11:40"); // Adjusted to align with the graph's start for PM sessions
+  const width = ((end - start) / GRAPH_WIDTH) * 106;
+
+  if (start > GRAPH_START_PM) {
+    const left = ((start - GRAPH_START_AM) / GRAPH_WIDTH) * 106 - ( breakDuration / GRAPH_WIDTH) * 106;
+    return { left: `${left}%`, width: `${width}%`, isAm };
+  }
+  if (start < GRAPH_START_PM&& end > GRAPH_START_PM) {
+    const left = ((start - GRAPH_START_AM) / GRAPH_WIDTH) * 106;
+    const adjustedWidth = (20 / GRAPH_WIDTH) * 106;
+    return { left: `${left}%`, width: `${adjustedWidth}%`, isAm };
+  }
+  else{
+    const left = ((start - GRAPH_START_AM) / GRAPH_WIDTH) * 106 ;
+    return { left: `${left}%`, width: `${width}%`, isAm };
+  } 
+}
+
+function isMoreCompactTimeRange(timeRange: string) {
+  const [start, end] = timeRange
+    .split("-")
+    .map((time) => timeToMinutes(time.trim()));
+
+  return end - start < 31;
 }
 
 function isCompactTimeRange(timeRange: string) {
@@ -173,7 +205,22 @@ function isCompactTimeRange(timeRange: string) {
     .split("-")
     .map((time) => timeToMinutes(time.trim()));
 
-  return end - start < 45;
+  return 31 < end - start && end - start < 45;
+}
+
+function timeToScalePosition(time: string) {
+  const minutes = timeToMinutes(time);
+  const breakDuration = timeToMinutes("0:35") // Adjusted to align with the graph's start for PM sessions
+  const GRAPH_START_AM = timeToMinutes("08:30");
+  const GRAPH_START_PM = timeToMinutes("11:40");
+  if (minutes > GRAPH_START_PM) {
+    const left = ((minutes - GRAPH_START_AM) / GRAPH_WIDTH) * 106 - ( breakDuration / GRAPH_WIDTH) * 106;
+    return `${left}%`;
+  }
+  else{
+    const left = ((minutes - GRAPH_START_AM) / GRAPH_WIDTH) * 106 ;
+    return `${left}%`;
+  }
 }
 
 function TimeGrid({ programs }: { programs: readonly TimetableProgram[] }) {
@@ -181,21 +228,26 @@ function TimeGrid({ programs }: { programs: readonly TimetableProgram[] }) {
     <div className={styles.timeline}>
       <div className={styles.timelineHeader}>
         <span className={styles.timelineLabel}>部門</span>
-        <div className={styles.timeScale}>
-          {[
-            "08:25",
-            "09:30",
-            "10:30",
-            "11:30",
-            "12:30",
-            "13:30",
-            "14:30",
-            "15:30",
-          ].map((time) => (
-            <time key={time}>{time}</time>
-          ))}
-        </div>
+      <div className={styles.timeScale}>
+       {[
+         "08:30",
+         "09:30",
+         "10:30",
+         "11:35",
+         "12:30",
+         "13:30",
+         "14:30",
+         "15:30"
+       ].map((time) => (
+       <time
+        key={time}
+        style={ { left:timeToScalePosition(time) } }
+        >
+       {time}
+       </time>
+       ))}
       </div>
+    </div>
       <div className={styles.timelineBreak}>
         <span className={styles.timelineProgram}>昼休憩</span>
         <div className={styles.timelineTrack}>
@@ -203,7 +255,7 @@ function TimeGrid({ programs }: { programs: readonly TimetableProgram[] }) {
             className={styles.breakBand}
             style={timeRangeToPosition("11:35 - 12:30")}
           >
-            <span>11:35 - 12:30</span>
+            <span>休憩</span>
           </div>
         </div>
       </div>
@@ -222,6 +274,9 @@ function TimeGrid({ programs }: { programs: readonly TimetableProgram[] }) {
                     isCompactTimeRange(performance.time)
                       ? styles.timelineBarCompact
                       : ""
+                  } ${isMoreCompactTimeRange(performance.time)
+                    ? styles.timelineBarMoreCompact
+                    : ""
                   }`}
                   key={performance.number}
                   style={timeRangeToPosition(performance.time)}
