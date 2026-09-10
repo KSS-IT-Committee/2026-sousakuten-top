@@ -1,5 +1,5 @@
 {
-  "title": "per-user qrcode",
-  "description": "QRコードをユーザーごとに生成する仕組みを追加しました。",
+  "title": "ユーザーごとのQRコードの表示",
+  "description": "各ユーザーごとに固有のQRコードを表示する機能を追加しました。",
   "credits": ["@rotarymars"]
 }
