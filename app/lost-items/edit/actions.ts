@@ -87,10 +87,8 @@ export async function submitLostItemAction(
   }
 
   try {
-    // Writes the file and the row together under the per-file lock. If the row
-    // fails, the file is left behind rather than cleaned up: it is the same
-    // file a photo already on the board would be using, so removing it would
-    // break that row.
+    // Writes the file and the row together under the per-file lock, and takes
+    // the file back if the row fails.
     await addLostItem({
       description: description === "" ? null : description,
       fileName: imageFileName(bytes, detected.ext),
