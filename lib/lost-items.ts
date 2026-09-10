@@ -1,4 +1,4 @@
-export const IMAGE_URL_PREFIX = "/lost-item-images/";
+export const IMAGE_URL_PREFIX = "/lost-items-images/";
 
 export const MAX_IMAGE_BYTES = 5 * 1024 * 1024;
 

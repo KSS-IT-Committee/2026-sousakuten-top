@@ -1,0 +1,278 @@
+.main {
+  width: min(100% - 48px, 760px);
+  margin: 0 auto;
+  padding: 72px 0 112px;
+}
+
+.header {
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--border);
+}
+
+.eyebrow {
+  color: var(--accent-alt);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1.4;
+}
+
+.title {
+  margin-top: 14px;
+  font-family: var(--mincho);
+  font-size: clamp(2.4rem, 7vw, 4.5rem);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+}
+
+.lead {
+  max-width: 36em;
+  margin-top: 24px;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 2;
+}
+
+.section {
+  max-width: 38em;
+  padding: 48px 0 56px;
+  font-size: 1rem;
+  line-height: 2.15;
+}
+
+.themeSection {
+  position: relative;
+  padding: 48px clamp(24px, 6vw, 64px) 56px;
+  background: var(--surface);
+  border-top: 3px solid var(--accent);
+}
+
+.sectionTitle {
+  margin-top: 10px;
+  font-family: var(--mincho);
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+}
+
+.theme {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 38px 0 40px;
+  padding-left: 20px;
+  border-left: 2px solid var(--accent-alt);
+  color: var(--accent);
+  font-family: var(--mincho);
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.45;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2em;
+  line-height: 2;
+}
+
+.signature {
+  margin-top: 32px;
+  color: var(--muted);
+  font-family: var(--mincho);
+  text-align: right;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 24px;
+  list-style: none;
+  padding: 0;
+}
+.item {
+  border: 1px solid #c8d6e5;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #f2f6fb;
+  color: #17324d;
+}
+/* The photos come in every shape a phone camera produces, so each one is
+   cropped into the same square rather than letting the grid go ragged. */
+.frame {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  background-color: #e3ebf4;
+}
+.image {
+  object-fit: cover;
+}
+.description {
+  padding: 12px;
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+@media screen and (max-width: 600px) {
+  .main {
+    width: min(100% - 32px, 760px);
+    padding: 48px 0 80px;
+  }
+
+  .header {
+    padding-bottom: 36px;
+  }
+
+  .lead {
+    font-size: 0.95rem;
+    line-height: 1.9;
+  }
+
+  .section {
+    padding: 36px 0 44px;
+    line-height: 2;
+  }
+
+  .themeSection {
+    padding: 36px 20px 40px;
+  }
+
+  .theme {
+    margin: 30px 0 32px;
+    padding-left: 16px;
+    font-size: clamp(1.55rem, 8vw, 2.2rem);
+  }
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 16px;
+  }
+}
+
+/* Popup Styles */
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.popupButton {
+  padding: 14px 20px;
+  margin: 5px;
+  background-color: #3564dc;
+  color: white;
+  cursor: pointer;
+  border: solid;
+  border-radius: 16px;
+  font-size: 14px;
+  border-width: 0px;
+  box-shadow: 0 2px 4px rgba(50, 40, 237, 0.2);
+  transition: all 0.2s ease;
+}
+
+.popupButton:hover {
+  background-color: #1e3bb8;
+}
+
+.popupOverlay {
+  position: fixed;
+  display: flex;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+}
+
+.popupWindow {
+  background-color: white;
+  border-radius: 25px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  padding: 32px;
+  max-width: 500px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  animation: slide-in 0.3s ease-out;
+  overflow: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+}
+
+.popupCloseButton {
+  padding: 14px 20px;
+  margin: 5px;
+  margin-top: 20px;
+  background-color: #696969;
+  color: white;
+  cursor: pointer;
+  border: solid;
+  border-radius: 14px;
+  font-size: 14px;
+  border-width: 0px;
+  box-shadow: 0 2px 4px rgba(50, 40, 237, 0.2);
+  transition: all 0.2s ease;
+}
+
+.popupCloseButton:hover {
+  background-color: #414141;
+}
+
+.popupTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: black;
+}
+
+.submitButton {
+  padding: 14px 20px;
+  margin: 5px;
+  background-color: #3564dc;
+  color: white;
+  cursor: pointer;
+  border: solid;
+  border-radius: 16px;
+  font-size: 14px;
+  border-width: 0px;
+  box-shadow: 0 2px 4px rgba(50, 40, 237, 0.2);
+  transition: all 0.2s ease;
+}
+
+.submitButton:hover {
+  background-color: #1e3bb8;
+}
+
+.submitButton:disabled {
+  background-color: #a0a0a0;
+  cursor: not-allowed;
+}
+
+.field h2,
+.field p,
+.field label,
+.field input {
+  color: black;
+  font-weight: 4px;
+  margin-bottom: 8px;
+}
+.imageInput {
+  cursor: pointer;
+}
+
+.formStatus {
+  margin-top: 12px;
+  font-size: 0.9rem;
+  color: black;
+}

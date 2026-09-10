@@ -7,7 +7,7 @@ import { IMAGE_URL_PREFIX } from "@/lib/lost-items";
 import styles from "./lost_items.module.css";
 
 export const metadata: Metadata = {
-  title: "忘れ物 | 創作展2026",
+  title: "忘れ物",
   description: "忘れ物一覧",
 };
 
