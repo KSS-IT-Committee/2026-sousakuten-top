@@ -166,39 +166,14 @@ function timeToMinutes(time: string) {
   return hours * 60 + minutes;
 }
 
-function isAM(timeRange: string) {
-  const [start] = timeRange
-    .split("-")
-    .map((time) => timeToMinutes(time.trim()));
-
-  return start < timeToMinutes("11:45");
-}
-
 function timeRangeToPosition(timeRange: string) {
   const [start, end] = timeRange
     .split("-")
     .map((time) => timeToMinutes(time.trim()));
 
-  const isAm = isAM(timeRange);
-  const breakDuration = timeToMinutes("0:40");
-  const GRAPH_START_AM = timeToMinutes("08:30");
-  const GRAPH_START_PM = timeToMinutes("11:40"); // Adjusted to align with the graph's start for PM sessions
+  const left = ((start - GRAPH_START) / GRAPH_WIDTH) * 106;
   const width = ((end - start) / GRAPH_WIDTH) * 106;
-
-  if (start > GRAPH_START_PM) {
-    const left =
-      ((start - GRAPH_START_AM) / GRAPH_WIDTH) * 106 -
-      (breakDuration / GRAPH_WIDTH) * 106;
-    return { left: `${left}%`, width: `${width}%`, isAm };
-  }
-  if (start < GRAPH_START_PM && end > GRAPH_START_PM) {
-    const left = ((start - GRAPH_START_AM) / GRAPH_WIDTH) * 106;
-    const adjustedWidth = (20 / GRAPH_WIDTH) * 106;
-    return { left: `${left}%`, width: `${adjustedWidth}%`, isAm };
-  } else {
-    const left = ((start - GRAPH_START_AM) / GRAPH_WIDTH) * 106;
-    return { left: `${left}%`, width: `${width}%`, isAm };
-  }
+  return { left: `${left}%`, width: `${width}%` };
 }
 
 function isMoreCompactTimeRange(timeRange: string) {
@@ -219,18 +194,8 @@ function isCompactTimeRange(timeRange: string) {
 
 function timeToScalePosition(time: string) {
   const minutes = timeToMinutes(time);
-  const breakDuration = timeToMinutes("0:35"); // Adjusted to align with the graph's start for PM sessions
-  const GRAPH_START_AM = timeToMinutes("08:30");
-  const GRAPH_START_PM = timeToMinutes("11:40");
-  if (minutes > GRAPH_START_PM) {
-    const left =
-      ((minutes - GRAPH_START_AM) / GRAPH_WIDTH) * 106 -
-      (breakDuration / GRAPH_WIDTH) * 106;
-    return `${left}%`;
-  } else {
-    const left = ((minutes - GRAPH_START_AM) / GRAPH_WIDTH) * 106;
-    return `${left}%`;
-  }
+  const left = ((minutes - GRAPH_START) / GRAPH_WIDTH) * 106;
+  return `${left}%`;
 }
 
 function TimeGrid({ programs }: { programs: readonly TimetableProgram[] }) {
@@ -255,14 +220,15 @@ function TimeGrid({ programs }: { programs: readonly TimetableProgram[] }) {
           ))}
         </div>
       </div>
-      <div className={styles.timelineBreak}>
+      <div className={styles.timelineRow}>
         <span className={styles.timelineProgram}>昼休憩</span>
         <div className={styles.timelineTrack}>
           <div
-            className={styles.breakBand}
+            className={styles.timelineBar}
             style={timeRangeToPosition("11:35 - 12:15")}
           >
             <span>休憩</span>
+            <time>11:35 - 12:15</time>
           </div>
         </div>
       </div>
