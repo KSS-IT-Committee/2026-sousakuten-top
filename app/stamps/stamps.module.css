@@ -1,0 +1,186 @@
+.wall {
+  display: grid;
+  place-items: start center;
+  min-height: 70svh;
+  padding: clamp(1.5rem, 5vw, 3.5rem) clamp(0.75rem, 4vw, 3rem);
+  background: var(--wall);
+}
+
+/*
+ * The card is paper-coloured in BOTH themes, not var(--surface).
+ *
+ * It is a 台紙 — a physical thing you carry round the school and fill in — and
+ * the six seal inks are chosen to sit on paper. Re-tinting the sheet dark
+ * would leave deep crimson and indigo seals unreadable on it, so the sheet
+ * keeps its own light ground in dark mode and the wall behind it carries the
+ * theme instead.
+ */
+.sheet {
+  width: min(46rem, 100%);
+  padding: clamp(1.25rem, 4vw, 2.5rem);
+  background: #f7f1e6;
+  color: #241d16;
+  box-shadow: 0 1.4rem 3rem rgba(0, 0, 0, 0.32);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: center;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid #ddd0bb;
+}
+
+.romaji {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #7a1520;
+}
+
+.title {
+  font-family: var(--mincho);
+  font-size: clamp(1.5rem, 4.5vw, 2.1rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.owner {
+  font-family: var(--mono);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #5c5245;
+}
+
+.count {
+  display: flex;
+  align-items: baseline;
+  gap: 0.3rem;
+  margin-top: 0.25rem;
+  font-family: var(--mono);
+}
+
+.countNow {
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.countTotal {
+  font-size: 1rem;
+  color: #5c5245;
+}
+
+.bar {
+  width: min(22rem, 100%);
+  height: 6px;
+  background: #e2d6c2;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.barFill {
+  height: 100%;
+  background: #7a1520;
+  border-radius: 999px;
+}
+
+.lead {
+  max-width: 30rem;
+  font-size: 0.8125rem;
+  line-height: 1.9;
+  color: #5c5245;
+  text-wrap: balance;
+}
+
+.inlineLink {
+  color: #23318b;
+  border-bottom: 1px solid currentColor;
+}
+
+.group {
+  margin-top: 1.75rem;
+}
+
+.groupTitle {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding-bottom: 0.4rem;
+  margin-bottom: 0.9rem;
+  border-bottom: 1px solid #ddd0bb;
+  font-family: var(--mincho);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.groupCount {
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #5c5245;
+}
+
+/* auto-fill rather than auto-fit: a group with one exhibit (委員会) keeps a
+   normal-sized seal instead of stretching it across the whole row. */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(5.5rem, 1fr));
+  gap: 1rem 0.75rem;
+  list-style: none;
+}
+
+.cellLink {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.35rem 0.15rem;
+  border-radius: 8px;
+  text-align: center;
+  transition: background 0.15s ease;
+}
+
+.cellLink:hover,
+.cellLink:focus-visible {
+  background: rgba(122, 21, 32, 0.07);
+}
+
+.cellName {
+  font-size: 0.6875rem;
+  line-height: 1.4;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.cellPlace {
+  font-family: var(--mono);
+  font-size: 0.5625rem;
+  line-height: 1.3;
+  color: #6d6152;
+  overflow-wrap: anywhere;
+}
+
+.back {
+  display: block;
+  width: max-content;
+  margin: 2rem auto 0;
+  padding-bottom: 0.2rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  color: #23318b;
+  border-bottom: 1px solid currentColor;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cellLink {
+    transition: none;
+  }
+}

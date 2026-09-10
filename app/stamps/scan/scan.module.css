@@ -1,0 +1,228 @@
+.wall {
+  display: grid;
+  place-items: center;
+  min-height: 70svh;
+  padding: clamp(1.5rem, 5vw, 3.5rem) clamp(1rem, 4vw, 3rem);
+  background: var(--wall);
+}
+
+.sheet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  width: min(28rem, 100%);
+  padding: clamp(1.5rem, 5vw, 2.5rem);
+  background: var(--surface);
+  color: var(--foreground);
+  text-align: center;
+  box-shadow: 0 1.4rem 3rem rgba(0, 0, 0, 0.32);
+}
+
+.romaji {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.title {
+  font-family: var(--mincho);
+  font-size: clamp(1.35rem, 4vw, 1.75rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.lead {
+  font-size: 0.8125rem;
+  line-height: 1.9;
+  color: var(--muted);
+  text-wrap: balance;
+}
+
+.link,
+.back {
+  color: var(--accent);
+  border-bottom: 1px solid currentColor;
+}
+
+.back {
+  margin-top: 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+}
+
+.scanner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  text-align: left;
+}
+
+.fieldLabel {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.select,
+.input {
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--background);
+  color: var(--foreground);
+  font: inherit;
+  /* 16px minimum, or iOS Safari zooms the page when the field takes focus. */
+  font-size: 1rem;
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* The exhibit being stamped, stated large and permanently. A desk that
+   silently switches spots would hand out wrong stamps for an hour before
+   anyone noticed. */
+.target {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.5rem;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+}
+
+.targetLabel {
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.16em;
+  color: var(--muted);
+}
+
+.targetName {
+  font-family: var(--mincho);
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.viewport {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  max-width: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #111;
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.72);
+  color: #f2ece2;
+  font-size: 0.8125rem;
+  line-height: 1.8;
+  text-align: center;
+}
+
+/* Aiming guide. pointer-events:none so it never eats a tap meant for the
+   video underneath. */
+.reticle {
+  position: absolute;
+  inset: 18%;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  border-radius: 10px;
+  box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.28);
+  pointer-events: none;
+}
+
+.start,
+.stop,
+.manualSubmit {
+  min-height: 48px;
+  padding: 0.6rem 1.4rem;
+  border: 0;
+  border-radius: 9999px;
+  background: var(--foreground);
+  color: var(--background);
+  font: inherit;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+}
+
+.manualSubmit:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.result:empty {
+  display: none;
+}
+
+.result {
+  min-height: 1.6rem;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.7;
+  text-wrap: balance;
+}
+
+.ok {
+  color: #1f6f5c;
+}
+
+.bad {
+  color: var(--accent-alt);
+}
+
+.muted {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.manual {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+  text-align: left;
+}
+
+.manualRow {
+  display: flex;
+  gap: 0.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .ok {
+    color: #6cc4a8;
+  }
+}

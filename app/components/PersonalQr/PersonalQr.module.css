@@ -165,3 +165,12 @@
     forced-color-adjust: none;
   }
 }
+
+.cardLink {
+  padding-bottom: 0.15rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  color: #23318b;
+  border-bottom: 1px solid currentColor;
+}

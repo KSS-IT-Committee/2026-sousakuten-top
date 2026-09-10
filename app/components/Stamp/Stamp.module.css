@@ -1,0 +1,38 @@
+.seal {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Mincho gives the carved-seal look. The fallback stack matters more than
+   usual here: Geist carries no CJK glyphs at all, so every seal but the 24
+   class codes is rendered by the fallback. */
+.sealText {
+  font-family: var(--mincho);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.rimText {
+  font-family: var(--mono);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+/* Uncollected sockets recede — they are a checklist, not the artwork.
+   `color` rather than `fill`/`stroke` so the dashed ring and the ghosted
+   label can both pick it up via currentColor. */
+.empty {
+  color: #b6a894;
+}
+
+.collected {
+  /* A seal pressed by hand is never perfectly opaque. */
+  opacity: 0.92;
+}
+
+@media (forced-colors: active) {
+  .seal {
+    forced-color-adjust: none;
+  }
+}

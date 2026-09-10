@@ -5,7 +5,9 @@ import {
   index,
   pgEnum,
   pgTable,
+  serial,
   timestamp,
+  unique,
   varchar,
 } from "drizzle-orm/pg-core";
 
@@ -82,3 +84,68 @@ export const sessions = pgTable(
 
 export type User = typeof users.$inferSelect;
 export type Session = typeof sessions.$inferSelect;
+
+/* ──────────── 創作展スタンプラリー ──────────── */
+
+// Mirrors 2026-db. Spot ids are app-side config (lib/stamps.ts), never rows.
+export const STAMP_METHODS = ["scan", "passphrase"] as const;
+
+export const stampMethodEnum = pgEnum("stamp_method", STAMP_METHODS);
+
+export type StampMethod = (typeof STAMP_METHODS)[number];
+
+export const sousakutenStamps = pgTable(
+  "sousakuten_stamps",
+  {
+    id: serial("id").primaryKey(),
+    username: varchar("username", { length: 32 })
+      .notNull()
+      .references(() => users.username, { onDelete: "cascade" }),
+    spotId: varchar("spot_id", { length: 64 }).notNull(),
+    method: stampMethodEnum("method").notNull(),
+    // NULL for a `passphrase` row, and also for a `scan` row whose granting
+    // account has since been deleted (ON DELETE SET NULL).
+    grantedBy: varchar("granted_by", { length: 32 }).references(
+      () => users.username,
+      { onDelete: "set null" },
+    ),
+    collectedAt: timestamp("collected_at", { withTimezone: true })
+      .defaultNow()
+      .notNull(),
+  },
+  (table) => [
+    unique("sousakuten_stamps_username_spot_unique").on(
+      table.username,
+      table.spotId,
+    ),
+    index("sousakuten_stamps_username_idx").on(table.username),
+    index("sousakuten_stamps_spot_idx").on(table.spotId),
+    check(
+      "sousakuten_stamps_not_self_granted",
+      sql`${table.grantedBy} IS NULL OR ${table.grantedBy} <> ${table.username}`,
+    ),
+    check(
+      "sousakuten_stamps_passphrase_has_no_granter",
+      sql`${table.method} <> 'passphrase' OR ${table.grantedBy} IS NULL`,
+    ),
+  ],
+);
+
+export const sousakutenStampPassphrases = pgTable(
+  "sousakuten_stamp_passphrases",
+  {
+    spotId: varchar("spot_id", { length: 64 }).primaryKey(),
+    passphrase: varchar("passphrase", { length: 64 }).notNull(),
+    updatedBy: varchar("updated_by", { length: 32 }).references(
+      () => users.username,
+      { onDelete: "set null" },
+    ),
+    updatedAt: timestamp("updated_at", { withTimezone: true })
+      .defaultNow()
+      .notNull(),
+  },
+);
+
+export type SousakutenStamp = typeof sousakutenStamps.$inferSelect;
+export type SousakutenStampPassphrase =
+  typeof sousakutenStampPassphrases.$inferSelect;

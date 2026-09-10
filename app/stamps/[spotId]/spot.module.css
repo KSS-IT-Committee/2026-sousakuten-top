@@ -1,0 +1,155 @@
+.wall {
+  display: grid;
+  place-items: center;
+  min-height: 70svh;
+  padding: clamp(2rem, 6vw, 4rem) clamp(1.25rem, 5vw, 3rem);
+  background: var(--wall);
+}
+
+/* Paper, in both themes — the same 台紙 ground as /stamps, so a seal shown
+   here is the same object the card will hold. */
+.sheet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  width: min(26rem, 100%);
+  padding: clamp(1.75rem, 5vw, 2.75rem);
+  background: #f7f1e6;
+  color: #241d16;
+  text-align: center;
+  box-shadow: 0 1.4rem 3rem rgba(0, 0, 0, 0.32);
+}
+
+.romaji {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  color: #7a1520;
+}
+
+.title {
+  font-family: var(--mincho);
+  font-size: clamp(1.35rem, 4vw, 1.75rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-wrap: balance;
+}
+
+.subtitle {
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: #5c5245;
+  text-wrap: balance;
+}
+
+.place {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: #6d6152;
+}
+
+.stamp {
+  width: min(46vw, 9rem);
+  margin: 0.5rem 0;
+}
+
+.done {
+  font-size: 0.875rem;
+  line-height: 1.9;
+  color: #5c5245;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.5rem;
+  width: 100%;
+  margin-top: 0.25rem;
+}
+
+.label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-align: left;
+  color: #5c5245;
+}
+
+.input {
+  padding: 0.7rem 0.9rem;
+  border: 1px solid #c9bba4;
+  border-radius: 8px;
+  background: #fffdf8;
+  color: #241d16;
+  font-family: var(--mono);
+  /* 1.05rem so iOS Safari does not zoom the page on focus (it does below 16px)
+     and so the unambiguous alphabet stays unambiguous. */
+  font-size: 1.05rem;
+  letter-spacing: 0.22em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.input:focus-visible {
+  outline: 2px solid #7a1520;
+  outline-offset: 1px;
+}
+
+.submit {
+  min-height: 48px;
+  padding: 0.7rem 1.2rem;
+  border: 0;
+  border-radius: 9999px;
+  background: #7a1520;
+  color: #f7f1e6;
+  font: inherit;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+}
+
+.submit:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.result:empty {
+  display: none;
+}
+
+.result {
+  font-size: 0.8125rem;
+  line-height: 1.8;
+  text-wrap: balance;
+}
+
+.ok {
+  color: #1f6f5c;
+  font-weight: 700;
+}
+
+.bad {
+  color: #a3231c;
+}
+
+.muted {
+  color: #5c5245;
+}
+
+.resultLink,
+.link {
+  color: #23318b;
+  border-bottom: 1px solid currentColor;
+}
+
+.links {
+  display: flex;
+  gap: 1.25rem;
+  margin-top: 1rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+}

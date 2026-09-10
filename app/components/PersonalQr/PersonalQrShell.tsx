@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { type MouseEvent, useRef } from "react";
 
@@ -104,6 +105,16 @@ export function PersonalQrShell({ username, children }: PersonalQrShellProps) {
           <p className={styles.hint}>
             読み取れないときは、画面の明るさを上げてください。
           </p>
+          {/* The dialog is rendered from the layout, so it outlives a page
+              navigation — following this link has to close it explicitly, or
+              it stays open over the page it just opened. */}
+          <Link
+            className={styles.cardLink}
+            href="/stamps"
+            onClick={() => dialogRef.current?.close()}
+          >
+            スタンプ台紙へ
+          </Link>
           <button
             type="button"
             className={styles.close}

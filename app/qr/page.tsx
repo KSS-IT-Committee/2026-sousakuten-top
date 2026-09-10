@@ -61,9 +61,14 @@ export default async function QrPage() {
             読み取れないときは、画面の明るさを上げてください。
           </p>
 
-          <Link className={styles.back} href="/">
-            トップへ戻る
-          </Link>
+          <div className={styles.links}>
+            <Link className={styles.back} href="/stamps">
+              スタンプ台紙
+            </Link>
+            <Link className={styles.back} href="/">
+              トップへ戻る
+            </Link>
+          </div>
         </article>
       </div>
       <FloatingMenu items={[{ label: "Top", href: "/" }]} />

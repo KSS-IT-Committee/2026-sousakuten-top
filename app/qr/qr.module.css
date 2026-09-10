@@ -70,8 +70,13 @@
   text-wrap: balance;
 }
 
-.back {
+.links {
+  display: flex;
+  gap: 1.5rem;
   margin-top: 0.5rem;
+}
+
+.back {
   padding-bottom: 0.2rem;
   font-family: var(--mono);
   font-size: 0.75rem;

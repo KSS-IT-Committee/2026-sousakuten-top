@@ -1,6 +1,6 @@
 import "server-only";
 
-import { createHmac } from "node:crypto";
+import { createHmac, timingSafeEqual } from "node:crypto";
 
 /**
  * The string one account's personal QR code carries.
@@ -52,4 +52,69 @@ export function personalCodeFor(username: string): string {
     .slice(0, SIGNATURE_HEX_LENGTH);
 
   return `${body}.${signature}`;
+}
+
+/** What a scanned code turned out to be. */
+export type PersonalCode = {
+  readonly username: string;
+  /** False only in the unsigned fallback, which is refused once a secret exists. */
+  readonly isSigned: boolean;
+};
+
+/**
+ * The reader half of personalCodeFor: turns a scanned string back into the
+ * account it names, or null if it names none.
+ *
+ * The policy is deliberately keyed off whether PERSONAL_CODE_SECRET is
+ * configured, not off what the code claims:
+ *
+ *   - secret set     -> only "s1" codes with a matching signature pass, and
+ *                       "u1" is refused outright. Wiring the secret is
+ *                       therefore a pure upgrade with no second switch to
+ *                       remember to flip.
+ *   - secret not set -> only "u1" passes, since there is nothing to verify a
+ *                       signature against and accepting one unchecked would
+ *                       be worse than accepting none.
+ *
+ * Returning null covers every failure — wrong shape, wrong prefix, bad
+ * signature, unknown format version — because a scanner has exactly one useful
+ * thing to say either way ("読み取れませんでした"), and distinguishing them out
+ * loud would tell an attacker which half of a forgery was wrong.
+ */
+export function readPersonalCode(raw: string): PersonalCode | null {
+  const parts = raw.trim().split(".");
+  const secret = process.env.PERSONAL_CODE_SECRET;
+
+  if (!secret) {
+    if (parts.length !== 2 || parts[0] !== UNSIGNED_PREFIX) return null;
+    return isPlausibleUsername(parts[1])
+      ? { username: parts[1], isSigned: false }
+      : null;
+  }
+
+  if (parts.length !== 3 || parts[0] !== SIGNED_PREFIX) return null;
+  const [, username, signature] = parts;
+  if (!isPlausibleUsername(username)) return null;
+
+  const expected = createHmac("sha256", secret)
+    .update(`${SIGNED_PREFIX}.${username}`)
+    .digest("hex")
+    .slice(0, SIGNATURE_HEX_LENGTH);
+
+  // timingSafeEqual throws on a length mismatch, so screen that first.
+  if (signature.length !== expected.length) return null;
+  if (!timingSafeEqual(Buffer.from(signature), Buffer.from(expected))) {
+    return null;
+  }
+
+  return { username, isSigned: true };
+}
+
+/**
+ * A cheap shape check before the username reaches a query. It is NOT an
+ * existence check — the caller still has to look the account up — it only
+ * keeps junk out of `users.username`, which is varchar(32).
+ */
+function isPlausibleUsername(value: string): boolean {
+  return /^[A-Za-z0-9]{1,32}$/.test(value);
 }

@@ -1,0 +1,141 @@
+.page {
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 5vw, 3rem) clamp(1rem, 4vw, 2rem);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.title {
+  font-family: var(--mincho);
+  font-size: clamp(1.4rem, 4vw, 1.9rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.lead {
+  font-size: 0.8125rem;
+  line-height: 1.9;
+  color: var(--muted);
+}
+
+.status {
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+}
+
+.bulk,
+.rotate {
+  min-height: 40px;
+  padding: 0.45rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 9999px;
+  background: var(--surface);
+  color: var(--foreground);
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.bulk:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.bulk:not(:disabled):hover,
+.rotate:hover {
+  background: var(--background);
+}
+
+.group {
+  margin-top: 1.75rem;
+}
+
+.groupTitle {
+  margin-bottom: 0.6rem;
+  font-family: var(--mincho);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.list {
+  list-style: none;
+  border-top: 1px solid var(--border);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.rowMain {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.spotName {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.url {
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.passphrase,
+.passphraseNone {
+  font-family: var(--mono);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  white-space: nowrap;
+}
+
+.passphraseNone {
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.back {
+  display: block;
+  width: max-content;
+  margin: 2rem auto 0;
+  padding-bottom: 0.2rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  border-bottom: 1px solid currentColor;
+}
+
+/* The row collapses to two lines on a phone; the passphrase must never be the
+   thing that gets truncated. */
+@media (max-width: 30rem) {
+  .row {
+    flex-wrap: wrap;
+  }
+
+  .rowMain {
+    flex-basis: 100%;
+  }
+}
