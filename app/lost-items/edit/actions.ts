@@ -127,15 +127,21 @@ export async function deleteLostItemAction(
     return { error: "削除する忘れ物が指定されていません。", message: null };
   }
 
+  let isDeleted: boolean;
   try {
     // Removes the row, and the photo too once the last row using it is gone —
     // both under the per-file lock, inside one transaction.
-    await deleteLostItem(id);
+    isDeleted = await deleteLostItem(id);
   } catch (err) {
     console.error("忘れ物の削除に失敗しました:", err);
     return { error: "忘れ物の削除に失敗しました。", message: null };
   }
 
+  // A well-formed id that matches no row means someone else already deleted it,
+  // so the list on screen is stale — refresh it rather than claim a deletion.
   revalidate();
+  if (!isDeleted) {
+    return { error: "この忘れ物は見つかりませんでした。", message: null };
+  }
   return { error: null, message: "忘れ物を削除しました。" };
 }
