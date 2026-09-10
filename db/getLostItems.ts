@@ -7,7 +7,7 @@ export type LostItem = {
   id: number;
   description: string | null;
   fileName: string;
-  uploadedBy: string;
+  uploadedBy: string | null;
   createdAt: Date;
 };
 
