@@ -87,6 +87,37 @@
   text-align: right;
 }
 
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 24px;
+  list-style: none;
+  padding: 0;
+}
+.item {
+  border: 1px solid #c8d6e5;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #f2f6fb;
+  color: #17324d;
+}
+/* The photos come in every shape a phone camera produces, so each one is
+   cropped into the same square rather than letting the grid go ragged. */
+.frame {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  background-color: #e3ebf4;
+}
+.image {
+  object-fit: cover;
+}
+.description {
+  padding: 12px;
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
 @media screen and (max-width: 600px) {
   .main {
     width: min(100% - 32px, 760px);
@@ -115,5 +146,9 @@
     margin: 30px 0 32px;
     padding-left: 16px;
     font-size: clamp(1.55rem, 8vw, 2.2rem);
+  }
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 16px;
   }
 }
