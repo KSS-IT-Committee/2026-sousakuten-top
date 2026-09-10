@@ -224,7 +224,7 @@ function TimeGrid({ programs }: { programs: readonly TimetableProgram[] }) {
         <span className={styles.timelineProgram}>昼休憩</span>
         <div className={styles.timelineTrack}>
           <div
-            className={styles.timelineBar}
+            className={styles.breakBand}
             style={timeRangeToPosition("11:35 - 12:15")}
           >
             <span>休憩</span>
