@@ -52,7 +52,7 @@ const SADOU_PERFORMANCE = {
 
 const PHILHARMONIC_PERFORMANCE = {
   1: "09:00 - 11:30",
-  2: "12:30 - 15:15",
+  2: "12:30 - 15:00",
 };
 
 const KARUTA_PERFORMANCE = {

@@ -202,15 +202,15 @@
     transparent calc(51.7% - 1px),
     var(--border) 51.7%,
     transparent calc(51.7% + 1px),
-    transparent calc(66.82% - 1px),
-    var(--border) 66.82%,
-    transparent calc(66.82% + 1px),
-    transparent calc(81.97% - 1px),
-    var(--border) 81.97%,
-    transparent calc(81.97% + 1px),
-    transparent calc(97.17% - 1px),
-    var(--border) 97.17%,
-    transparent calc(97.17% + 1px)
+    transparent calc(75.71% - 1px),
+    var(--border) 75.71%,
+    transparent calc(75.71% + 1px),
+    transparent calc(90.86% - 1px),
+    var(--border) 90.86%,
+    transparent calc(90.86% + 1px),
+    transparent calc(106% - 1px),
+    var(--border) 106%,
+    transparent calc(106% + 1px)
   );
 }
 
@@ -280,11 +280,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 0.15rem;
+  overflow: hidden;
+  padding: 0.25rem 0.3rem;
   background: color-mix(in srgb, var(--accent) 14%, var(--background));
   color: var(--accent);
   font-family: var(--mono);
   font-size: 0.9rem;
-  line-height: 0.3;
+  line-height: 1.25;
+  white-space: nowrap;
+  flex-direction: column;
 }
 
 .section {
