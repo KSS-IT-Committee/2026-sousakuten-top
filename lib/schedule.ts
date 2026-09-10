@@ -1,10 +1,10 @@
 export const FESTIVAL_DATE = "2026/09/12 - 2026/09/13";
 export const START_ENTER_TIME = "08:25";
 export const FESTIVAL_HOURS = {
-  AM: "08:45 - 11:35",
-  PM: "12:15 - 15:20",
+  AM: "09:00 - 11:35",
+  PM: "12:15 - 15:30",
 };
-export const END_TIME = "15:20";
+export const END_TIME = "15:30";
 
 export const SOUSAKU_PERFORMANCE_TIME = 75;
 export const SOUSAKU_PERFORMANCE = {
@@ -95,6 +95,12 @@ const CHEMISTRY_PERFORMANCE = {
   5: "14:50 - 15:10",
 };
 
+const ROCKET_PERFORMANCE = {
+  1: "09:00 - 09:10",
+  2: "13:05 - 13:15",
+  3: "15:20 - 15:30",
+};
+
 export const clubPerformanceTime = {
   BRASS_BAND: [BRASS_BAND_PERFORMANCE, "09/12(土)", "剣道場"],
   SADOU: [SADOU_PERFORMANCE, "09/12(土) 09/13(日)", "茶室"],
@@ -106,4 +112,5 @@ export const clubPerformanceTime = {
   THEATER: [THEATER_PERFORMANCE, "09/12(土) 09/13(日)", "401教室"],
   JAZZ: [JAZZ_PERFORMANCE, "09/13(日)", "音楽室"],
   CHEMISTRY: [CHEMISTRY_PERFORMANCE, "09/12(土) 09/13(日)", "化学室"],
+  ROCKET: [ROCKET_PERFORMANCE, "09/12(土) 09/13(日)", "グラウンド"],
 } as const;
