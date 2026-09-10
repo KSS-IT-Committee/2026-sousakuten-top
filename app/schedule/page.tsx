@@ -151,6 +151,14 @@ const CLUB_PROGRAMS = [
     dates: clubPerformanceTime.CHEMISTRY[1],
     venue: clubPerformanceTime.CHEMISTRY[2],
   },
+  {
+    title: { name: "ロケット研究会", romaji: "Rocket" },
+    performances: Object.entries(clubPerformanceTime.ROCKET[0]).map(
+      ([number, time]) => ({ number, time, showNumber: !/^\d+$/.test(number) }),
+    ),
+    dates: clubPerformanceTime.ROCKET[1],
+    venue: clubPerformanceTime.ROCKET[2],
+  },
 ] satisfies readonly TimetableProgram[];
 
 function timeToMinutes(time: string) {
@@ -172,7 +180,7 @@ function timeRangeToPosition(timeRange: string) {
     .map((time) => timeToMinutes(time.trim()));
 
   const isAm = isAM(timeRange);
-  const breakDuration = timeToMinutes("0:35");
+  const breakDuration = timeToMinutes("0:40");
   const GRAPH_START_AM = timeToMinutes("08:30");
   const GRAPH_START_PM = timeToMinutes("11:40"); // Adjusted to align with the graph's start for PM sessions
   const width = ((end - start) / GRAPH_WIDTH) * 106;
@@ -236,7 +244,7 @@ function TimeGrid({ programs }: { programs: readonly TimetableProgram[] }) {
             "09:30",
             "10:30",
             "11:35",
-            "12:30",
+            "12:15",
             "13:30",
             "14:30",
             "15:30",
@@ -252,7 +260,7 @@ function TimeGrid({ programs }: { programs: readonly TimetableProgram[] }) {
         <div className={styles.timelineTrack}>
           <div
             className={styles.breakBand}
-            style={timeRangeToPosition("11:35 - 12:30")}
+            style={timeRangeToPosition("11:35 - 12:15")}
           >
             <span>休憩</span>
           </div>
