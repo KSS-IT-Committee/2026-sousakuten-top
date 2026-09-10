@@ -13,11 +13,14 @@ import {
 
 import { type LostItemFormState, submitLostItemAction } from "./actions";
 import styles from "./edit.module.css";
+import { PopupDialog } from "./popupDialog";
 
 const INITIAL_STATE: LostItemFormState = {
   error: null,
   message: null,
 };
+
+const TITLE_ID = "lost-item-add-title";
 
 export default function LostItemEditPopup() {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,66 +50,68 @@ export default function LostItemEditPopup() {
       >
         忘れ物を追加
       </button>
-      {isOpen && (
-        <div className={styles.popupOverlay}>
-          <div className={styles.popupWindow}>
-            <form className={styles.popupForm} action={formAction}>
-              <h2 className={styles.popupTitle}>忘れ物を追加</h2>
-              <div className={styles.field}>
-                <label className={styles.label} htmlFor="image">
-                  写真
-                </label>
-                <input
-                  id="image"
-                  type="file"
-                  name="image"
-                  accept={IMAGE_ACCEPT}
-                  required
-                  className={styles.imageInput}
-                />
-                <p className={styles.hint}>
-                  {ALLOWED_IMAGE_LABEL}、{MAX_IMAGE_MB}MBまで。
-                </p>
-              </div>
-              <div className={styles.field}>
-                <label className={styles.label} htmlFor="description">
-                  説明（任意）
-                </label>
-                <input
-                  id="description"
-                  type="text"
-                  name="description"
-                  className={styles.input}
-                  maxLength={MAX_DESCRIPTION_LENGTH}
-                  placeholder="例：グラウンドで見つかった水筒"
-                />
-              </div>
-              {state.error !== null && (
-                <p className={styles.formStatus} role="alert">
-                  {state.error}
-                </p>
-              )}
-              <div className={styles.actions}>
-                <button
-                  className={styles.submitButton}
-                  type="submit"
-                  disabled={isPending}
-                >
-                  {isPending ? "追加中…" : "追加"}
-                </button>
-                <button
-                  className={styles.popupCloseButton}
-                  type="button"
-                  disabled={isPending}
-                  onClick={() => setIsOpen(false)}
-                >
-                  閉じる
-                </button>
-              </div>
-            </form>
+      <PopupDialog
+        isOpen={isOpen}
+        labelledBy={TITLE_ID}
+        onClose={() => setIsOpen(false)}
+      >
+        <form className={styles.popupForm} action={formAction}>
+          <h2 className={styles.popupTitle} id={TITLE_ID}>
+            忘れ物を追加
+          </h2>
+          <div className={styles.field}>
+            <label className={styles.label} htmlFor="image">
+              写真
+            </label>
+            <input
+              id="image"
+              type="file"
+              name="image"
+              accept={IMAGE_ACCEPT}
+              required
+              className={styles.imageInput}
+            />
+            <p className={styles.hint}>
+              {ALLOWED_IMAGE_LABEL}、{MAX_IMAGE_MB}MBまで。
+            </p>
           </div>
-        </div>
-      )}
+          <div className={styles.field}>
+            <label className={styles.label} htmlFor="description">
+              説明（任意）
+            </label>
+            <input
+              id="description"
+              type="text"
+              name="description"
+              className={styles.input}
+              maxLength={MAX_DESCRIPTION_LENGTH}
+              placeholder="例：グラウンドで見つかった水筒"
+            />
+          </div>
+          {state.error !== null && (
+            <p className={styles.formStatus} role="alert">
+              {state.error}
+            </p>
+          )}
+          <div className={styles.actions}>
+            <button
+              className={styles.submitButton}
+              type="submit"
+              disabled={isPending}
+            >
+              {isPending ? "追加中…" : "追加"}
+            </button>
+            <button
+              className={styles.popupCloseButton}
+              type="button"
+              disabled={isPending}
+              onClick={() => setIsOpen(false)}
+            >
+              閉じる
+            </button>
+          </div>
+        </form>
+      </PopupDialog>
     </>
   );
 }

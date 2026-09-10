@@ -184,21 +184,11 @@
   }
 }
 
-.popupOverlay {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  background-color: rgba(20, 16, 12, 0.55);
-}
-
+/* A native <dialog>: the browser centres it in the top layer and paints the
+   backdrop, so the window only has to describe itself. The 24px is the gutter
+   the old overlay's padding used to keep on a narrow phone. */
 .popupWindow {
-  position: relative;
-  width: 100%;
-  max-width: 500px;
+  width: min(500px, 100% - 48px);
   max-height: 85vh;
   overflow-y: auto;
   padding: 32px;
@@ -207,6 +197,10 @@
   background-color: var(--surface);
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.28);
   animation: slide-in 0.25s ease-out;
+}
+
+.popupWindow::backdrop {
+  background-color: rgba(20, 16, 12, 0.55);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -323,11 +317,8 @@
     gap: 16px;
   }
 
-  .popupOverlay {
-    padding: 16px;
-  }
-
   .popupWindow {
+    width: min(500px, 100% - 32px);
     padding: 24px 20px;
   }
 }
