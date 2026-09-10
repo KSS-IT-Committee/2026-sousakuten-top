@@ -6,6 +6,7 @@ import { getLostItems } from "@/db/getLostItems";
 import { IMAGE_URL_PREFIX } from "@/lib/lost-items";
 import { LOST_ITEM_ADMIN_ROLES } from "@/lib/lost-items-access";
 
+import LostItemDeleteButton from "./deleteButton";
 import styles from "./edit.module.css";
 import LostItemEditPopup from "./popup";
 
@@ -43,9 +44,16 @@ export default async function LostItemsEditPage() {
                       className={styles.image}
                     />
                   </div>
-                  {item.description && (
-                    <p className={styles.description}>{item.description}</p>
-                  )}
+                  <div className={styles.flexFrame}>
+                    {item.description && (
+                      <p className={styles.description}>{item.description}</p>
+                    )}
+                    <LostItemDeleteButton
+                      id={item.id}
+                      fileName={item.fileName}
+                      description={item.description}
+                    />
+                  </div>
                 </li>
               ))}
             </ul>

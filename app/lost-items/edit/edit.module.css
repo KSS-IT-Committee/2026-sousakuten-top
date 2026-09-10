@@ -276,3 +276,25 @@
   font-size: 0.9rem;
   color: black;
 }
+
+/* Delete Button Styles */
+.deleteButton {
+  padding: 10px 20px;
+  margin: 5px;
+  margin-left: auto;
+  background-color: #dc3545; /* Bootstrap's danger color */
+  color: white;
+  cursor: pointer;
+  border: solid;
+  border-radius: 16px;
+  font-size: 14px;
+  border-width: 0px;
+  box-shadow: 0 2px 4px rgba(50, 40, 237, 0.2);
+  transition: all 0.2s ease;
+}
+
+.flexFrame {
+  display: flex;
+
+  gap: auto;
+}

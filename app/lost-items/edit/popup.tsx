@@ -20,7 +20,7 @@ const INITIAL_STATE: LostItemFormState = {
 export default function LostItemEditPopup() {
   const [isOpen, setIsOpen] = useState(false);
   const [state, formAction, isPending] = useActionState(
-    async (previousState, formData) => {
+    async (previousState: LostItemFormState, formData: FormData) => {
       const nextState = await submitLostItemAction(previousState, formData);
       if (nextState.message !== null) setIsOpen(false);
       return nextState;
