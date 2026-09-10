@@ -28,7 +28,7 @@ export const FESTIVAL_DATE_LABEL_EN = "2026.09.12 SAT — 09.13 SUN";
 /* TODO: Change to match this year's schedule(this is copied from 93th Sousakuten) */
 export const FESTIVAL_HOURS = {
   morning: "8:45 — 11:35",
-  afternoon: "12:30 — 15:20",
+  afternoon: "12:15 — 15:30",
 } as const;
 
 export const VENUE_NAME = "東京都立小石川中等教育学校";
