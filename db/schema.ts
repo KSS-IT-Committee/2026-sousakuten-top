@@ -5,6 +5,8 @@ import {
   index,
   pgEnum,
   pgTable,
+  serial,
+  text,
   timestamp,
   varchar,
 } from "drizzle-orm/pg-core";
@@ -82,3 +84,13 @@ export const sessions = pgTable(
 
 export type User = typeof users.$inferSelect;
 export type Session = typeof sessions.$inferSelect;
+
+export const sousakutenLostItems = pgTable("sousakuten_lost_items", {
+  id: serial("id").primaryKey(),
+  description: text("description"),
+  fileName: varchar("file_name", { length: 160 }).notNull(),
+  uploadedBy: varchar("uploaded_by", { length: 32 }).notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .defaultNow()
+    .notNull(),
+});
