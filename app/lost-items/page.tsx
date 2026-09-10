@@ -1,9 +1,12 @@
 import { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 
 import { getLostItems } from "@/db/getLostItems";
 import { IMAGE_URL_PREFIX } from "@/lib/lost-items";
+import { LOST_ITEM_ADMIN_ROLES } from "@/lib/lost-items-access";
 
+import { Internal } from "../components/Internal";
 import styles from "./lost_items.module.css";
 
 export const metadata: Metadata = {
@@ -23,7 +26,11 @@ export default async function LostItemsPage() {
             創作展期間中に会場内で見つかった忘れ物の一覧です。お心当たりのある方はお問い合わせください。
           </p>
         </header>
-
+        <Internal role={LOST_ITEM_ADMIN_ROLES}>
+          <Link href="/lost-items/edit" className={styles.editLinkButton}>
+            忘れ物の追加・編集はこちら
+          </Link>
+        </Internal>
         {lostItems.length === 0 ? (
           <p className={styles.noItems}>現在、忘れ物はありません。</p>
         ) : (

@@ -152,3 +152,15 @@
     gap: 16px;
   }
 }
+
+.editLinkButton {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 12px 12px;
+  border: 1px solid var(--accent);
+  border-radius: 16px;
+  background-color: #2f3daa;
+  color: white;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
