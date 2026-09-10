@@ -2,7 +2,7 @@ import { Metadata } from "next";
 
 import styles from "./lost_items.module.css";
 
-const metadata: Metadata = {
+export const metadata: Metadata = {
   title: "忘れ物 | 創作展2026",
   description: "忘れ物一覧",
 };
