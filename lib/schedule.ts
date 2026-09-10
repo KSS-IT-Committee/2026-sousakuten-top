@@ -33,7 +33,7 @@ export const RISSI_PERFORMANCE = {
 
 const BRASS_BAND_PERFORMANCE = {
   1: "10:55 - 11:35",
-  2: "12:30 - 13:00",
+  2: "12:40 - 13:20",
   3: "14:20 - 15:00",
 };
 
