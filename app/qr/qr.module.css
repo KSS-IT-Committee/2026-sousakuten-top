@@ -1,0 +1,99 @@
+/* The wall the hero, page list and <ComingSoon> stand on, so the code reads
+   as part of the site rather than a bare utility screen. */
+.wall {
+  display: grid;
+  place-items: center;
+  min-height: 70svh;
+  padding: clamp(2rem, 6vw, 4rem) clamp(1.25rem, 5vw, 3rem);
+  background: var(--wall);
+}
+
+.sheet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: min(30rem, 100%);
+  padding: clamp(1.75rem, 5vw, 3rem);
+  background: var(--surface);
+  color: var(--foreground);
+  text-align: center;
+  box-shadow: 0 1.4rem 3rem rgba(0, 0, 0, 0.32);
+}
+
+.romaji {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.title {
+  font-family: var(--mincho);
+  font-size: clamp(1.5rem, 4.5vw, 2.1rem);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0.06em;
+}
+
+.lead {
+  font-size: clamp(0.875rem, 2vw, 0.9375rem);
+  line-height: 1.9;
+  color: var(--muted);
+  text-wrap: balance;
+}
+
+/* Always light, never themed — the symbol is black on white because that is
+   what scans fastest, and it needs a light surround to keep that contrast in
+   a dark-mode page. Same reasoning as .panel in PersonalQr.module.css. */
+.card {
+  width: min(64vw, 46vh, 17rem);
+  padding: 0.75rem;
+  background: #ffffff;
+  box-shadow: 0 0.4rem 1.2rem rgba(0, 0, 0, 0.18);
+}
+
+.username {
+  font-family: var(--mono);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.hint {
+  font-size: 0.8125rem;
+  line-height: 1.7;
+  color: var(--muted);
+  /* Japanese breaks between almost any two characters, so without this
+     the last line is routinely a single orphaned kana. */
+  text-wrap: balance;
+}
+
+.back {
+  margin-top: 0.5rem;
+  padding-bottom: 0.2rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  border-bottom: 1px solid currentColor;
+  transition: color 0.18s ease;
+}
+
+.back:hover,
+.back:focus-visible {
+  color: var(--accent-alt);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .back {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .card {
+    forced-color-adjust: none;
+  }
+}
