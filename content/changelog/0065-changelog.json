@@ -1,5 +1,5 @@
 {
   "title": "per-user qrcode",
-  "description": "TODO",
+  "description": "QRコードをユーザーごとに生成する仕組みを追加しました。",
   "credits": ["@rotarymars"]
 }
