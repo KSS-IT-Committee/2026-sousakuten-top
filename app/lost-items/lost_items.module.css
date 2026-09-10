@@ -35,82 +35,63 @@
   line-height: 2;
 }
 
-.section {
-  max-width: 38em;
-  padding: 48px 0 56px;
-  font-size: 1rem;
-  line-height: 2.15;
-}
-
-.themeSection {
-  position: relative;
-  padding: 48px clamp(24px, 6vw, 64px) 56px;
-  background: var(--surface);
-  border-top: 3px solid var(--accent);
-}
-
-.sectionTitle {
-  margin-top: 10px;
-  font-family: var(--mincho);
-  font-size: clamp(1.4rem, 4vw, 2rem);
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  line-height: 1.5;
-}
-
-.theme {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  margin: 38px 0 40px;
-  padding-left: 20px;
-  border-left: 2px solid var(--accent-alt);
-  color: var(--accent);
-  font-family: var(--mincho);
-  font-size: clamp(1.8rem, 5vw, 3rem);
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  line-height: 1.45;
-}
-
-.copy {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2em;
-  line-height: 2;
-}
-
-.signature {
+.editLinkButton {
+  display: inline-block;
   margin-top: 32px;
+  padding: 12px 24px;
+  border-radius: 999px;
+  background-color: var(--accent);
+  color: var(--background);
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.4;
+  transition: background-color 0.2s ease;
+}
+
+.editLinkButton:hover {
+  background-color: color-mix(in oklch, var(--accent) 85%, var(--foreground));
+}
+
+/* Nothing on the board is the normal state for most of the festival, so the
+   empty case gets a real placeholder rather than a bare line of text. */
+.noItems {
+  margin-top: 40px;
+  padding: 44px 24px;
+  border: 1px dashed var(--border);
+  border-radius: 12px;
   color: var(--muted);
-  font-family: var(--mincho);
-  text-align: right;
+  font-size: 0.95rem;
+  text-align: center;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 24px;
-  list-style: none;
+  margin-top: 40px;
   padding: 0;
+  list-style: none;
 }
+
 .item {
-  border: 1px solid #c8d6e5;
-  border-radius: 8px;
   overflow: hidden;
-  background-color: #f2f6fb;
-  color: #17324d;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background-color: var(--surface);
 }
+
 /* The photos come in every shape a phone camera produces, so each one is
    cropped into the same square rather than letting the grid go ragged. */
 .frame {
   position: relative;
   aspect-ratio: 1 / 1;
-  background-color: #e3ebf4;
+  background-color: color-mix(in oklch, var(--foreground) 8%, var(--surface));
 }
+
 .image {
   object-fit: cover;
 }
+
 .description {
   padding: 12px;
   font-size: 14px;
@@ -133,34 +114,8 @@
     line-height: 1.9;
   }
 
-  .section {
-    padding: 36px 0 44px;
-    line-height: 2;
-  }
-
-  .themeSection {
-    padding: 36px 20px 40px;
-  }
-
-  .theme {
-    margin: 30px 0 32px;
-    padding-left: 16px;
-    font-size: clamp(1.55rem, 8vw, 2.2rem);
-  }
   .grid {
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     gap: 16px;
   }
-}
-
-.editLinkButton {
-  display: inline-block;
-  margin-top: 8px;
-  padding: 12px 12px;
-  border: 1px solid var(--accent);
-  border-radius: 16px;
-  background-color: #2f3daa;
-  color: white;
-  font-size: 0.85rem;
-  line-height: 1.4;
 }

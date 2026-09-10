@@ -35,87 +35,272 @@
   line-height: 2;
 }
 
-.section {
-  max-width: 38em;
-  padding: 48px 0 56px;
-  font-size: 1rem;
-  line-height: 2.15;
-}
-
-.themeSection {
-  position: relative;
-  padding: 48px clamp(24px, 6vw, 64px) 56px;
-  background: var(--surface);
-  border-top: 3px solid var(--accent);
-}
-
-.sectionTitle {
-  margin-top: 10px;
-  font-family: var(--mincho);
-  font-size: clamp(1.4rem, 4vw, 2rem);
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  line-height: 1.5;
-}
-
-.theme {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  margin: 38px 0 40px;
-  padding-left: 20px;
-  border-left: 2px solid var(--accent-alt);
-  color: var(--accent);
-  font-family: var(--mincho);
-  font-size: clamp(1.8rem, 5vw, 3rem);
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  line-height: 1.45;
-}
-
-.copy {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2em;
-  line-height: 2;
-}
-
-.signature {
-  margin-top: 32px;
+.noItems {
+  margin-top: 24px;
+  padding: 44px 24px;
+  border: 1px dashed var(--border);
+  border-radius: 12px;
   color: var(--muted);
-  font-family: var(--mincho);
-  text-align: right;
+  font-size: 0.95rem;
+  text-align: center;
 }
+
+/* ---- The board ---- */
 
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 24px;
-  list-style: none;
+  margin-top: 24px;
   padding: 0;
+  list-style: none;
 }
+
 .item {
-  border: 1px solid #c8d6e5;
-  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
-  background-color: #f2f6fb;
-  color: #17324d;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background-color: var(--surface);
 }
+
 /* The photos come in every shape a phone camera produces, so each one is
    cropped into the same square rather than letting the grid go ragged. */
 .frame {
   position: relative;
   aspect-ratio: 1 / 1;
-  background-color: #e3ebf4;
+  background-color: color-mix(in oklch, var(--foreground) 8%, var(--surface));
 }
+
 .image {
   object-fit: cover;
 }
+
+/* Description and its delete button share one row; with no description the
+   button's auto margin still parks it on the right. */
+.flexFrame {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+}
+
 .description {
-  padding: 12px;
   font-size: 14px;
   line-height: 1.6;
   overflow-wrap: anywhere;
+}
+
+/* ---- Buttons ---- */
+
+.popupButton,
+.submitButton {
+  margin-top: 24px;
+  padding: 12px 24px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background-color: var(--accent);
+  color: var(--background);
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.submitButton {
+  margin-top: 0;
+}
+
+.popupButton:hover,
+.submitButton:hover:enabled {
+  background-color: color-mix(in oklch, var(--accent) 85%, var(--foreground));
+}
+
+.popupCloseButton {
+  padding: 12px 24px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background-color: transparent;
+  color: var(--foreground);
+  font-family: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.popupCloseButton:hover:enabled {
+  border-color: color-mix(in oklch, var(--foreground) 40%, transparent);
+  background-color: color-mix(in oklch, var(--foreground) 6%, transparent);
+}
+
+/* --accent-alt is the theme's red, so it stays legible in both palettes
+   where a fixed danger colour would not. */
+.deleteButton {
+  margin-left: auto;
+  padding: 8px 18px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background-color: var(--accent-alt);
+  color: var(--background);
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.deleteButton:hover:enabled {
+  background-color: color-mix(
+    in oklch,
+    var(--accent-alt) 85%,
+    var(--foreground)
+  );
+}
+
+.popupButton:disabled,
+.submitButton:disabled,
+.popupCloseButton:disabled,
+.deleteButton:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* ---- Popup ---- */
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97) translateY(-12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.popupOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background-color: rgba(20, 16, 12, 0.55);
+}
+
+.popupWindow {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 32px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background-color: var(--surface);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.28);
+  animation: slide-in 0.25s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .popupWindow {
+    animation: none;
+  }
+}
+
+.popupTitle {
+  font-family: var(--mincho);
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+/* The confirmation photo is a plain block image, so it needs its own cap to
+   stay inside the window on a narrow phone. */
+.popupImage {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: contain;
+}
+
+/* ---- Form ---- */
+
+.popupForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.hint {
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+.imageInput {
+  width: 100%;
+  padding: 12px;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.input:focus-visible,
+.imageInput:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.formStatus {
+  padding: 10px 12px;
+  border: 1px solid var(--accent-alt);
+  border-radius: 8px;
+  background-color: color-mix(in oklch, var(--accent-alt) 12%, transparent);
+  color: var(--accent-alt);
+  font-size: 0.85rem;
+  line-height: 1.6;
 }
 
 @media screen and (max-width: 600px) {
@@ -133,168 +318,16 @@
     line-height: 1.9;
   }
 
-  .section {
-    padding: 36px 0 44px;
-    line-height: 2;
-  }
-
-  .themeSection {
-    padding: 36px 20px 40px;
-  }
-
-  .theme {
-    margin: 30px 0 32px;
-    padding-left: 16px;
-    font-size: clamp(1.55rem, 8vw, 2.2rem);
-  }
   .grid {
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     gap: 16px;
   }
-}
 
-/* Popup Styles */
-@keyframes slide-in {
-  from {
-    opacity: 0;
-    transform: scale(0.95) translateY(-20px);
+  .popupOverlay {
+    padding: 16px;
   }
 
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
+  .popupWindow {
+    padding: 24px 20px;
   }
-}
-
-.popupButton {
-  padding: 14px 20px;
-  margin: 5px;
-  background-color: #3564dc;
-  color: white;
-  cursor: pointer;
-  border: solid;
-  border-radius: 16px;
-  font-size: 14px;
-  border-width: 0px;
-  box-shadow: 0 2px 4px rgba(50, 40, 237, 0.2);
-  transition: all 0.2s ease;
-}
-
-.popupButton:hover {
-  background-color: #1e3bb8;
-}
-
-.popupOverlay {
-  position: fixed;
-  display: flex;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 100;
-  align-items: center;
-  justify-content: center;
-}
-
-.popupWindow {
-  background-color: white;
-  border-radius: 25px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-  padding: 32px;
-  max-width: 500px;
-  width: 100%;
-  max-height: 85vh;
-  overflow-y: auto;
-  position: relative;
-  animation: slide-in 0.3s ease-out;
-  overflow: auto;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none;
-}
-
-.popupCloseButton {
-  padding: 14px 20px;
-  margin: 5px;
-  margin-top: 20px;
-  background-color: #696969;
-  color: white;
-  cursor: pointer;
-  border: solid;
-  border-radius: 14px;
-  font-size: 14px;
-  border-width: 0px;
-  box-shadow: 0 2px 4px rgba(50, 40, 237, 0.2);
-  transition: all 0.2s ease;
-}
-
-.popupCloseButton:hover {
-  background-color: #414141;
-}
-
-.popupTitle {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 20px;
-  color: black;
-}
-
-.submitButton {
-  padding: 14px 20px;
-  margin: 5px;
-  background-color: #3564dc;
-  color: white;
-  cursor: pointer;
-  border: solid;
-  border-radius: 16px;
-  font-size: 14px;
-  border-width: 0px;
-  box-shadow: 0 2px 4px rgba(50, 40, 237, 0.2);
-  transition: all 0.2s ease;
-}
-
-.submitButton:hover {
-  background-color: #1e3bb8;
-}
-
-.submitButton:disabled {
-  background-color: #a0a0a0;
-  cursor: not-allowed;
-}
-
-.field h2,
-.field p,
-.field label,
-.field input {
-  color: black;
-  font-weight: 4px;
-  margin-bottom: 8px;
-}
-.imageInput {
-  cursor: pointer;
-}
-
-.formStatus {
-  margin-top: 12px;
-  font-size: 0.9rem;
-  color: black;
-}
-
-/* Delete Button Styles */
-.deleteButton {
-  padding: 10px 20px;
-  margin: 5px;
-  margin-left: auto;
-  background-color: #dc3545; /* Bootstrap's danger color */
-  color: white;
-  cursor: pointer;
-  border: solid;
-  border-radius: 16px;
-  font-size: 14px;
-  border-width: 0px;
-  box-shadow: 0 2px 4px rgba(50, 40, 237, 0.2);
-  transition: all 0.2s ease;
-}
-
-.flexFrame {
-  display: flex;
-
-  gap: auto;
 }

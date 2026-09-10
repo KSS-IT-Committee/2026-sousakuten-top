@@ -46,3 +46,6 @@ next-env.d.ts
 # local repo-dump scratch files
 /a.sh
 /2026-sousakuten-top.txt
+
+# uploaded files, when running without the /app/files mount (see lib/lost-item-images.ts)
+/files-dev

@@ -10,6 +10,7 @@ import { hasAnyRole } from "@/lib/access";
 import { detectImageType } from "@/lib/lost-item-images";
 import {
   ALLOWED_IMAGE_LABEL,
+  imageTooLargeMessage,
   MAX_DESCRIPTION_LENGTH,
   MAX_IMAGE_BYTES,
 } from "@/lib/lost-items";
@@ -57,9 +58,10 @@ export async function submitLostItemAction(
   if (!(image instanceof File) || image.size === 0) {
     return { error: "写真を選んでください。", message: null };
   }
+  // The client checks this too, before anything goes over the wire; this is
+  // the copy that holds when the action is called directly.
   if (image.size > MAX_IMAGE_BYTES) {
-    const limit = Math.floor(MAX_IMAGE_BYTES / 1024 / 1024);
-    return { error: `写真は${limit}MBまでです。`, message: null };
+    return { error: imageTooLargeMessage(image.size), message: null };
   }
 
   // The browser's Content-Type comes from the file extension, so it is only a

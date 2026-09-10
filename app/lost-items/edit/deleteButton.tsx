@@ -44,7 +44,7 @@ export default function LostItemDeleteButton({
       {isDeleting && (
         <div className={styles.popupOverlay}>
           <div className={styles.popupWindow}>
-            <form action={formAction}>
+            <form className={styles.popupForm} action={formAction}>
               <input type="hidden" name="id" value={id} />
               <h2 className={styles.popupTitle}>本当に削除しますか？</h2>
               <Image
@@ -52,28 +52,30 @@ export default function LostItemDeleteButton({
                 alt={description ?? "忘れ物の写真"}
                 width={400}
                 height={400}
-                className={styles.image}
+                className={styles.popupImage}
               />
               {state.error !== null && (
                 <p className={styles.formStatus} role="alert">
                   {state.error}
                 </p>
               )}
-              <button
-                className={styles.deleteButton}
-                type="submit"
-                disabled={isPending}
-              >
-                {isPending ? "削除中…" : "削除する"}
-              </button>
-              <button
-                className={styles.popupCloseButton}
-                type="button"
-                disabled={isPending}
-                onClick={() => setIsDeleting(false)}
-              >
-                キャンセル
-              </button>
+              <div className={styles.actions}>
+                <button
+                  className={styles.deleteButton}
+                  type="submit"
+                  disabled={isPending}
+                >
+                  {isPending ? "削除中…" : "削除する"}
+                </button>
+                <button
+                  className={styles.popupCloseButton}
+                  type="button"
+                  disabled={isPending}
+                  onClick={() => setIsDeleting(false)}
+                >
+                  キャンセル
+                </button>
+              </div>
             </form>
           </div>
         </div>

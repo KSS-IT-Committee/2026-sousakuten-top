@@ -91,7 +91,7 @@ export const DESTINATIONS: readonly Destination[] = [
     label: "忘れ物",
     romaji: "Lost Items",
     href: "/lost-items",
-    blurb: "忘れ物一覧",
+    blurb: "会場で見つかった忘れ物の一覧",
     isReady: true,
   },
 ];
