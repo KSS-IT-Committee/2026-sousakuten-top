@@ -7,6 +7,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { AccountBar } from "@/app/components/AccountNav/AccountBar";
 import { Footer } from "@/app/components/Footer";
 import { NoScriptAlert } from "@/app/components/NoScriptAlert";
+import { PersonalQr } from "@/app/components/PersonalQr";
 import { VENUE_NAME } from "@/lib/festival";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
 
@@ -51,6 +52,9 @@ export default function RootLayout({
         <AccountBar />
         <main className="flex-grow">{children}</main>
         <Footer />
+        {/* Fixed, bottom-left, on every page — the code has to be one tap
+            away at a door. Renders nothing when nobody is logged in. */}
+        <PersonalQr />
       </body>
       {/* Google tag (gtag.js) via @next/third-parties — the official Next.js
           integration. Skipped on PR preview deployments: IS_PR_PREVIEW is

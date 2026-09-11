@@ -57,7 +57,7 @@ export const DESTINATIONS: readonly Destination[] = [
     romaji: "Exhibits",
     href: "/exhibits",
     blurb: "各クラス・部活・委員会の展示を一覧",
-    isReady: false,
+    isReady: true,
   },
   {
     label: "タイムテーブル",
@@ -86,6 +86,13 @@ export const DESTINATIONS: readonly Destination[] = [
     href: "/vote",
     blurb: "投票",
     isReady: false,
+  },
+  {
+    label: "忘れ物",
+    romaji: "Lost Items",
+    href: "/lost-items",
+    blurb: "会場で見つかった忘れ物の一覧",
+    isReady: true,
   },
 ];
 
