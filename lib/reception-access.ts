@@ -4,12 +4,30 @@ import { hasAnyRole, type Role } from "@/lib/access";
 import type { SessionUser } from "@/lib/session";
 
 /**
- * Who may open /lottery/reception at all: the 5・6年 students, whose classes
- * are the 創作部門. The page lists every winner of every performance, so it is
- * deliberately narrower than INTERNAL_ROLES — and seeing a list is not the
- * same as recording on it (canRecordArrivals).
+ * The 創作部門 classes themselves: the 5・6年 students, whose classes are the
+ * acts. Each of them records on their own class's list and no other
+ * (canRecordArrivals).
  */
-export const RECEPTION_ROLES: readonly Role[] = ["G5", "G6"];
+const RECEPTION_CLASS_ROLES: readonly Role[] = ["G5", "G6"];
+
+/**
+ * IT委員会, which runs this page: records on EVERY class's list, so a desk
+ * that cannot record for itself — nobody logged in, a forgotten password, a
+ * phone that died — can be worked from the committee's own account. Held by
+ * hand-granted accounts in any year, so it is not tied to a grade role.
+ */
+const RECEPTION_COMMITTEE_ROLES: readonly Role[] = ["IT"];
+
+/**
+ * Who may open /lottery/reception at all: the 創作部門 classes and IT委員会.
+ * The page lists every winner of every performance, so it is deliberately
+ * narrower than INTERNAL_ROLES — and seeing a list is not the same as
+ * recording on it (canRecordArrivals).
+ */
+export const RECEPTION_ROLES: readonly Role[] = [
+  ...RECEPTION_CLASS_ROLES,
+  ...RECEPTION_COMMITTEE_ROLES,
+];
 
 // Population roles → the parts of a class code, as 2026-account-generator
 // grants them (a student gets exactly one G<grade> and one Class<letter>).
@@ -43,11 +61,14 @@ export function classFromRoles(roles: readonly string[]): string | null {
 
 /**
  * Whether `user` may record arrivals for the performances of class `actId`:
- * only that class's own members, whose 受付 it is. Decided from roles, never
- * from the username, like every other authorization in these apps.
+ * that class's own members, whose 受付 it is, and IT委員会, for every class.
+ * Decided from roles, never from the username, like every other authorization
+ * in these apps.
  */
 export function canRecordArrivals(user: SessionUser, actId: string): boolean {
+  if (hasAnyRole(user, RECEPTION_COMMITTEE_ROLES)) return true;
   return (
-    hasAnyRole(user, RECEPTION_ROLES) && classFromRoles(user.roles) === actId
+    hasAnyRole(user, RECEPTION_CLASS_ROLES) &&
+    classFromRoles(user.roles) === actId
   );
 }
