@@ -78,6 +78,10 @@ function PerformanceCard({
         {department.name === "開拓部門" && (
           <div className={styles.sectionNotes}>
             <p className={styles.sectionNote}>
+              開拓部門は抽選なしで見ることができます。各教室前の待機列にお並びください。
+            </p>
+            <br />
+            <p className={styles.sectionNote}>
               開拓部門の公演時刻は
               <Link href="/schedule#Kaitaku">タイムテーブルを見る</Link>
             </p>
@@ -86,12 +90,19 @@ function PerformanceCard({
         {department.name === "創作部門" && (
           <div className={styles.sectionNotes}>
             <p className={styles.sectionNote}>
-              <span>事前申込の当選確認</span>
+              創作部門の観覧は事前抽選制です。
+            </p>
+            <br />
+            <p className={styles.sectionNote}>
+              <span> 事前申込の当選確認:</span>
               <Link href="/lottery">当選結果を確認する</Link>
             </p>
             <p className={styles.sectionNote}>
               <span>創作部門の公演時刻</span>
               <Link href="/schedule#Sousaku">タイムテーブルを見る</Link>
+            </p>
+            <p className={styles.sectionNote}>
+              <Link href="#cancellation">キャンセル枠について</Link>
             </p>
           </div>
         )}
@@ -167,6 +178,18 @@ export default function ExhibitsPage() {
           { label: "その他の展示", href: "#OTHER" },
         ]}
       />
+      <div id="cancellation" className={styles.cancellation}>
+        <h2 className={styles.h2}>キャンセル枠について</h2>
+        <p>
+          創作部門は原則、事前抽選の当選者のみ見ることができます。ただし、キャンセル席が発生した場合は、その席数だけ各クラスのキャンセル待ち列に並んだ方を前から順にご案内いたします。
+        </p>
+        <p>
+          予約された方々の後ろに並んでいただき、各公演の収容人数に応じてご案内いたします。
+        </p>
+        <p className={styles.note}>
+          なお、第３公演についてはキャンセル枠の整列を12:20とします。
+        </p>
+      </div>
     </>
   );
 }
