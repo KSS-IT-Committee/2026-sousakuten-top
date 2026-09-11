@@ -50,6 +50,43 @@
   letter-spacing: 0.08em;
 }
 
+.cancellation {
+  width: min(100% - 48px, 960px);
+  margin: 0 auto;
+  padding: 48px 0 96px;
+  border-top: 1px solid var(--border);
+  line-height: 2.15;
+}
+
+.h2 {
+  margin: 0 0 0.8em;
+  padding-left: 0.75em;
+  border-left: 3px solid var(--accent-alt);
+  color: var(--accent);
+  font-family: var(--mincho);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+}
+
+.cancellation p {
+  margin: 0;
+}
+
+.cancellation p + p {
+  margin-top: 1.15em;
+}
+
+.note {
+  padding: 0.9em 1em;
+  border: 1px solid color-mix(in srgb, var(--accent-alt) 40%, var(--border));
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--accent-alt) 8%, transparent);
+  color: var(--foreground);
+  font-weight: 700;
+}
+
 .performanceList {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -85,16 +122,6 @@
   padding: 14px 16px;
   border-left: 3px solid var(--accent-alt);
   background: color-mix(in oklch, var(--accent-alt) 7%, var(--surface));
-}
-
-.sectionNote {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
-  color: var(--foreground);
-  font-size: 0.85rem;
-  line-height: 1.6;
 }
 
 .sectionNote span {
@@ -187,6 +214,11 @@
 
   .section {
     padding: 40px 0 48px;
+  }
+
+  .cancellation {
+    width: min(100% - 32px, 960px);
+    padding: 40px 0 80px;
   }
 
   .performanceList {
