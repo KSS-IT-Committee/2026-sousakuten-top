@@ -234,7 +234,11 @@ function TimeGrid({ programs }: { programs: readonly TimetableProgram[] }) {
       </div>
       <div className={styles.timelineBody}>
         {programs.map((program) => (
-          <div className={styles.timelineRow} key={program.title.romaji}>
+          <div
+            id={program.title.romaji}
+            className={styles.timelineRow}
+            key={program.title.romaji}
+          >
             <div className={styles.timelineProgram}>
               <strong>{program.title.name}</strong>
               <span>{program.dates ?? program.title.romaji}</span>
@@ -314,7 +318,7 @@ export default function SchedulePage() {
             <h2 id="timetable-heading">公演タイムテーブル</h2>
             <p>各公演の開始・終了時間をご確認ください。</p>
           </div>
-          <h3>クラスの公演時間</h3>
+          <h3 id="class">クラスの公演時間</h3>
           <TimeGrid programs={PROGRAMS} />
           <h3 id="club">部活動の公演時間</h3>
           <TimeGrid programs={CLUB_PROGRAMS} />
