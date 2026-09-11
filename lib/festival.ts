@@ -84,8 +84,8 @@ export const DESTINATIONS: readonly Destination[] = [
     label: "投票",
     romaji: "Vote",
     href: "/vote",
-    blurb: "投票",
-    isReady: false,
+    blurb: "投票方法・投票結果の発表について",
+    isReady: true,
   },
   {
     label: "忘れ物",
