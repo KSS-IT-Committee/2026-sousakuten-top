@@ -124,6 +124,7 @@ export default function AboutPage() {
             </Link>
           </div>
           <div className={styles.linkGroup}>
+            開拓部門は抽選なしで見ることができます。各教室前の待機列にお並びください。
             また、創作部門の観覧は事前抽選制です。
             <p>抽選結果は以下のリンクからご確認ください。</p>
             <div className={styles.linkRow}>
@@ -132,6 +133,17 @@ export default function AboutPage() {
               </Link>
             </div>
           </div>
+          <h2 className={styles.h2}>キャンセル枠について</h2>
+          <p>
+            創作部門は原則、事前抽選の当選者のみ見ることができます。ただし、キャンセル席が発生した場
+            合は、その席数だけ各クラスのキャンセル待ち列に並んだ方を前から順にご案内いたします。
+          </p>
+          <p>
+            予約された方々の後ろに並んでいただき、各公演の収容人数に応じてご案内いたします。
+          </p>
+          <p className={styles.note}>
+            なお、第３公演についてはキャンセル枠の整列を12:20とします。
+          </p>
         </Section>
         <Section title="投票・大賞について">
           創作展では、生徒や来校者による投票を行い、以下の賞を決定します。

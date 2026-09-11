@@ -58,6 +58,28 @@
   margin: 0;
 }
 
+.h2 {
+  margin: 2.2em 0 0.8em;
+  padding-left: 0.75em;
+  border-left: 3px solid var(--accent-alt);
+  color: var(--accent);
+  font-family: var(--mincho);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+}
+
+.note {
+  margin-top: 1.15em !important;
+  padding: 0.9em 1em;
+  border: 1px solid color-mix(in srgb, var(--accent-alt) 40%, var(--border));
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--accent-alt) 8%, transparent);
+  color: var(--foreground);
+  font-weight: 700;
+}
+
 .section ul {
   margin: 1.2em 0 0;
   padding-left: 0;
