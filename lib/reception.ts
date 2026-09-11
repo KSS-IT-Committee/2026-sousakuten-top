@@ -114,6 +114,33 @@ export function receptionDeadline(slot: ReceptionSlot): Date {
   return new Date(slot.startsAt.getTime() - RECEPTION_CLOSES_BEFORE_START_MS);
 }
 
+/** How close to the 受付締切 the countdown turns red. */
+export const RECEPTION_URGENT_BEFORE_DEADLINE_MS = 5 * 60 * 1000;
+
+/**
+ * 座席数 — the people one class's one performance admits. The draw
+ * (2026-lottery's SEATS_PER_PERFORMANCE) awarded seats up to exactly this, so
+ * once the 受付締切 has passed, whatever the arrivals leave is what the
+ * キャンセル待ち列 gets.
+ */
+export const SEATS_PER_PERFORMANCE = 60;
+
+/**
+ * 「4分05秒」「12分」「8時間36分」 — the time left before the 受付締切, as
+ * the desk reads it: to the second in the last 5 minutes, and in whole minutes
+ * rounded up before that, so it never reads 0分 while there is still time.
+ */
+export function formatTimeLeft(ms: number): string {
+  const totalSeconds = Math.max(0, Math.ceil(ms / 1000));
+  if (totalSeconds * 1000 <= RECEPTION_URGENT_BEFORE_DEADLINE_MS) {
+    const seconds = String(totalSeconds % 60).padStart(2, "0");
+    return `${Math.floor(totalSeconds / 60)}分${seconds}秒`;
+  }
+  const totalMinutes = Math.ceil(totalSeconds / 60);
+  if (totalMinutes < 60) return `${totalMinutes}分`;
+  return `${Math.floor(totalMinutes / 60)}時間${totalMinutes % 60}分`;
+}
+
 const JST_TIME = new Intl.DateTimeFormat("ja-JP", {
   timeZone: "Asia/Tokyo",
   hour: "2-digit",

@@ -7,7 +7,6 @@ import {
   currentReceptionSlot,
   findReceptionAct,
   findReceptionSlot,
-  formatJstTime,
   RECEPTION_ACTS,
   RECEPTION_DAYS,
   RECEPTION_SLOTS,
@@ -20,6 +19,7 @@ import {
   classFromRoles,
   RECEPTION_ROLES,
 } from "@/lib/reception-access";
+import { receptionNow } from "@/lib/reception-clock";
 import { getCurrentUser } from "@/lib/session";
 import { pageMetadata } from "@/lib/site";
 
@@ -68,7 +68,7 @@ async function ReceptionContent({
   // way (or next), at the desk's own class.
   const slot =
     findReceptionSlot(firstValue(query.slot)) ??
-    currentReceptionSlot(new Date());
+    currentReceptionSlot(receptionNow());
   const act =
     findReceptionAct(firstValue(query.act)) ??
     findReceptionAct(user === null ? null : classFromRoles(user.roles)) ??
@@ -84,7 +84,7 @@ async function ReceptionContent({
         <p className={styles.eyebrow}>RECEPTION</p>
         <h1 className={styles.title}>創作部門 受付</h1>
         <p className={styles.lead}>
-          自分のクラスの公演では、当選者が受付に来たらその行をタップして来場を記録してください。もう一度タップすると取り消せます。記録は裏で保存されるので、保存を待たずに次の人をタップできます。ほかのクラスの公演は閲覧のみです。
+          自分のクラスの公演では、当選者が受付に来たらその行をタップして来場を記録してください。もう一度タップすると取り消せます。記録は裏で保存されるので、保存を待たずに次の人をタップできます。ほかのクラスの公演は閲覧のみです。受付締切（開演5分前）を過ぎると、その公演の記録は変更できなくなります。
         </p>
       </header>
 
@@ -158,20 +158,12 @@ async function ReceptionContent({
             {slot.dayLabel} {slot.label}（{slot.time}）
           </span>
         </h2>
-        <p className={styles.deadline}>
-          受付締切 {formatJstTime(receptionDeadline(slot))}
-          （開演5分前）。この時点で来場していない当選は無効です。
-        </p>
-        {!canRecord && (
-          <p className={styles.readOnly}>
-            閲覧のみです。この公演の来場を記録できるのは、{act.label}
-            の生徒だけです。
-          </p>
-        )}
         <ReceptionList
           key={`${slot.id}/${act.id}`}
           seats={seats}
-          renderedAt={new Date().toISOString()}
+          renderedAt={receptionNow().toISOString()}
+          deadline={receptionDeadline(slot).toISOString()}
+          actLabel={act.label}
           canRecord={canRecord}
         />
       </section>

@@ -13,10 +13,13 @@ import {
 import {
   formatJstClock,
   formatJstTime,
+  formatTimeLeft,
   normalizeSeatQuery,
+  RECEPTION_URGENT_BEFORE_DEADLINE_MS,
   type ReceptionSeat,
   SEAT_HOLDER_LABELS,
   seatMatchesQuery,
+  SEATS_PER_PERFORMANCE,
 } from "@/lib/reception";
 
 import { type CheckinResult, setSeatCheckinAction } from "./actions";
@@ -61,6 +64,32 @@ function countPeople(seats: readonly ReceptionSeat[]): number {
   return seats.reduce((total, seat) => total + seat.partySize, 0);
 }
 
+function seatStatusLabel(arrivedAt: string | null, isClosed: boolean): string {
+  if (arrivedAt !== null) {
+    return `✓ 来場 ${formatJstTime(new Date(arrivedAt))}`;
+  }
+  // Nobody claimed it by the 受付締切: the win is void.
+  return isClosed ? "無効" : "未";
+}
+
+/**
+ * The server's clock, ticking once a second. It starts from the page's render
+ * time — the same instant on the server and in the browser, so hydration
+ * agrees — and keeps the offset between that and the phone's own clock, so
+ * the countdown and the lock follow the server, which enforces the deadline,
+ * even on a phone whose clock is wrong.
+ */
+function useServerNow(renderedAt: string): number {
+  const renderedAtMs = Date.parse(renderedAt);
+  const [now, setNow] = useState(renderedAtMs);
+  useEffect(() => {
+    const offset = renderedAtMs - Date.now();
+    const timer = window.setInterval(() => setNow(Date.now() + offset), 1000);
+    return () => window.clearInterval(timer);
+  }, [renderedAtMs]);
+  return now;
+}
+
 /**
  * One performance of one class, as its 受付 works through it.
  *
@@ -72,6 +101,11 @@ function countPeople(seats: readonly ReceptionSeat[]): number {
  * with the confirmed one; a write that fails rolls back only its own seat and
  * says so under it. A poll brings in the other phones' taps.
  *
+ * At the 受付締切 (開演5分前) the list locks, on the same clock the action
+ * uses to refuse taps: seats that have not arrived read 無効, nothing can be
+ * recorded or taken back, and the tally shows the 空席 left for the
+ * キャンセル待ち列.
+ *
  * For anyone outside the performing class the rows are read-only: the list
  * still polls and searches, it just cannot be tapped. The action refuses them
  * on its own, so this is only what the page shows, not the rule.
@@ -79,15 +113,21 @@ function countPeople(seats: readonly ReceptionSeat[]): number {
 export function ReceptionList({
   seats,
   renderedAt,
+  deadline,
+  actLabel,
   canRecord,
 }: {
   seats: readonly ReceptionSeat[];
   renderedAt: string;
+  /** This performance's 受付締切, as an ISO instant. */
+  deadline: string;
+  actLabel: string;
   /** Whether this account may record arrivals here at all. */
   canRecord: boolean;
 }) {
   const router = useRouter();
   const searchId = useId();
+  const now = useServerNow(renderedAt);
   const [query, setQuery] = useState("");
   const [notices, setNotices] = useState<ReadonlyMap<string, SeatNotice>>(
     () => new Map(),
@@ -97,6 +137,12 @@ export function ReceptionList({
     seats,
     applyArrival,
   );
+
+  const deadlineAt = new Date(deadline);
+  const msLeft = deadlineAt.getTime() - now;
+  const isClosed = msLeft <= 0;
+  const isUrgent = !isClosed && msLeft <= RECEPTION_URGENT_BEFORE_DEADLINE_MS;
+  const canTap = canRecord && !isClosed;
 
   useEffect(() => {
     function refreshIfVisible() {
@@ -129,7 +175,7 @@ export function ReceptionList({
   }
 
   function toggleArrival(seat: ReceptionSeat) {
-    if (!canRecord) return;
+    if (!canTap) return;
     const isArriving = seat.checkedInAt === null;
     setSeatNotice(seat.key, null);
     startTransition(async () => {
@@ -161,6 +207,7 @@ export function ReceptionList({
     seatMatchesQuery(seat, normalizedQuery),
   );
   const arrivedSeats = shownSeats.filter((seat) => seat.checkedInAt !== null);
+  const arrivedPeople = countPeople(arrivedSeats);
   // What the server last confirmed, to tell a saved seat from one in flight.
   const confirmedArrivals = new Map(
     seats.map((seat) => [seat.key, seat.checkedInAt !== null]),
@@ -174,14 +221,55 @@ export function ReceptionList({
 
   return (
     <>
+      <div className={styles.deadlineBox}>
+        {isClosed ? (
+          <>
+            <p className={styles.deadline}>
+              受付締切 {formatJstTime(deadlineAt)} を過ぎました
+            </p>
+            <p className={styles.deadlineRule}>
+              来場していない当選は無効です。来場記録はもう変更できません。
+            </p>
+          </>
+        ) : (
+          <>
+            <p className={styles.deadline}>
+              受付締切 {formatJstTime(deadlineAt)}（開演5分前）
+              <span
+                className={styles.countdown}
+                data-urgent={isUrgent ? "" : undefined}
+              >
+                締切まで {formatTimeLeft(msLeft)}
+              </span>
+            </p>
+            <p className={styles.deadlineRule}>
+              この時点で来場していない当選は無効です。
+            </p>
+          </>
+        )}
+      </div>
+
+      {!canRecord && (
+        <p className={styles.readOnly}>
+          閲覧のみです。この公演の来場を記録できるのは、{actLabel}
+          の生徒だけです。
+        </p>
+      )}
+
       <div className={styles.toolbar}>
         <p className={styles.tally} aria-live="polite">
           来場
-          <span className={styles.tallyCount}>{countPeople(arrivedSeats)}</span>
-          /{countPeople(shownSeats)}名
+          <span className={styles.tallyCount}>{arrivedPeople}</span>/
+          {countPeople(shownSeats)}名
           <span className={styles.tallyGroups}>
             （{arrivedSeats.length}/{shownSeats.length}組）
           </span>
+          {isClosed && (
+            <span className={styles.waitlist}>
+              空席 {Math.max(0, SEATS_PER_PERFORMANCE - arrivedPeople)}
+              （キャンセル待ち）
+            </span>
+          )}
         </p>
         <p className={styles.freshness}>
           {formatJstClock(new Date(renderedAt))} 時点
@@ -244,9 +332,9 @@ export function ReceptionList({
       ) : (
         <ul className={styles.seats}>
           {visibleSeats.map((seat) => {
-            const arrivedAt = seat.checkedInAt;
-            const isArrived = arrivedAt !== null;
+            const isArrived = seat.checkedInAt !== null;
             const isSaving = isArrived !== confirmedArrivals.get(seat.key);
+            const isVoid = isClosed && !isArrived;
             const notice = notices.get(seat.key);
             return (
               <li key={seat.key}>
@@ -255,7 +343,8 @@ export function ReceptionList({
                   type="button"
                   aria-pressed={isArrived}
                   data-saving={isSaving ? "" : undefined}
-                  disabled={!canRecord}
+                  data-void={isVoid ? "" : undefined}
+                  disabled={!canTap}
                   onClick={() => toggleArrival(seat)}
                 >
                   <span className={styles.seatName}>
@@ -274,9 +363,7 @@ export function ReceptionList({
                   </span>
                   <span className={styles.seatParty}>{seat.partySize}名</span>
                   <span className={styles.seatStatus}>
-                    {arrivedAt === null
-                      ? "未"
-                      : `✓ 来場 ${formatJstTime(new Date(arrivedAt))}`}
+                    {seatStatusLabel(seat.checkedInAt, isClosed)}
                   </span>
                   {isSaving && (
                     <span className={styles.seatSaving}>保存中…</span>

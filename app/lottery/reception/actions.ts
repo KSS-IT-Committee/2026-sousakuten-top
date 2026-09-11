@@ -4,10 +4,17 @@ import { refresh } from "next/cache";
 
 import { addSeatCheckin } from "@/db/addSeatCheckin";
 import { deleteSeatCheckin } from "@/db/deleteSeatCheckin";
-import { getSeatActId } from "@/db/getSeatActId";
+import { getSeatPerformance } from "@/db/getSeatPerformance";
 import { hasAnyRole } from "@/lib/access";
-import { findReceptionAct, type SeatKind } from "@/lib/reception";
+import {
+  findReceptionAct,
+  findReceptionSlot,
+  formatJstTime,
+  receptionDeadline,
+  type SeatKind,
+} from "@/lib/reception";
 import { canRecordArrivals, RECEPTION_ROLES } from "@/lib/reception-access";
+import { receptionNow } from "@/lib/reception-clock";
 import { getCurrentUser, type SessionUser } from "@/lib/session";
 
 export type CheckinResult =
@@ -22,6 +29,7 @@ type CheckinOutcome =
   | { status: "saved" }
   | { status: "missing" }
   | { status: "forbidden"; actId: string }
+  | { status: "closed"; deadline: Date }
   | { status: "already"; checkedInAt: Date };
 
 function isSeatKind(value: unknown): value is SeatKind {
@@ -34,10 +42,17 @@ async function applyCheckin(
   seatId: number,
   isArrived: boolean,
 ): Promise<CheckinOutcome> {
-  const actId = await getSeatActId(kind, seatId);
-  if (actId === null) return { status: "missing" };
-  if (!canRecordArrivals(operator, actId)) {
-    return { status: "forbidden", actId };
+  const seat = await getSeatPerformance(kind, seatId);
+  const slot = seat === null ? null : findReceptionSlot(seat.slotId);
+  if (seat === null || slot === null) return { status: "missing" };
+  if (!canRecordArrivals(operator, seat.actId)) {
+    return { status: "forbidden", actId: seat.actId };
+  }
+  // 「5分前の時点で不在の場合、当選は無効」: from the 受付締切 on, the list is
+  // final — no late arrival, and no taking one back either.
+  const deadline = receptionDeadline(slot);
+  if (receptionNow().getTime() >= deadline.getTime()) {
+    return { status: "closed", deadline };
   }
   if (!isArrived) {
     await deleteSeatCheckin(kind, seatId);
@@ -51,12 +66,13 @@ async function applyCheckin(
  * Records (isArrived = true) or takes back (false) one seat's arrival.
  *
  * Only a member of the class whose play the seat is for may do either, and
- * that class is read off the seat, never taken from the caller. Safe to repeat
- * both ways, because a desk's phones race each other and a flaky connection
- * replays taps: arriving twice keeps the first time (and says so), and taking
- * back a seat that is not checked in does nothing. Ends with refresh(), so the
- * response carries the re-rendered list and the tapping phone sees the
- * confirmed state — other phones' taps included — without waiting for a poll.
+ * only until that performance's 受付締切; both are read off the seat, never
+ * taken from the caller. Safe to repeat both ways, because a desk's phones
+ * race each other and a flaky connection replays taps: arriving twice keeps
+ * the first time (and says so), and taking back a seat that is not checked in
+ * does nothing. Ends with refresh(), so the response carries the re-rendered
+ * list and the tapping phone sees the confirmed state — other phones' taps
+ * included — without waiting for a poll.
  */
 export async function setSeatCheckinAction(
   kind: SeatKind,
@@ -108,6 +124,12 @@ export async function setSeatCheckinAction(
     return {
       status: "failed",
       error: `この公演の来場を記録できるのは、${label}の生徒だけです。`,
+    };
+  }
+  if (outcome.status === "closed") {
+    return {
+      status: "failed",
+      error: `受付締切（${formatJstTime(outcome.deadline)}）を過ぎたため、この公演の来場記録は変更できません。`,
     };
   }
   if (outcome.status === "already") {
