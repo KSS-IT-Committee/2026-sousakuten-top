@@ -32,7 +32,7 @@ export default function LotteryPage() {
     <>
       <div className={styles.main}>
         <header className={styles.header}>
-          <p className={styles.romaji}>{DESTINATION.romaji}</p>
+          <p className={styles.romaji}>LOTTERY</p>
           <h1 className={styles.title}>{DESTINATION.label}</h1>
           <p className={styles.lead}>
             校外の方を対象とした劇観覧抽選の結果をお知らせします。
