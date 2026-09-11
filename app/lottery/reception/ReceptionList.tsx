@@ -181,7 +181,7 @@ export function ReceptionList({
     startTransition(async () => {
       applyOptimisticArrival({
         key: seat.key,
-        checkedInAt: isArriving ? new Date().toISOString() : null,
+        checkedInAt: isArriving ? new Date(now).toISOString() : null,
       });
       let result: CheckinResult;
       try {
