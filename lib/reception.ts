@@ -208,14 +208,18 @@ export function normalizeSeatQuery(input: string): string {
     .toUpperCase();
 }
 
-/** Whether a seat's account, 受付番号 or 抽選番号 contains the query. */
+/**
+ * Whether a seat's account, 受付番号 or 抽選番号 contains the query. The seat's
+ * values are folded by normalizeSeatQuery too, so both sides compare alike.
+ */
 export function seatMatchesQuery(
   seat: ReceptionSeat,
   normalizedQuery: string,
 ): boolean {
   if (normalizedQuery === "") return true;
   return (
-    seat.label.toUpperCase().includes(normalizedQuery) ||
-    (seat.lotteryNumber?.includes(normalizedQuery) ?? false)
+    normalizeSeatQuery(seat.label).includes(normalizedQuery) ||
+    (seat.lotteryNumber !== null &&
+      normalizeSeatQuery(seat.lotteryNumber).includes(normalizedQuery))
   );
 }
