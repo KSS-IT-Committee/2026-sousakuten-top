@@ -1,0 +1,466 @@
+.main {
+  width: min(100% - 48px, 760px);
+  margin: 0 auto;
+  /* The bottom leaves room to scroll the last seats clear of the fixed
+     personal-QR button. */
+  padding: 56px 0 128px;
+}
+
+.header {
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--border);
+}
+
+.eyebrow {
+  color: var(--accent-alt);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1.4;
+}
+
+.title {
+  margin-top: 14px;
+  font-family: var(--mincho);
+  font-size: clamp(2rem, 6vw, 3.2rem);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+}
+
+.lead {
+  max-width: 36em;
+  margin-top: 20px;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.9;
+}
+
+/* ---- Performance picker ---- */
+
+.picker {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  min-height: 40px;
+  padding: 9px 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background-color: var(--surface);
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: 1.4;
+  touch-action: manipulation;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.chip:hover {
+  border-color: color-mix(in oklch, var(--foreground) 40%, transparent);
+}
+
+.chip:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.chip[aria-current="page"] {
+  border-color: var(--accent);
+  background-color: var(--accent);
+  color: var(--background);
+}
+
+.chipTime {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+/* ---- The chosen performance ---- */
+
+.performance {
+  margin-top: 36px;
+}
+
+.performanceTitle {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 14px;
+  font-family: var(--mincho);
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+}
+
+.performanceWhen {
+  color: var(--muted);
+  font-family: var(--gothic);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.deadlineBox {
+  margin-top: 8px;
+}
+
+.deadline {
+  color: var(--accent-alt);
+  font-size: 0.85rem;
+  font-weight: 700;
+  line-height: 1.9;
+}
+
+.deadlineRule {
+  color: var(--accent-alt);
+  font-size: 0.85rem;
+  line-height: 1.7;
+}
+
+.countdown {
+  display: inline-block;
+  margin-left: 10px;
+  padding: 0 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--foreground);
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* The last 5 minutes before the 受付締切. */
+.countdown[data-urgent] {
+  border-color: var(--accent-alt);
+  background-color: var(--accent-alt);
+  color: var(--background);
+}
+
+.readOnly {
+  margin-top: 12px;
+  padding: 10px 14px;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+/* ---- Toolbar: tally, freshness, search ---- */
+
+/* Meant to stay in view while the desk scrolls a long list, parked just under
+   the site's sticky AccountBar, which is 47px tall: 8px of padding either side
+   of the 30px account link, plus its 1px bottom rule. NOTE: globals.css puts
+   overflow-x: hidden on both html and body, which switches position: sticky
+   off site-wide (the AccountBar's too), so for now this scrolls away with the
+   page; `overflow-x: clip` there would make both stick. */
+.toolbar {
+  position: sticky;
+  top: 47px;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+  margin-top: 20px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  background-color: var(--background);
+}
+
+.tally {
+  flex: 1 1 auto;
+  font-size: 0.95rem;
+}
+
+.tallyCount {
+  margin: 0 4px 0 8px;
+  font-family: var(--mono);
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.tallyGroups {
+  margin-left: 6px;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+/* After the 受付締切: the seats the arrivals left for キャンセル待ち. */
+.waitlist {
+  display: inline-block;
+  margin-left: 12px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background-color: var(--accent);
+  color: var(--background);
+  font-size: 0.85rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.freshness {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.refresh {
+  min-height: 32px;
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background-color: transparent;
+  color: var(--foreground);
+  font-family: inherit;
+  font-size: 0.78rem;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.refresh:disabled {
+  opacity: 0.55;
+  cursor: progress;
+}
+
+.searchField {
+  display: flex;
+  flex: 1 1 100%;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.searchLabel {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+/* 1rem, i.e. 16px: anything smaller makes iOS Safari zoom in on focus. */
+.search {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--mono);
+  font-size: 1rem;
+}
+
+.search:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+/* ---- Seats ---- */
+
+.seats {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+  list-style: none;
+}
+
+.seat {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto 7.5em;
+  align-items: center;
+  gap: 4px 12px;
+  width: 100%;
+  min-height: 60px;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background-color: var(--surface);
+  color: var(--foreground);
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition:
+    border-color 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.seat:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Another class's performance: read-only, but still fully legible. */
+.seat:disabled {
+  cursor: default;
+}
+
+.seat[aria-pressed="true"] {
+  border-color: var(--accent);
+  background-color: color-mix(in oklch, var(--accent) 16%, var(--surface));
+}
+
+/* Not yet confirmed by the server. */
+.seat[data-saving] {
+  border-style: dashed;
+}
+
+/* Nobody claimed it by the 受付締切: the win is void. */
+.seat[data-void] {
+  opacity: 0.55;
+}
+
+.seat[data-void] .seatStatus {
+  color: var(--accent-alt);
+}
+
+.seatName {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.seatLabel {
+  overflow: hidden;
+  font-family: var(--mono);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.seatSub {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+}
+
+.seatHolder {
+  padding: 3px 9px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.seatHolder[data-holder="parent"] {
+  border-color: color-mix(in oklch, var(--accent-alt) 60%, transparent);
+  color: var(--accent-alt);
+}
+
+.seatHolder[data-holder="external"] {
+  border-color: color-mix(in oklch, var(--accent) 60%, transparent);
+  color: var(--accent);
+}
+
+.seatParty {
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.seatStatus {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.seat[aria-pressed="true"] .seatStatus {
+  color: var(--accent);
+}
+
+.seatSaving {
+  grid-column: 1 / -1;
+  color: var(--muted);
+  font-size: 0.72rem;
+  text-align: right;
+}
+
+.seatError {
+  margin-top: 6px;
+  padding: 8px 12px;
+  border: 1px solid var(--accent-alt);
+  border-radius: 8px;
+  background-color: color-mix(in oklch, var(--accent-alt) 12%, transparent);
+  color: var(--accent-alt);
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+/* Notices for seats that have left the list — a ticket 破棄された while the
+   desk was tapping it — shown above the list since their rows are gone. */
+.orphanNotices {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin-top: 16px;
+  padding: 10px 12px;
+  border: 1px solid var(--accent-alt);
+  border-radius: 8px;
+  background-color: color-mix(in oklch, var(--accent-alt) 12%, transparent);
+  color: var(--accent-alt);
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+.orphanNotices p {
+  flex: 1 1 100%;
+}
+
+.empty {
+  margin-top: 16px;
+  padding: 44px 24px;
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  color: var(--muted);
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+  .main {
+    width: min(100% - 32px, 760px);
+    padding: 40px 0 128px;
+  }
+
+  .header {
+    padding-bottom: 24px;
+  }
+
+  .lead {
+    font-size: 0.9rem;
+  }
+
+  /* Too narrow for four columns: the status drops under the name. */
+  .seat {
+    grid-template-columns: minmax(0, 1fr) auto auto;
+  }
+
+  .seatStatus {
+    grid-column: 1 / -1;
+  }
+}
