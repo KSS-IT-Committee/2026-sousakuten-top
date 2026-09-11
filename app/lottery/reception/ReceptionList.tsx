@@ -106,9 +106,10 @@ function useServerNow(renderedAt: string): number {
  * recorded or taken back, and the tally shows the 空席 left for the
  * キャンセル待ち列.
  *
- * For anyone outside the performing class the rows are read-only: the list
- * still polls and searches, it just cannot be tapped. The action refuses them
- * on its own, so this is only what the page shows, not the rule.
+ * For anyone who may not record here — outside the performing class, and not
+ * an IT委員 — the rows are read-only: the list still polls and searches, it
+ * just cannot be tapped. The action refuses them on its own, so this is only
+ * what the page shows, not the rule.
  */
 export function ReceptionList({
   seats,
@@ -252,7 +253,7 @@ export function ReceptionList({
       {!canRecord && (
         <p className={styles.readOnly}>
           閲覧のみです。この公演の来場を記録できるのは、{actLabel}
-          の生徒だけです。
+          の生徒とIT委員だけです。
         </p>
       )}
 
