@@ -1,0 +1,121 @@
+.main {
+  width: min(100% - 48px, 760px);
+  margin: 0 auto;
+  padding: 72px 0 112px;
+}
+
+.header {
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--border);
+}
+
+.eyebrow {
+  color: var(--accent-alt);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1.4;
+}
+
+.title {
+  margin-top: 14px;
+  font-family: var(--mincho);
+  font-size: clamp(2.4rem, 7vw, 4.5rem);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+}
+
+.lead {
+  max-width: 36em;
+  margin-top: 24px;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 2;
+}
+
+.editLinkButton {
+  display: inline-block;
+  margin-top: 32px;
+  padding: 12px 24px;
+  border-radius: 999px;
+  background-color: var(--accent);
+  color: var(--background);
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.4;
+  transition: background-color 0.2s ease;
+}
+
+.editLinkButton:hover {
+  background-color: color-mix(in oklch, var(--accent) 85%, var(--foreground));
+}
+
+/* Nothing on the board is the normal state for most of the festival, so the
+   empty case gets a real placeholder rather than a bare line of text. */
+.noItems {
+  margin-top: 40px;
+  padding: 44px 24px;
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  color: var(--muted);
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background-color: var(--surface);
+}
+
+/* The photos come in every shape a phone camera produces, so each one is
+   cropped into the same square rather than letting the grid go ragged. */
+.frame {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  background-color: color-mix(in oklch, var(--foreground) 8%, var(--surface));
+}
+
+.image {
+  object-fit: cover;
+}
+
+.description {
+  padding: 12px;
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+@media screen and (max-width: 600px) {
+  .main {
+    width: min(100% - 32px, 760px);
+    padding: 48px 0 80px;
+  }
+
+  .header {
+    padding-bottom: 36px;
+  }
+
+  .lead {
+    font-size: 0.95rem;
+    line-height: 1.9;
+  }
+
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 16px;
+  }
+}

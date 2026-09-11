@@ -5,6 +5,8 @@ import {
   index,
   pgEnum,
   pgTable,
+  serial,
+  text,
   timestamp,
   varchar,
 } from "drizzle-orm/pg-core";
@@ -82,3 +84,23 @@ export const sessions = pgTable(
 
 export type User = typeof users.$inferSelect;
 export type Session = typeof sessions.$inferSelect;
+
+export const sousakutenLostItems = pgTable("sousakuten_lost_items", {
+  id: serial("id").primaryKey(),
+  description: text("description"),
+  // SHA-256 of the bytes plus the extension they imply. The photo itself
+  // lives on the /app/files mount, not in this table.
+  fileName: varchar("file_name", { length: 160 }).notNull(),
+  // The committee member who posted it, for the audit trail. Nullable only so
+  // it can be ON DELETE SET NULL: removing a staff account must not silently
+  // delete the board — and a cascade would strand the photo files too, since
+  // deleteLostItem() is the only thing that unlinks them. Same shape and same
+  // reasoning as sousakuten_stamps.granted_by.
+  uploadedBy: varchar("uploaded_by", { length: 32 }).references(
+    () => users.username,
+    { onDelete: "set null" },
+  ),
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .defaultNow()
+    .notNull(),
+});
