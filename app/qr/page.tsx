@@ -1,14 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { unauthorized } from "next/navigation";
 
-import { FloatingMenu } from "@/app/components/FloatingMenu";
-import { QrCode } from "@/app/components/PersonalQr/QrCode";
-import { personalCodeFor } from "@/lib/personal-code";
 import { getCurrentUser } from "@/lib/session";
 import { pageMetadata } from "@/lib/site";
-
-import styles from "./qr.module.css";
 
 // Never indexable: the page is per-account and exists only for the person
 // holding it. It is left out of app/sitemap.ts for the same reason.
@@ -39,7 +33,7 @@ export default async function QrPage() {
 
   return (
     <>
-      <div className={styles.wall}>
+      {/* <div className={styles.wall}>
         <article className={styles.sheet}>
           <p className={styles.romaji}>My Code</p>
           <h1 className={styles.title}>個人QRコード</h1>
@@ -66,7 +60,7 @@ export default async function QrPage() {
           </Link>
         </article>
       </div>
-      <FloatingMenu items={[{ label: "Top", href: "/" }]} />
+      <FloatingMenu items={[{ label: "Top", href: "/" }]} /> */}
     </>
   );
 }
