@@ -87,6 +87,13 @@ export const DESTINATIONS: readonly Destination[] = [
     blurb: "投票",
     isReady: false,
   },
+  {
+    label: "忘れ物",
+    romaji: "Lost Items",
+    href: "/lost-items",
+    blurb: "会場で見つかった忘れ物の一覧",
+    isReady: true,
+  },
 ];
 
 export function destinationFor(href: string): Destination {

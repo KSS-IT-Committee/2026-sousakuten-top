@@ -1,19 +1,21 @@
 .page {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: min(44rem, calc(100% - 2.5rem));
-  min-height: 70svh;
+  width: min(100% - 48px, 960px);
   margin: 0 auto;
-  padding: clamp(2rem, 6vw, 3.5rem);
-  background: var(--surface);
-  color: var(--foreground);
-  box-shadow: 0 1.4rem 3rem rgba(0, 0, 0, 0.32);
+  padding: 72px 0 112px;
+}
+
+.pageEyebrow {
+  color: var(--accent-alt);
+  font-family: var(--mono);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1.4;
 }
 
 .pageTitle {
   font-family: var(--mincho);
-  font-size: clamp(1.75rem, 5vw, 2.6rem);
+  font-size: clamp(2.4rem, 7vw, 4rem);
   font-weight: 700;
   line-height: 1.25;
   letter-spacing: 0.06em;
@@ -22,7 +24,7 @@
 
 .pageDescription {
   margin-top: 1.15rem;
-  font-size: clamp(0.9375rem, 2vw, 1.0625rem);
+  font-size: 1.05rem;
   line-height: 1.9;
   color: var(--muted);
 }
@@ -104,6 +106,7 @@
   gap: 0.5rem;
   padding-left: 1.35rem;
   line-height: 1.7;
+  list-style-type: disc;
 }
 
 .alert {
@@ -141,12 +144,12 @@
 
 .warning {
   padding: 1.5rem;
-  border: 1px solid color-mix(in srgb, var(--accent-alt) 45%, var(--border));
-  background: color-mix(in srgb, var(--accent-alt) 6%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--border));
+  background: color-mix(in srgb, var(--accent) 6%, transparent);
 }
 
 .warning .blockTitle {
-  color: var(--accent-alt);
+  color: var(--accent);
 }
 
 @media (max-width: 40rem) {
