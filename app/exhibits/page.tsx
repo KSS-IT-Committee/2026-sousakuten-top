@@ -71,7 +71,7 @@ function PerformanceCard({
           <div className={styles.sectionNotes}>
             <p className={styles.sectionNote}>
               各部活のタイムテーブルは
-              <Link href="/schedule">タイムテーブルを見る</Link>
+              <Link href="/schedule#Club">タイムテーブルを見る</Link>
             </p>
           </div>
         )}
@@ -79,7 +79,7 @@ function PerformanceCard({
           <div className={styles.sectionNotes}>
             <p className={styles.sectionNote}>
               開拓部門の公演時刻は
-              <Link href="/schedule">タイムテーブルを見る</Link>
+              <Link href="/schedule#Kaitaku">タイムテーブルを見る</Link>
             </p>
           </div>
         )}
@@ -91,7 +91,7 @@ function PerformanceCard({
             </p>
             <p className={styles.sectionNote}>
               <span>創作部門の公演時刻</span>
-              <Link href="/schedule">タイムテーブルを見る</Link>
+              <Link href="/schedule#Sousaku">タイムテーブルを見る</Link>
             </p>
           </div>
         )}
