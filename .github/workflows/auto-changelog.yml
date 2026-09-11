@@ -2,6 +2,8 @@ name: Auto Changelog
 
 on:
   pull_request_target:
+    # main 向けの PR のみ対象 (feature ブランチ間の PR にはエントリを作らない)
+    branches: ["main"]
     # synchronize: dependabot の recreate (force-push) などでエントリが
     # 消えたら再追加する。既にエントリがあれば何もしないためループしない
     types: [opened, synchronize]
