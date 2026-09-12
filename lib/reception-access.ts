@@ -11,18 +11,23 @@ import type { SessionUser } from "@/lib/session";
 const RECEPTION_CLASS_ROLES: readonly Role[] = ["G5", "G6"];
 
 /**
- * IT委員会, which runs this page: records on EVERY class's list, so a desk
- * that cannot record for itself — nobody logged in, a forgotten password, a
- * phone that died — can be worked from the committee's own account. Held by
- * hand-granted accounts in any year, so it is not tied to a grade role.
+ * The committees running the 創作展 — IT委員会, and 創作展委員会 including its
+ * 幹部: they record on EVERY class's list, so a desk that cannot record for
+ * itself — nobody logged in, a forgotten password, a phone that died — can be
+ * worked from a committee account. These are hand-granted (SQL) to accounts
+ * in any year, so they are not tied to a grade role.
  */
-const RECEPTION_COMMITTEE_ROLES: readonly Role[] = ["IT"];
+const RECEPTION_COMMITTEE_ROLES: readonly Role[] = [
+  "IT",
+  "Sousakuten",
+  "SousakutenMain",
+];
 
 /**
- * Who may open /lottery/reception at all: the 創作部門 classes and IT委員会.
- * The page lists every winner of every performance, so it is deliberately
- * narrower than INTERNAL_ROLES — and seeing a list is not the same as
- * recording on it (canRecordArrivals).
+ * Who may open /lottery/reception at all: the 創作部門 classes and the
+ * committees above. The page lists every winner of every performance, so it
+ * is deliberately narrower than INTERNAL_ROLES — and seeing a list is not the
+ * same as recording on it (canRecordArrivals).
  */
 export const RECEPTION_ROLES: readonly Role[] = [
   ...RECEPTION_CLASS_ROLES,
@@ -61,9 +66,9 @@ export function classFromRoles(roles: readonly string[]): string | null {
 
 /**
  * Whether `user` may record arrivals for the performances of class `actId`:
- * that class's own members, whose 受付 it is, and IT委員会, for every class.
- * Decided from roles, never from the username, like every other authorization
- * in these apps.
+ * that class's own members, whose 受付 it is, and the IT・創作展 committees,
+ * for every class. Decided from roles, never from the username, like every
+ * other authorization in these apps.
  */
 export function canRecordArrivals(user: SessionUser, actId: string): boolean {
   if (hasAnyRole(user, RECEPTION_COMMITTEE_ROLES)) return true;

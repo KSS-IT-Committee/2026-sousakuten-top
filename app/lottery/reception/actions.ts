@@ -65,10 +65,10 @@ async function applyCheckin(
 /**
  * Records (isArrived = true) or takes back (false) one seat's arrival.
  *
- * Only a member of the class whose play the seat is for — or an IT委員, for
- * any class — may do either, and only until that performance's 受付締切; both
- * are read off the seat, never taken from the caller. Safe to repeat both
- * ways, because a desk's phones race each other and a flaky connection
+ * Only a member of the class whose play the seat is for — or an IT・創作展委員,
+ * for any class — may do either, and only until that performance's 受付締切;
+ * both are read off the seat, never taken from the caller. Safe to repeat
+ * both ways, because a desk's phones race each other and a flaky connection
  * replays taps: arriving twice keeps the first time (and says so), and taking
  * back a seat that is not checked in does nothing. Ends with refresh(), so the
  * response carries the re-rendered list and the tapping phone sees the
@@ -123,7 +123,7 @@ export async function setSeatCheckinAction(
     const label = findReceptionAct(outcome.actId)?.label ?? outcome.actId;
     return {
       status: "failed",
-      error: `この公演の来場を記録できるのは、${label}の生徒とIT委員だけです。`,
+      error: `この公演の来場を記録できるのは、${label}の生徒とIT委員・創作展委員だけです。`,
     };
   }
   if (outcome.status === "closed") {
