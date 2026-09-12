@@ -12,8 +12,8 @@
 
 export const SOUSAKU_LOTTERY_ID = "sousaku-performance";
 
-/** 「公演開始5分前までに当選クラスの受付へ」 — the rule every ticket states. */
-const RECEPTION_CLOSES_BEFORE_START_MS = 5 * 60 * 1000;
+/** 「公演開始10分後までに当選クラスの受付へ」 — the rule every ticket states. */
+const RECEPTION_CLOSES_AFTER_START_MS = 10 * 60 * 1000;
 
 const FESTIVAL_DAYS = [
   { id: "sep12", label: "9月12日（土）", date: "2026-09-12" },
@@ -109,9 +109,9 @@ export function currentReceptionSlot(now: Date): ReceptionSlot {
   );
 }
 
-/** When a performance's 受付 closes: 5 minutes before it starts. */
+/** When a performance's 受付 closes: 10 minutes after it starts. */
 export function receptionDeadline(slot: ReceptionSlot): Date {
-  return new Date(slot.startsAt.getTime() - RECEPTION_CLOSES_BEFORE_START_MS);
+  return new Date(slot.startsAt.getTime() + RECEPTION_CLOSES_AFTER_START_MS);
 }
 
 /** How close to the 受付締切 the countdown turns red. */
@@ -154,12 +154,12 @@ const JST_CLOCK = new Intl.DateTimeFormat("ja-JP", {
   second: "2-digit",
 });
 
-/** 「08:40」 — always JST, whatever the server's or the phone's timezone. */
+/** 「08:55」 — always JST, whatever the server's or the phone's timezone. */
 export function formatJstTime(instant: Date): string {
   return JST_TIME.format(instant);
 }
 
-/** 「08:40:15」 — the same, to the second. */
+/** 「08:55:15」 — the same, to the second. */
 export function formatJstClock(instant: Date): string {
   return JST_CLOCK.format(instant);
 }

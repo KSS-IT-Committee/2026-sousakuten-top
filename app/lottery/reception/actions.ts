@@ -48,7 +48,7 @@ async function applyCheckin(
   if (!canRecordArrivals(operator, seat.actId)) {
     return { status: "forbidden", actId: seat.actId };
   }
-  // 「5分前の時点で不在の場合、当選は無効」: from the 受付締切 on, the list is
+  // 「開演10分後の時点で不在の場合、当選は無効」: from the 受付締切 on, the list is
   // final — no late arrival, and no taking one back either.
   const deadline = receptionDeadline(slot);
   if (receptionNow().getTime() >= deadline.getTime()) {

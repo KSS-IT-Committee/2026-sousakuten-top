@@ -101,7 +101,7 @@ function useServerNow(renderedAt: string): number {
  * with the confirmed one; a write that fails rolls back only its own seat and
  * says so under it. A poll brings in the other phones' taps.
  *
- * At the 受付締切 (開演5分前) the list locks, on the same clock the action
+ * At the 受付締切 (開演10分後) the list locks, on the same clock the action
  * uses to refuse taps: seats that have not arrived read 無効, nothing can be
  * recorded or taken back, and the tally shows the 空席 left for the
  * キャンセル待ち列.
@@ -235,7 +235,7 @@ export function ReceptionList({
         ) : (
           <>
             <p className={styles.deadline}>
-              受付締切 {formatJstTime(deadlineAt)}（開演5分前）
+              受付締切 {formatJstTime(deadlineAt)}（開演10分後）
               <span
                 className={styles.countdown}
                 data-urgent={isUrgent ? "" : undefined}
