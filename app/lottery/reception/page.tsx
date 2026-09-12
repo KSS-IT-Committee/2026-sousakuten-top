@@ -75,8 +75,8 @@ async function ReceptionContent({
     RECEPTION_ACTS[0];
   const seats = await getReceptionSeats(slot.id, act.id);
   // Everyone the guard lets in may read every list; the performing class
-  // records on its own, IT委員会 on all of them. The action enforces the same
-  // rule on its own.
+  // records on its own, the committees on all of them. The action enforces
+  // the same rule on its own.
   const canRecord = user !== null && canRecordArrivals(user, act.id);
 
   return (
@@ -85,7 +85,7 @@ async function ReceptionContent({
         <p className={styles.eyebrow}>RECEPTION</p>
         <h1 className={styles.title}>創作部門 受付</h1>
         <p className={styles.lead}>
-          自分のクラスの公演では、当選者が受付に来たらその行をタップして来場を記録してください。もう一度タップすると取り消せます。記録は裏で保存されるので、保存を待たずに次の人をタップできます。ほかのクラスの公演は閲覧のみです（IT委員はすべてのクラスの公演を記録できます）。受付締切（開演5分前）を過ぎると、その公演の記録は変更できなくなります。
+          自分のクラスの公演では、当選者が受付に来たらその行をタップして来場を記録してください。もう一度タップすると取り消せます。記録は裏で保存されるので、保存を待たずに次の人をタップできます。ほかのクラスの公演は閲覧のみです（IT委員・創作展委員はすべてのクラスの公演を記録できます）。受付締切（開演5分前）を過ぎると、その公演の記録は変更できなくなります。
         </p>
       </header>
 
