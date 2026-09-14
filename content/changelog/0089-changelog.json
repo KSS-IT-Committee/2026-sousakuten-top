@@ -1,0 +1,5 @@
+{
+  "title": "build(deps): bump react and @types/react",
+  "description": "パッケージのバージョンを上げました。これによるページの変更はありません。",
+  "credits": ["@dependabot[bot]"]
+}
