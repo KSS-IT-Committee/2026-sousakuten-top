@@ -5,6 +5,7 @@ import Link from "next/link";
 import { FloatingMenu } from "@/app/components/FloatingMenu";
 import { Internal } from "@/app/components/Internal";
 import { INTERNAL_ROLES } from "@/lib/access";
+import { maintainerAvatarUrl, MAINTAINERS } from "@/lib/maintainers";
 import { pageMetadata } from "@/lib/site";
 
 import styles from "./requests.module.css";
@@ -15,18 +16,6 @@ export const metadata: Metadata = pageMetadata({
   path: "/requests",
 });
 
-const MAINTAINERS = [
-  "hatuna-827",
-  "K10-K10",
-  "karencaya",
-  "kinoto0103",
-  "mochi-k18",
-  "rotarymars",
-  "SakaYq4875",
-  "Shirym-min",
-  "utsukushiioto0816-tech",
-];
-
 function MaintainerItem({ username }: { username: string }) {
   return (
     <li>
@@ -35,7 +24,7 @@ function MaintainerItem({ username }: { username: string }) {
         href={`https://github.com/${username}`}
       >
         <Image
-          src={`https://github.com/${username}.png`}
+          src={maintainerAvatarUrl(username)}
           alt=""
           width={32}
           height={32}
