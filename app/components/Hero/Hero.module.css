@@ -43,7 +43,11 @@
   align-items: center;
   gap: clamp(1rem, 2.6vw, 1.9rem);
   text-align: center;
-  width: clamp(300px, 80vw, 1280px);
+  /* Bounded by the grid area rather than the viewport: .hero's 1.5rem padding
+   * means 80vw can ask for more room than is actually left, and .hero clips
+   * what spills. box-sizing is border-box site-wide, so 100% covers the
+   * dashed border too. */
+  width: min(100%, clamp(300px, 80vw, 1280px));
   background-color: var(--top);
   border: dashed 3px var(--wall);
   padding-bottom: 30px;
@@ -60,9 +64,13 @@
 
 /* Only Regular and Bold of the JP system faces are reliably installed, so the
  * stroke stands in for the Black weight the teaser's title uses. Remove it if
- * a heavy webfont is ever added. */
+ * a heavy webfont is ever added.
+ *
+ * The segments are left inline rather than laid out as flex items: they share
+ * a baseline for free, and the line is free to break between them once the
+ * panel is too narrow to hold the theme in one row. text-wrap: balance then
+ * splits it evenly instead of stranding a single character on its own line. */
 .theme {
-  display: flex;
   font-family: var(--mincho);
   font-size: clamp(2.35rem, 8.4vw, 6.5rem);
   font-weight: 700;
@@ -72,7 +80,6 @@
   color: var(--accent);
   -webkit-text-stroke: 0.022em currentColor;
   text-shadow: 0 0.35rem 1.1rem rgba(0, 0, 0, 0.3);
-  align-items: baseline;
 }
 .themeStrong {
   font-size: clamp(2.35rem, 8.4vw, 6.5rem);
