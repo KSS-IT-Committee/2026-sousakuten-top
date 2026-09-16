@@ -1,5 +1,5 @@
 {
-  "title": "unify the 404 page style with the site palette",
-  "description": "TODO",
+  "title": "404ページのデザインを統一",
+  "description": "ページが見つからないときに表示される404ページの配色や書体を、サイト全体のデザインに合わせて統一しました。ダークモードにも対応しています。",
   "credits": ["@rotarymars"]
 }
