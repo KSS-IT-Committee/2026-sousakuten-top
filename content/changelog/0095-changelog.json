@@ -1,5 +1,5 @@
 {
-  "title": "keep the hero copy inside the frame on narrow screens",
-  "description": "TODO",
+  "title": "トップページの見出しの表示を修正",
+  "description": "画面の幅が狭いスマートフォンで、トップページ最上部のテーマ「正解なんて創ればいい」の枠や文字の端が切れてしまう問題を修正し、画面に収まって表示されるようにしました。",
   "credits": ["@rotarymars"]
 }
