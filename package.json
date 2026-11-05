@@ -16,9 +16,9 @@
     "fix": "npm run lint:fix && npm run format"
   },
   "dependencies": {
-    "@next/third-parties": "^16.3.4",
+    "@next/third-parties": "^16.4.3",
     "drizzle-orm": "^0.45.2",
-    "next": "^16",
+    "next": "^16.4.3",
     "postgres": "^3.4.9",
     "qrcode-generator": "^2.0.4",
     "react": "19.3.1",
