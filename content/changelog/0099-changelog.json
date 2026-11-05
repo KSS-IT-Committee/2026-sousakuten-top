@@ -1,0 +1,5 @@
+{
+  "title": "Update Node.js to ebfe2f9",
+  "description": "ランタイムのコンテナのバージョンを上げました。これによるページの変更はありません。",
+  "credits": ["@renovate[bot]"]
+}
