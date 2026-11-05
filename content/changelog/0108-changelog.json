@@ -1,0 +1,5 @@
+{
+  "title": "bump next to 16.4.3 to patch the critical image optimizer RCE",
+  "description": "セキュリティ修正のためパッケージのバージョンを上げました。これによるページの変更はありません。",
+  "credits": ["@rotarymars"]
+}
