@@ -1,0 +1,5 @@
+{
+  "title": "build(deps): bump drizzle-orm from 0.45.2 to 0.45.4",
+  "description": "パッケージのバージョンを上げました。これによるページの変更はありません。",
+  "credits": ["@dependabot[bot]"]
+}
