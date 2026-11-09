@@ -1,0 +1,5 @@
+{
+  "title": "build(deps): bump postgres from 3.4.9 to 4.1.0",
+  "description": "パッケージのバージョンを上げました。これによるページの変更はありません。",
+  "credits": ["@dependabot[bot]"]
+}
