@@ -1,0 +1,5 @@
+{
+  "title": "build(deps-dev): bump brace-expansion from 1.1.16 to 1.1.22 in the npm_and_yarn group across 1 directory",
+  "description": "パッケージのバージョンを上げました。これによるページの変更はありません。",
+  "credits": ["@dependabot[bot]"]
+}
